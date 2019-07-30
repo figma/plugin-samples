@@ -1,0 +1,29 @@
+<link rel="stylesheet" href="https://static.figma.com/api/figma-extension-api-0.0.1.css">
+<h2>Bar Chart Sample</h2>
+<p>
+  Values:
+  <input id="textbox" value="1, 3, 10, 28, 41, 87, 100, 114, 94, 68, 50, 23, 9, 3, 1">
+</p>
+<b id="errors"></b>
+<p><button>Create Bar Chart</button></p>
+<script>
+  document.querySelector('button').onclick = () => {
+    const text = document.querySelector('#textbox').value
+
+    let numbers = text.split(',').map(x => +x)
+    if (numbers.length < 2) {
+      showError('Error: Must have at least two values');
+      return
+    }
+    if (numbers.some(x => isNaN(x))) {
+      showError('Error: All values must be numbers');
+      return
+    }
+
+    parent.postMessage({ pluginMessage: numbers }, '*')
+  }
+
+  showError = errorMessage => {
+    document.querySelector('#errors').textContent = errorMessage
+  }
+</script>

@@ -1,0 +1,89 @@
+<p>Search Query:<input id=query oninput="updateSearch()"></p>
+<p id=status></p>
+<p><button id=previous onclick="showPrevious()" disabled>Show previous</button></p>
+<p><button id=next onclick="showNext()" disabled>Show next</button></p>
+<p><button onclick="quit()">Close</button></p>
+<script>
+"use strict";
+
+let currentQuery = '';
+let results = [];
+let searching = false;
+let current = undefined;
+
+function updateSearch() {
+  currentQuery = document.getElementById('query').value;
+  results = [];
+  current = undefined;
+  searching = currentQuery !== '';
+  parent.postMessage({ pluginMessage: { query: currentQuery } }, '*');
+  updateUI();
+}
+function getPrevious() {
+  return current === undefined ?
+    (results.length - 1) :
+    ((current + results.length - 1) % results.length)
+}
+function getNext() {
+  return current === undefined ?
+    0 :
+    (current + 1) % results.length
+}
+function showPrevious() {
+  current = getPrevious()
+  parent.postMessage({ pluginMessage: { show: results[current] } }, '*')
+  updateUI()
+}
+function showNext() {
+  current = getNext()
+  parent.postMessage({ pluginMessage: { show: results[current] } }, '*')
+  updateUI()
+}
+function quit() {
+  parent.postMessage({ pluginMessage: { quit: true } }, '*');
+}
+
+onmessage = event => {
+  let message = event.data.pluginMessage;
+
+  // Ignore results from a previous query. This can happen if the main code
+  // reports results just as we start a new query
+  if (message.query !== currentQuery) {
+    return
+  }
+
+  results.push(...message.results);
+
+  if (message.done) {
+    searching = false
+  }
+  updateUI()
+}
+
+function updateUI() {
+  let status = '';
+  if (searching) {
+    status = "Searching...";
+    if (results.length) {
+      status += ` Found ${results.length} results`;
+    }
+  } else if (currentQuery) {
+    status = `Done! Found ${results.length} results`;
+  }
+  document.getElementById('status').textContent = status;
+
+  let nextButton = document.getElementById('next');
+  if (results.length === 0) {
+    previous.disabled = true
+    previous.textContent = "Show previous"
+    nextButton.disabled = true
+    nextButton.textContent = "Show next"
+  } else {
+    previous.disabled = false
+    previous.textContent = `Show previous (${getPrevious() + 1}/${results.length})`
+    nextButton.disabled = false
+    nextButton.textContent = `Show next (${getNext() + 1}/${results.length})`
+  }
+}
+
+</script>
