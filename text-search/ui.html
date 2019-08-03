@@ -12,7 +12,7 @@ let searching = false;
 let current = undefined;
 
 function updateSearch() {
-  currentQuery = document.getElementById('query').value;
+  currentQuery = document.getElementById('query').value.toLowerCase();
   results = [];
   current = undefined;
   searching = currentQuery !== '';
