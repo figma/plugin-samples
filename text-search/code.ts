@@ -45,7 +45,7 @@ function searchFor(query) {
     let res
     while (!(res = walker.next()).done) {
       let node = res.value
-      if (node.type === 'TEXT' && node.characters.includes(query)) {
+      if (node.type === 'TEXT' && node.characters.toLowerCase().includes(query)) {
         results.push(node.id);
       }
       if (++count === 1000) {
