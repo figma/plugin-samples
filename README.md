@@ -1,6 +1,6 @@
 # 🔌 Figma Plugin Samples
 
-Sample plugins using the [Figma Plugin API][docs].
+Sample plugins using the [Figma Plugin API][docs]. For feature requests, bug reports, or to ask questions about developing plugins, check out [the docs](https://www.figma.com/plugin-docs/get-help).
 
 These plugins are written using [TypeScript][ts] to take advantage of Figma's
 typed plugin API. This means that in order to run a plugin, you will first need
