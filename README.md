@@ -1,6 +1,9 @@
 # 🔌 Figma Plugin Samples
 
-Sample plugins using the [Figma Plugin API][docs]. For feature requests, bug reports, or to ask questions about developing plugins, check out [the docs](https://www.figma.com/plugin-docs/get-help).
+Sample plugins using the [Figma Plugin API][docs].
+
+To make a feature request, file a bug report, or ask a question about
+developing plugins, check out the available [resources][help].
 
 These plugins are written using [TypeScript][ts] to take advantage of Figma's
 typed plugin API. This means that in order to run a plugin, you will first need
@@ -120,6 +123,7 @@ This demonstrates:
 [Check out the source code.](react/)
 
 [docs]: https://www.figma.com/plugin-docs
+[help]: https://www.figma.com/plugin-docs/get-help
 [ts]: https://www.typescriptlang.org/
 [node]: https://nodejs.org/en/download/
 [webpack]: #webpack
