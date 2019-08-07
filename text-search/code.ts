@@ -23,8 +23,8 @@ figma.ui.onmessage = message => {
   }
 }
 
-// This is a generator that recursively produces
-// all the nodes in subtree starting at the given node
+// This is a generator that recursively produces all the nodes in subtree
+// starting at the given node
 function* walkTree(node) {
   yield node;
   let children = node.children;
@@ -36,6 +36,7 @@ function* walkTree(node) {
 }
 
 function searchFor(query) {
+  query = query.toLowerCase()
   let walker = walkTree(figma.currentPage)
 
   function processOnce() {
@@ -45,8 +46,11 @@ function searchFor(query) {
     let res
     while (!(res = walker.next()).done) {
       let node = res.value
-      if (node.type === 'TEXT' && node.characters.toLowerCase().includes(query)) {
-        results.push(node.id);
+      if (node.type === 'TEXT') {
+        let characters = node.characters.toLowerCase()
+        if (characters.includes(query)) {
+          results.push(node.id);
+        }
       }
       if (++count === 1000) {
         done = false
