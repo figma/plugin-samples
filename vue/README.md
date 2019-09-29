@@ -1,22 +1,23 @@
-This plugin template uses Typescript. If you are familiar with Javascript, Typescript will
-look very familiar. In fact, valid Javascript code is already valid Typescript code.
+# Vue 
 
-Typescript adds type annotations to variables. This allows code editors such as Visual Studio Code
-to provide information about the Figma API while you are writing code, as well as help catch bugs
-you previously didn't notice.
+<img src="../_screenshots/webpack.png" width="400" />
 
-For more information, visit https://www.typescriptlang.org/
+Creates rectangles (same as the [Webpack sample plugin][webpack]).
 
-Using Typescript requires a compiler to convert Typescript (code.ts) into Javascript (code.js)
-for the browser to run.
+This demonstrates:
 
-To get the TypeScript compiler working:
+- bundling plugin code using Webpack, and
+- using Vue.
 
-1. Download Visual Studio Code if you haven't already: https://code.visualstudio.com/.
-2. Install the TypeScript compiler globally: `sudo npm install -g typescript`.
-3. Open this directory in Visual Studio Code.
-4. Compile TypeScript to JavaScript: Run the "Terminal > Run Build Task..." menu item,
-    then select "tsc: watch - tsconfig.json". You will have to do this again every time
-    you reopen Visual Studio Code.
+The main plugin code is in `src/code.ts`. The HTML for the UI is in
+`src/ui.html`, while the embedded JavaScript is in `src/ui.js` and the Vue script is in `src/App.vue`.
 
-That's it! Visual Studio Code will regenerate the JavaScript file every time you save.
+These are compiled to files in `build/`, which are what Figma will use to run
+your plugin as set in the `manifest.json`.
+
+To build:
+
+    $ npm install
+    $ npx webpack
+
+[webpack]: ../webpack/
