@@ -122,8 +122,21 @@ This demonstrates:
 
 [Check out the source code.](react/)
 
+## Vue 
+
+Creates rectangles (same as the [Webpack sample plugin][webpack]).
+
+This demonstrates:
+
+- bundling plugin code using Webpack, and
+- using Vue Single File Components.
+
+[Check out the source code.](vue/)
+
+
 [docs]: https://www.figma.com/plugin-docs
 [help]: https://www.figma.com/plugin-docs/get-help
 [ts]: https://www.typescriptlang.org/
 [node]: https://nodejs.org/en/download/
 [webpack]: #webpack
+
