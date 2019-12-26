@@ -1,8 +1,7 @@
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
+import logoSrc from './logo.svg';
 import './ui.css'
-
-declare function require(path: string): any
 
 class App extends React.Component {
   textbox: HTMLInputElement
@@ -23,7 +22,7 @@ class App extends React.Component {
 
   render() {
     return <div>
-      <img src={require('./logo.svg')} />
+      <img src={logoSrc} />
       <h2>Rectangle Creator</h2>
       <p>Count: <input ref={this.countRef} /></p>
       <button id="create" onClick={this.onCreate}>Create</button>
