@@ -1,6 +1,7 @@
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
 import './ui.css'
+import Logo from './logo.svg'
 
 declare function require(path: string): any
 
@@ -23,7 +24,7 @@ const App = () => {
 
   render() {
     return <div>
-      <img src={require('./logo.svg')} />
+      <img src={Logo} />
       <h2>Rectangle Creator</h2>
       <p>Count: <input ref={countRef} /></p>
       <button id="create" onClick={onCreate}>Create</button>
