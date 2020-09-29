@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     "target": "es6",
-    "jsx": "react"
+    "jsx": "react",
+    "skipLibCheck": true
   }
 }
