@@ -111,7 +111,7 @@ Creates rectangles. Demonstrates bundling plugin code using Webpack.
 
 [Check out the source code.](webpack/)
 
-## React 
+## React
 
 Creates rectangles (same as the [Webpack sample plugin][webpack]).
 
@@ -122,7 +122,7 @@ This demonstrates:
 
 [Check out the source code.](react/)
 
-## Vue 
+## Vue
 
 Creates rectangles (same as the [Webpack sample plugin][webpack]).
 
@@ -132,6 +132,16 @@ This demonstrates:
 - using Vue Single File Components.
 
 [Check out the source code.](vue/)
+
+## Svelte
+
+Creates rectangles (same as the [Webpack sample plugin][webpack]).
+
+This demonstrates:
+- bundling plugin code using Rollup, and
+- using Svelte Single File Components.
+
+[Check out the source code.](svelte-rectangles/)
 
 
 [docs]: https://www.figma.com/plugin-docs
