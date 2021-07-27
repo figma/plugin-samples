@@ -46,6 +46,7 @@ module.exports = (env, argv) => ({
       inlineSource: '.(js)$',
       chunks: ['ui'],
       inject: 'body',
+      cache: 'false'
     }),
     new HtmlWebpackInlineSourcePlugin(),
   ],
