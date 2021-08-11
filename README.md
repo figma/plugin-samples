@@ -95,6 +95,8 @@ Generates a fractal using circles.
 
 Inserts an SVG icon into the canvas. 
 
+[Check out the source code.](svg-inserter/)
+
 ## Text Search
 
 <img src="_screenshots/text-search.png" width="400" />
