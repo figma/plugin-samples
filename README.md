@@ -75,7 +75,7 @@ Generates a pie chart given user input in a modal.
 
 ## Resizer (Parameter Only)
 
-<img src="_screenshots/resizer.png" width="400">
+<img src="_screenshots/resizer.png" width="400" />
 
 Resizes a selected shape. There are two submenus, allowing for absolute resizing and relative resizing.
 
@@ -91,7 +91,7 @@ Generates a fractal using circles.
 
 ## SVG Inserter (Parameter Enabled)
 
-<img src="_screenshots/svg_inserter.png" width="400">
+<img src="_screenshots/svg_inserter.png" width="400" />
 
 Inserts an SVG icon into the canvas. 
 
