@@ -73,6 +73,14 @@ Generates a pie chart given user input in a modal.
 
 [Check out the source code.](piechart/)
 
+## Resizer (Parameter Only)
+
+<img src="_screenshots/resizer.png" width="400">
+
+Resizes a selected shape. There are two submenus, allowing for absolute resizing and relative resizing.
+
+[Check out the source code.](resizer/)
+
 ## Sierpinski
 
 <img src="_screenshots/sierpinski.png" width="400" />
@@ -80,6 +88,12 @@ Generates a pie chart given user input in a modal.
 Generates a fractal using circles.
 
 [Check out the source code.](sierpinski/)
+
+## SVG Inserter (Parameter Enabled)
+
+<img src="_screenshots/svg_inserter.png" width="400">
+
+Inserts an SVG icon into the canvas. 
 
 ## Text Search
 
