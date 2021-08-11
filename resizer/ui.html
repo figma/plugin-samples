@@ -1,0 +1,9 @@
+<h1>Resizer UI: <span id='command'></span></h1>
+<p>UI for the Resizer plugin here.</p>
+
+<script>
+onmessage = (event) => {
+  const command = event.data.pluginMessage;
+  document.getElementById('command').innerHTML = command;
+}
+</script>

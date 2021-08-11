@@ -1,0 +1,36 @@
+{
+  "name": "Resizer",
+  "id": "994314547752599560",
+  "api": "1.0.0",
+  "main": "code.js",
+  "ui": "ui.html",
+  "menu": [
+    {
+      "name": "Absolute",
+      "command": "absolute",
+      "parameterOnly": true,
+      "parameters": [
+        {
+          "name": "Width",
+          "key": "width"
+        },
+        {
+          "name": "Height",
+          "key": "height"
+        }
+      ]
+    },
+    {
+      "name": "Relative",
+      "command": "relative",
+      "parameterOnly": true,
+      "parameters": [
+        {
+          "name": "Scale",
+          "key": "scale",
+          "allowFreeform": true
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "name": "SVG Inserter",
+  "id": "994353700568293385",
+  "api": "1.0.0",
+  "main": "code.js",
+  "ui": "ui.html",
+  "parameters": [
+    {
+      "name": "Icon name",
+      "key": "icon-name"
+    },
+    {
+      "name": "Size",
+      "key": "size",
+      "allowFreeform": true
+    },
+    {
+      "name": "Color",
+      "key": "color",
+      "allowFreeform": true,
+      "optional": true
+    }
+  ]
+}
