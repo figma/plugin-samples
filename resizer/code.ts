@@ -18,19 +18,11 @@ figma.parameters.on('input', (parameters: ParameterValues, currentKey: string, r
 })
 
 // When the user presses Enter after inputting all parameters, the 'run' event is fired.
-figma.on('run', ({parameters, command}: RunEvent) => {
+figma.on('run', ({parameters}: RunEvent) => {
   if (parameters) {
     startPluginWithParameters(parameters)
-  } else {
-    startPluginWithUI(command);
   }
 })
-
-// Starts the plugin in regular mode.
-function startPluginWithUI(command: string) {
-  figma.showUI(__html__);
-  figma.ui.postMessage(command)
-};
 
 function startPluginWithParameters(parameters: ParameterValues) {
   const selection = figma.currentPage.selection

@@ -28,15 +28,8 @@ figma.parameters.on('input', (parameters: ParameterValues, currentKey: string, r
 figma.on('run', ({parameters}: RunEvent) => {
   if (parameters) {
     startPluginWithParameters(parameters)
-  } else {
-    startPluginWithUI()
   }
 })
-
-// Start the plugin in regular mode
-function startPluginWithUI() {
-  figma.showUI(__html__);
-};
 
 // Start the plugin with parameters
 function startPluginWithParameters(parameters: ParameterValues) {

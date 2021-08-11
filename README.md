@@ -89,7 +89,7 @@ Generates a fractal using circles.
 
 [Check out the source code.](sierpinski/)
 
-## SVG Inserter (Parameter Enabled)
+## SVG Inserter (Parameter Only)
 
 <img src="_screenshots/svg-inserter.png" width="400" />
 
