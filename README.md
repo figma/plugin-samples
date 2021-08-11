@@ -91,7 +91,7 @@ Generates a fractal using circles.
 
 ## SVG Inserter (Parameter Enabled)
 
-<img src="_screenshots/svg_inserter.png" width="400" />
+<img src="_screenshots/svg-inserter.png" width="400" />
 
 Inserts an SVG icon into the canvas. 
 
