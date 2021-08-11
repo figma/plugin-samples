@@ -1,4 +1,4 @@
-// The 'change' event listens for text change in the Quick Actions box.
+// The 'input' event listens for text change in the Quick Actions box after a plugin is 'Tabbed' into.
 figma.parameters.on('input', (parameters, currentKey, result) => {
     const query = parameters[currentKey];
     switch (currentKey) {
@@ -16,7 +16,7 @@ figma.parameters.on('input', (parameters, currentKey, result) => {
             return;
     }
 });
-// When the user finishes entering parameters, the 'run' event is fired.
+// When the user presses Enter after inputting all parameters, the 'run' event is fired.
 figma.on('run', ({ parameters, command }) => {
     if (parameters) {
         startPluginWithParameters(parameters);
