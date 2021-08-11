@@ -3,7 +3,7 @@
   "id": "994353700568293385",
   "api": "1.0.0",
   "main": "code.js",
-  "ui": "ui.html",
+  "parameterOnly": true,
   "parameters": [
     {
       "name": "Icon name",
