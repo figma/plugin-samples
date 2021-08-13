@@ -27,13 +27,7 @@ For example, the code for the Bar Chart sample plugin is in
 [barchart/code.ts](barchart/code.ts), and the HTML for its UI is in
 [barchart/ui.html](barchart/ui.html).
 
-## Bar Chart
-
-<img src="_screenshots/barchart.png" width="400" />
-
-Generates a bar chart given user input in a modal.
-
-[Check out the source code.](barchart/)
+# Examples without UIs
 
 ## Circle Text
 
@@ -43,14 +37,6 @@ Takes a single text node selected by the user and creates a copy with the
 characters arranged in a circle.
 
 [Check out the source code.](circletext/)
-
-## Document Statistics
-
-<img src="_screenshots/stats.png" width="400" />
-
-Computes a count of the nodes of each `NodeType` in the current document.
-
-[Check out the source code.](stats/)
 
 ## Invert Image Color
 
@@ -65,14 +51,6 @@ This demonstrates:
 
 [Check out the source code.](invert-image/)
 
-## Pie Chart
-
-<img src="_screenshots/piechart.png" width="400" />
-
-Generates a pie chart given user input in a modal.
-
-[Check out the source code.](piechart/)
-
 ## Resizer (Parameter Only)
 
 <img src="_screenshots/resizer.png" width="400" />
@@ -80,6 +58,14 @@ Generates a pie chart given user input in a modal.
 Resizes a selected shape. There are two submenus, allowing for absolute resizing and relative resizing.
 
 [Check out the source code.](resizer/)
+
+## SVG Inserter (Parameter Only)
+
+<img src="_screenshots/svg-inserter.png" width="400" />
+
+Inserts an SVG icon into the canvas. 
+
+[Check out the source code.](svg-inserter/)
 
 ## Sierpinski
 
@@ -89,13 +75,43 @@ Generates a fractal using circles.
 
 [Check out the source code.](sierpinski/)
 
-## SVG Inserter (Parameter Only)
+## Vector Path
 
-<img src="_screenshots/svg-inserter.png" width="400" />
+<img src="_screenshots/vector-path.png" width="400" />
 
-Inserts an SVG icon into the canvas. 
+Generates a triangle using vector paths.
 
-[Check out the source code.](svg-inserter/)
+[Check out the source code.](vector-path/)
+
+
+# Examples with UIs
+
+## Bar Chart
+
+<img src="_screenshots/barchart.png" width="400" />
+
+Generates a bar chart given user input in a modal.
+
+[Check out the source code.](barchart/)
+
+
+## Document Statistics
+
+<img src="_screenshots/stats.png" width="400" />
+
+Computes a count of the nodes of each `NodeType` in the current document.
+
+[Check out the source code.](stats/)
+
+
+## Pie Chart
+
+<img src="_screenshots/piechart.png" width="400" />
+
+Generates a pie chart given user input in a modal.
+
+[Check out the source code.](piechart/)
+
 
 ## Text Search
 
@@ -111,13 +127,7 @@ This demonstrates:
 
 [Check out the source code.](text-search/)
 
-## Vector Path
-
-<img src="_screenshots/vector-path.png" width="400" />
-
-Generates a triangle using vector paths.
-
-[Check out the source code.](vector-path/)
+# Examples with bundling
 
 ## Webpack
 
