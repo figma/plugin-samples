@@ -11,11 +11,13 @@
       "parameters": [
         {
           "name": "Width",
-          "key": "width"
+          "key": "width",
+          "description": "enter a width in pixels"
         },
         {
           "name": "Height",
-          "key": "height"
+          "key": "height",
+          "description": "enter a height in pixels"
         }
       ]
     },
@@ -27,6 +29,7 @@
         {
           "name": "Scale",
           "key": "scale",
+          "description": "enter a relative scale factor",
           "allowFreeform": true
         }
       ]
