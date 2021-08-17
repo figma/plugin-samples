@@ -57,6 +57,8 @@ This demonstrates:
 
 Resizes a selected shape. There are two submenus, allowing for absolute resizing and relative resizing.
 
+For more information on how to accept parameters as input to your plugin, take a look at [this guide](https://www.figma.com/plugin-docs/plugin-parameters).
+
 [Check out the source code.](resizer/)
 
 ## SVG Inserter (Parameter Only)
@@ -64,6 +66,8 @@ Resizes a selected shape. There are two submenus, allowing for absolute resizing
 <img src="_screenshots/svg-inserter.png" width="400" />
 
 Inserts an SVG icon into the canvas. 
+
+For more information on how to accept parameters as input to your plugin, take a look at [this guide](https://www.figma.com/plugin-docs/plugin-parameters).
 
 [Check out the source code.](svg-inserter/)
 
