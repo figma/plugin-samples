@@ -1,4 +1,4 @@
-// Figma Plugin API version 1, update 14
+// Figma Plugin API version 1, update 29
 
 declare global {
   // Global variable with Figma's plugin API.
@@ -106,6 +106,7 @@ declare global {
 
   interface NotificationOptions {
     timeout?: number
+    error?: boolean
   }
 
   interface NotificationHandler {
@@ -150,7 +151,7 @@ declare global {
   }
 
   interface ParameterValues {
-    [key: string]: string
+    [key: string]: any
   }
 
   interface SuggestionResults {
@@ -158,12 +159,11 @@ declare global {
   }
 
   type ParameterChangeHandler = (parameters: ParameterValues, suggestionKey: string, result: SuggestionResults) => void
-  type ParametersSelectedHandler = (parameters: ParameterValues) => void
 
   interface ParametersAPI {
-    on(type: "input", callback: ParameterChangeHandler | ParametersSelectedHandler): void
-    once(type: "input", callback: ParameterChangeHandler | ParametersSelectedHandler): void
-    off(type: "input", callback: ParameterChangeHandler | ParametersSelectedHandler): void
+    on(type: "input", callback: ParameterChangeHandler): void
+    once(type: "input", callback: ParameterChangeHandler): void
+    off(type: "input", callback: ParameterChangeHandler): void
   }
 
   interface RunEvent {
@@ -407,6 +407,10 @@ declare global {
     value: string
   }
 
+  type TextListOptions = {
+    type: "ORDERED" | "UNORDERED" | "NONE"
+  }
+
   type BlendMode =
     "NORMAL" |
     "DARKEN" |
@@ -431,7 +435,7 @@ declare global {
     fontName: FontName
   }
 
-  type Reaction = { action: Action, trigger: Trigger }
+  type Reaction = { action: Action | null, trigger: Trigger | null }
 
   type Action =
     { readonly type: "BACK" | "CLOSE" } |
@@ -645,7 +649,7 @@ declare global {
   }
 
   interface ReactionMixin {
-    readonly reactions: ReadonlyArray<Reaction>
+    reactions: ReadonlyArray<Reaction>
   }
 
   interface DocumentationLink {
@@ -843,6 +847,10 @@ declare global {
     setRangeTextStyleId(start: number, end: number, value: string): void
     getRangeFillStyleId(start: number, end: number): string | PluginAPI['mixed']
     setRangeFillStyleId(start: number, end: number, value: string): void
+    getRangeListOptions(start: number, end: number): TextListOptions | PluginAPI['mixed']
+    setRangeListOptions(start: number, end: number, value: TextListOptions): void
+    getRangeIndentation(start: number, end: number): number | PluginAPI['mixed']
+    setRangeIndentation(start: number, end: number, value: number): void
   }
 
   interface ComponentSetNode extends BaseFrameMixin, PublishableMixin {
