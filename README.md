@@ -13,7 +13,7 @@ To install TypeScript, first [install Node.js][node]. Then:
 
     $ npm install -g typescript
 
-Next install the packages that the samples depend on. Currently, this will only install the lastest versino of the Figma typings file.
+Next install the packages that the samples depend on. Currently, this will only install the lastest version of the Figma typings file.
 
     $ npm install
 
