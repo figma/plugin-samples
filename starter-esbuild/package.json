@@ -1,0 +1,18 @@
+{
+  "name": "starter-esbuild",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "watch": "esbuild src/main.ts --outfile=build/main.js --bundle --watch",
+    "build": "esbuild src/main.ts --outfile=build/main.js --minify --sourcemap",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@figma/plugin-typings": "^1.28.0",
+    "esbuild": "^0.12.20",
+    "typescript": "^4.3.5"
+  }
+}

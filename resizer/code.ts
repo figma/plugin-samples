@@ -32,8 +32,12 @@ function startPluginWithParameters(parameters: ParameterValues) {
   if (parameters['scale']) {
     const scale = parseFloat(parameters['scale'])
 
-    for (let i = 0; i < selection.length; i++) {
+    for (let i = 0; i < selection.length; i++) { 
+      const originWidth = selection[i].width
+      const originHeight = selection[i].height
       selection[i].rescale(scale)
+      selection[i].x -= selection[i].width/2 - originWidth/2
+      selection[i].y -= selection[i].height/2 - originHeight/2
     }
   } else if (parameters['width'] && parameters['height']) {
     const width = parseInt(parameters['width'])
