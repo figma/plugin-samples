@@ -2,5 +2,6 @@
   "api": "1.0.0",
   "name": "ES Build Starter",
   "id": "es-build-starter",
-  "main": "build/main.js"
+  "main": "build/main.js",
+  "editorType": ["figma"]
 }
