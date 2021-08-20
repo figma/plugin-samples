@@ -31,9 +31,17 @@ For example, the code for the Bar Chart sample plugin is in
 [barchart/code.ts](barchart/code.ts), and the HTML for its UI is in
 [barchart/ui.html](barchart/ui.html).
 
-# Examples without UIs
 
-## Circle Text
+### Styling your plugin UI
+[For plugins that have a UI](#examples-with-a-plugin-ui), we recommend matching the style and behavior of Figma. Many other plugins follow this convention and it helps create consistency in plugin experience for users as they use different plugins. Here's a few approaches that can help when styling your UI:
+
+- [Figma Plugin DS](https://github.com/thomas-lowry/figma-plugin-ds) A lightweight UI library for styling Figma plugins.
+- [Create Figma Plugin UI](https://yuanqing.github.io/create-figma-plugin/#using-the-preact-component-library) - A library of production-grade [Preact](https://preactjs.com/) components that replicate the Figma editor’s UI design
+
+
+## Examples without a plugin UI
+
+### Circle Text
 
 <img src="_screenshots/circletext.png" width="400" />
 
@@ -42,7 +50,8 @@ characters arranged in a circle.
 
 [Check out the source code.](circletext/)
 
-## Invert Image Color
+ 
+### Invert Image Color
 
 <img src="_screenshots/invert-image.png" width="400" />
 
@@ -55,7 +64,8 @@ This demonstrates:
 
 [Check out the source code.](invert-image/)
 
-## Resizer (Parameter Only)
+ 
+### Resizer (Parameter Only)
 
 <img src="_screenshots/resizer.png" width="400" />
 
@@ -65,7 +75,7 @@ For more information on how to accept parameters as input to your plugin, take a
 
 [Check out the source code.](resizer/)
 
-## SVG Inserter (Parameter Only)
+### SVG Inserter (Parameter Only)
 
 <img src="_screenshots/svg-inserter.png" width="400" />
 
@@ -75,7 +85,7 @@ For more information on how to accept parameters as input to your plugin, take a
 
 [Check out the source code.](svg-inserter/)
 
-## Sierpinski
+### Sierpinski
 
 <img src="_screenshots/sierpinski.png" width="400" />
 
@@ -83,7 +93,7 @@ Generates a fractal using circles.
 
 [Check out the source code.](sierpinski/)
 
-## Vector Path
+### Vector Path
 
 <img src="_screenshots/vector-path.png" width="400" />
 
@@ -92,9 +102,9 @@ Generates a triangle using vector paths.
 [Check out the source code.](vector-path/)
 
 
-# Examples with UIs
+## Examples with a plugin UI
 
-## Bar Chart
+### Bar Chart
 
 <img src="_screenshots/barchart.png" width="400" />
 
@@ -103,7 +113,7 @@ Generates a bar chart given user input in a modal.
 [Check out the source code.](barchart/)
 
 
-## Document Statistics
+### Document Statistics
 
 <img src="_screenshots/stats.png" width="400" />
 
@@ -112,7 +122,7 @@ Computes a count of the nodes of each `NodeType` in the current document.
 [Check out the source code.](stats/)
 
 
-## Pie Chart
+### Pie Chart
 
 <img src="_screenshots/piechart.png" width="400" />
 
@@ -121,7 +131,7 @@ Generates a pie chart given user input in a modal.
 [Check out the source code.](piechart/)
 
 
-## Text Search
+### Text Search
 
 <img src="_screenshots/text-search.png" width="400" />
 
@@ -135,9 +145,9 @@ This demonstrates:
 
 [Check out the source code.](text-search/)
 
-# Examples with bundling
+## Examples with bundling
 
-## Webpack
+### Webpack
 
 <img src="_screenshots/webpack.png" width="400" />
 
@@ -145,7 +155,7 @@ Creates rectangles. Demonstrates bundling plugin code using Webpack.
 
 [Check out the source code.](webpack/)
 
-## React 
+### React 
 
 Creates rectangles (same as the [Webpack sample plugin][webpack]).
 
@@ -156,7 +166,7 @@ This demonstrates:
 
 [Check out the source code.](react/)
 
-## Vue 
+### Vue 
 
 Creates rectangles (same as the [Webpack sample plugin][webpack]).
 
@@ -174,3 +184,7 @@ This demonstrates:
 [node]: https://nodejs.org/en/download/
 [webpack]: #webpack
 
+## Other Figma Plugin Samples + Starters
+- [Create Figma Plugin](https://yuanqing.github.io/create-figma-plugin/) - A comprehensive toolkit for developing Figma plugins.
+- [Figma Plugin Boilerplate](https://github.com/thomas-lowry/figma-plugin-boilerplate) - A starter project for creating Figma Plugins with HTML, CSS (+ SCSS) and vanilla Javascript without any frameworks.
+- [Figsvelte](https://github.com/thomas-lowry/figsvelte) - A boilerplate for creating Figma plugins using Svelte.
