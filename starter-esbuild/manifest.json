@@ -1,7 +1,7 @@
 {
   "api": "1.0.0",
-  "name": "ES Build Starter",
-  "id": "es-build-starter",
+  "name": "Plugin Starter (esbuild)",
+  "id": "plugin-starter-esbuild",
   "main": "build/main.js",
   "editorType": ["figma"]
 }
