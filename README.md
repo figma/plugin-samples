@@ -1,13 +1,13 @@
-# 🔌 Figma Plugin Samples
+# 🍱 Figma Plugin Samples
 
 Sample plugins using the [Figma Plugin API][docs].
 
 To make a feature request, file a bug report, or ask a question about
 developing plugins, check out the available [resources][help].
 
-These plugins are written using [TypeScript][ts] to take advantage of Figma's
-typed plugin API. This means that in order to run a plugin, you will first need
-to compile the plugin code using the TypeScript compiler.
+## Getting Started
+
+These plugins are written using [TypeScript][ts] to take advantage of Figma's typed plugin API. Before installing these samples as development plugins, you'll need to compile the code using the TypeScript compiler. Typescript can also watch your code for changes as your developing, making it easy to test new changes to your code in Figma.
 
 To install TypeScript, first [install Node.js][node]. Then:
 
