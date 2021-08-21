@@ -15,6 +15,7 @@ function getIcon(name: string, size: number, color?: string): string | null {
 
 // The 'input' event listens for text change in the Quick Actions box after a plugin is 'Tabbed' into.
 figma.parameters.on('input', (parameters: ParameterValues, currentKey: string, result: SuggestionResults) => {
+  console.log('input')
   console.log(parameters)
 
   const query = parameters[currentKey]
@@ -44,6 +45,12 @@ figma.parameters.on('input', (parameters: ParameterValues, currentKey: string, r
   }
 })
 
+figma.parameters.on('suggestionchange', (parameters: ParameterValues, parameterKey: string, suggestion: Suggestion) => {
+  console.log(`suggestion changed`)
+  console.log(suggestion)
+})
+
+
 // When the user presses Enter after inputting all parameters, the 'run' event is fired.
 figma.on('run', ({parameters}: RunEvent) => {
   if (parameters) {
@@ -54,6 +61,8 @@ figma.on('run', ({parameters}: RunEvent) => {
 
 // Start the plugin with parameters
 function startPluginWithParameters(parameters: ParameterValues) {
+  console.log(parameters)
+
   const icon = parameters['icon-name'].name
   const size = parameters['size']
 

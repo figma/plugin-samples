@@ -166,12 +166,15 @@ declare global {
     setSuggestions: (suggestions: Suggestion[]) => void
   }
 
-  type ParameterChangeHandler = (parameters: ParameterValues, suggestionKey: string, result: SuggestionResults) => void
+  type ParameterChangeHandler = (parameters: ParameterValues, parameterKey: string, result: SuggestionResults) => void
+
+  // TODO: Doing this means we can't just add to suggestion types later
+  type SelectionChangeHandler = (parameters: ParameterValues, parameterKey: string, suggestion: Suggestion) => void
 
   interface ParametersAPI {
-    on(type: "input", callback: ParameterChangeHandler): void
-    once(type: "input", callback: ParameterChangeHandler): void
-    off(type: "input", callback: ParameterChangeHandler): void
+    on(type: "input" | "suggestionchange", callback: ParameterChangeHandler | SelectionChangeHandler): void
+    once(type: "input" | "suggestionchange", callback: ParameterChangeHandler | SelectionChangeHandler): void
+    off(type: "input" | "suggestionchange", callback: ParameterChangeHandler | SelectionChangeHandler): void
   }
 
   interface RunEvent {
