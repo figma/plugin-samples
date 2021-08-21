@@ -145,39 +145,6 @@ This demonstrates:
 
 [Check out the source code.](text-search/)
 
-## Examples with bundling
-
-### Webpack
-
-<img src="_screenshots/webpack.png" width="400" />
-
-Creates rectangles. Demonstrates bundling plugin code using Webpack.
-
-[Check out the source code.](webpack/)
-
-### React 
-
-Creates rectangles (same as the [Webpack sample plugin][webpack]).
-
-This demonstrates:
-
-- bundling plugin code using Webpack, and
-- using React with TSX.
-
-[Check out the source code.](react/)
-
-### Vue 
-
-Creates rectangles (same as the [Webpack sample plugin][webpack]).
-
-This demonstrates:
-
-- bundling plugin code using Webpack, and
-- using Vue Single File Components.
-
-[Check out the source code.](vue/)
-
-
 [docs]: https://www.figma.com/plugin-docs
 [help]: https://www.figma.com/plugin-docs/get-help
 [ts]: https://www.typescriptlang.org/
