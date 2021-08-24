@@ -1,6 +1,6 @@
 {
-  "name": "Webpack Sample",
-  "id": "738168449509241862",
+  "name": "Webpack + React Sample",
+  "id": "",
   "api": "1.0.0",
   "main": "dist/code.js",
   "ui": "dist/ui.html",
