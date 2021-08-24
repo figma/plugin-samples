@@ -1,0 +1,9 @@
+{
+  "name": "Vote Tally",
+  "id": "1010229183389496680",
+  "api": "1.0.0",
+  "main": "code.js",
+  "editorType": [
+    "figjam"
+  ]
+}

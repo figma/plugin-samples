@@ -1,0 +1,18 @@
+{
+  "name": "Vote-Tally",
+  "version": "1.0.0",
+  "description": "A FigJam plugin to count votes (stamps) near a sticky and show a tally on the page.",
+  "main": "code.js",
+  "scripts": {
+    "build": "tsc -p tsconfig.json"
+  },
+  "author": "Figma",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/figma/plugin-samples/issues"
+  },
+  "homepage": "https://github.com/figma/plugin-samples#readme",
+  "devDependencies": {
+    "@figma/plugin-typings": "^1.31.0"
+  }
+}

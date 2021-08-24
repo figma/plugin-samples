@@ -1,0 +1,18 @@
+{
+  "name": "Metacards",
+  "version": "1.0.0",
+  "description": "A Figma and FigJam plugin to add link Metacards to your canvas.",
+  "main": "code.js",
+  "scripts": {
+    "build": "tsc -p tsconfig.json"
+  },
+  "author": "Figma",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/figma/plugin-samples/issues"
+  },
+  "homepage": "https://github.com/figma/plugin-samples#readme",
+  "devDependencies": {
+    "@figma/plugin-typings": "^1.31.0"
+  }
+}
