@@ -212,4 +212,8 @@ Create rectangles! This demonstrates:
 - [Figsvelte](https://github.com/thomas-lowry/figsvelte) - A boilerplate for creating Figma plugins using Svelte.
 - [Figplug](https://rsms.me/figplug/) - A small program for building Figma plugins. It offers all the things you need for most projects: TypeScript, React/JSX, asset bundling, plugin manifest generation, etc.
 
-
+[docs]: https://www.figma.com/plugin-docs/figma-figjam-plugins/
+[help]: https://www.figma.com/plugin-docs/get-help
+[ts]: https://www.typescriptlang.org/
+[node]: https://nodejs.org/en/download/
+[webpack]: #webpack
