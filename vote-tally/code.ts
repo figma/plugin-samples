@@ -1,3 +1,6 @@
+// This plugin will find all stamps close to a sticky and generate a tally of 
+// all the stamps (votes) next to a sticky on the page
+
 // This file holds the main code for the plugins. It has access to the *document*.
 // You can access browser APIs such as the network by creating a UI which contains
 // a full browser environment (see documentation).
