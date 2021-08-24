@@ -63,6 +63,19 @@ This plugin creates 5 `ROUNDED_RECTANGLE` Shapes with Text nodes and adds a Conn
 
 The following sample plugins work in both Figma and FigJam.
 
+## Conditional Plugins
+
+You can create plugins that have conditional logic depending on whether they are run in Figma, or FigJam. 
+
+<img src="_screenshots/create-rect-shapes.png" width="400" />
+
+When this plugin runs in Figma, it opens a window to prompt the user to enter a number, and it will then create that many rectangles on the screen.
+
+When this plugin runs in FigJam, it opens a window to prompt the user to enter a number, and it will then create that many `ROUNDED_RECTANGLE` shapes with text nodes, and also adds a connector node in between each shape.
+
+[Check out the source code.](create-rects-shapes/)
+
+
 ## Examples without a plugin UI
 
 ### Circle Text
