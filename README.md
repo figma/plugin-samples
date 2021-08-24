@@ -195,38 +195,16 @@ This demonstrates:
 
 <img src="_screenshots/webpack.png" width="400" />
 
-Creates rectangles. Demonstrates bundling plugin code using Webpack.
+Create rectangles! This demonstrates:
 
-[Check out the source code.](webpack/)
+- Bundling plugin code using Webpack
+- Using React with TSX
 
-### React 
+    $ npm install
+    $ npm run build
 
-Creates rectangles (same as the [Webpack sample plugin][webpack]).
+[Check out the source code.](webpack-react/)
 
-This demonstrates:
-
-- bundling plugin code using Webpack, and
-- using React with TSX.
-
-[Check out the source code.](react/)
-
-### Vue 
-
-Creates rectangles (same as the [Webpack sample plugin][webpack]).
-
-This demonstrates:
-
-- bundling plugin code using Webpack, and
-- using Vue Single File Components.
-
-[Check out the source code.](vue/)
-
-
-[docs]: https://www.figma.com/plugin-docs/figma-figjam-plugins/
-[help]: https://www.figma.com/plugin-docs/get-help
-[ts]: https://www.typescriptlang.org/
-[node]: https://nodejs.org/en/download/
-[webpack]: #webpack
 
 ## Other Figma Plugin Samples + Starters
 - [Create Figma Plugin](https://yuanqing.github.io/create-figma-plugin/) - A comprehensive toolkit for developing Figma plugins.
