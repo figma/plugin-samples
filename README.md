@@ -67,7 +67,7 @@ The following sample plugins work in both Figma and FigJam.
 
 You can create plugins that have conditional logic depending on whether they are run in Figma, or FigJam. 
 
-<img src="_screenshots/create-rect-shapes.png" width="400" />
+<img src="_screenshots/create-rects-shapes.png" width="400" />
 
 When this plugin runs in Figma, it opens a window to prompt the user to enter a number, and it will then create that many rectangles on the screen.
 
