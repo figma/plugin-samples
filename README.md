@@ -38,7 +38,7 @@ For example, the code for the Bar Chart sample plugin is in
 - [Figma Plugin DS](https://github.com/thomas-lowry/figma-plugin-ds) A lightweight UI library for styling Figma plugins.
 - [Create Figma Plugin UI](https://yuanqing.github.io/create-figma-plugin/#using-the-preact-component-library) - A library of production-grade [Preact](https://preactjs.com/) components that replicate the Figma editor’s UI design
 
-## FigJam Plugins Examples
+# FigJam Plugins
 
 The following sample plugins use the new FigJam node types ([Stickies](https://www.figma.com/plugin-docs/api/StickyNode/), [Shapes with Text](https://www.figma.com/plugin-docs/api/ShapeWithTextNode/), [Connectors](https://www.figma.com/plugin-docs/api/ConnectorNode/), and [Stamps](https://www.figma.com/plugin-docs/api/StampNode/)) and so work best **in FigJam**, i.e. with an editorType of 'figjam' in your manifest.json file.
 
@@ -59,7 +59,7 @@ This plugin creates 5 `ROUNDED_RECTANGLE` Shapes with Text nodes and adds a Conn
 
 [Check out the source code.](create-shapes-connectors/)
 
-## Additional Examples
+# Additional Examples
 
 The following sample plugins work in both Figma and FigJam.
 
