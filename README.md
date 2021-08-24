@@ -40,7 +40,7 @@ For example, the code for the Bar Chart sample plugin is in
 
 # FigJam Plugins
 
-The following sample plugins use the new FigJam node types ([stickies](https://www.figma.com/plugin-docs/api/StickyNode/), [shapes with text](https://www.figma.com/plugin-docs/api/ShapeWithTextNode/), [Connectors](https://www.figma.com/plugin-docs/api/ConnectorNode/), and [stamps](https://www.figma.com/plugin-docs/api/StampNode/)) and so work best **in FigJam**, i.e. with an editorType of 'figjam' in your manifest.json file.
+The following sample plugins use the new FigJam node types ([stickies](https://www.figma.com/plugin-docs/api/StickyNode/), [shapes with text](https://www.figma.com/plugin-docs/api/ShapeWithTextNode/), [connectors](https://www.figma.com/plugin-docs/api/ConnectorNode/), and [stamps](https://www.figma.com/plugin-docs/api/StampNode/)) and so work best **in FigJam**, i.e. with an editorType of 'figjam' in your manifest.json file.
 
 ### Vote Tally
 
