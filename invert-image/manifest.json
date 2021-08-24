@@ -3,5 +3,5 @@
   "api": "1.0.0",
   "main": "code.js",
   "ui": "decoder.html",
-  "editorType": ["figma"]
+  "editorType": ["figma", "figjam"]
 }
