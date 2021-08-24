@@ -16,6 +16,6 @@
   },
   "homepage": "https://github.com/figma/plugin-samples#readme",
   "devDependencies": {
-    "@figma/plugin-typings": "^1.30.0"
+    "@figma/plugin-typings": "^1.31.0"
   }
 }
