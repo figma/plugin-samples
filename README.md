@@ -40,13 +40,13 @@ For example, the code for the Bar Chart sample plugin is in
 
 # FigJam Plugins
 
-The following sample plugins use the new FigJam node types ([Stickies](https://www.figma.com/plugin-docs/api/StickyNode/), [Shapes with Text](https://www.figma.com/plugin-docs/api/ShapeWithTextNode/), [Connectors](https://www.figma.com/plugin-docs/api/ConnectorNode/), and [Stamps](https://www.figma.com/plugin-docs/api/StampNode/)) and so work best **in FigJam**, i.e. with an editorType of 'figjam' in your manifest.json file.
+The following sample plugins use the new FigJam node types ([stickies](https://www.figma.com/plugin-docs/api/StickyNode/), [shapes with text](https://www.figma.com/plugin-docs/api/ShapeWithTextNode/), [connectors](https://www.figma.com/plugin-docs/api/ConnectorNode/), and [stamps](https://www.figma.com/plugin-docs/api/StampNode/)) and so work best **in FigJam**, i.e. with an editorType of 'figjam' in your manifest.json file.
 
 ### Vote Tally
 
 <img src="_screenshots/vote-tally.gif" width="400" />
 
-This plugin counts & organizes all of the votes (i.e. stamps) on stickies.
+This plugin will find all stamps close to a sticky and generate a tally of all the stamps (votes) next to a sticky on the page.
 
 [Check out the source code.](vote-tally/)
 
@@ -92,7 +92,7 @@ This demonstrates:
 
 <img src="_screenshots/metacards.gif" width="400" />
 
-This plugin counts & organizes all of the votes (i.e. stamps) on stickies.
+This plugin will find links within a text node and create on canvas meta cards of an image, title, description and link based on the <meta> tags in the head of a webpage at the relative links.
 
 [Check out the source code.](metacards/)
 
