@@ -200,8 +200,10 @@ Create rectangles! This demonstrates:
 - Bundling plugin code using Webpack
 - Using React with TSX
 
+```
     $ npm install
     $ npm run build
+```
 
 [Check out the source code.](webpack-react/)
 
