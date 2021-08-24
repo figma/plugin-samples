@@ -1,0 +1,134 @@
+<script>
+  
+  // This function attemps to load an image from a url and return the arrayBuffer 
+  // to pass back to Figma to render the image
+	async function getEncodedImageFromURL(url) {
+
+		return new Promise((resolve, reject) => {
+			const img = new Image();
+
+      // Some websites will allow loading of images into a canvas if set to Anonymous
+			img.crossOrigin = "Anonymous";
+
+			img.onload = () => {
+        const canvas = document.createElement('canvas');
+        const ctx = canvas.getContext("2d");
+        canvas.width = img.naturalWidth;
+        canvas.height = img.naturalHeight;
+        ctx.drawImage(img, 0, 0);
+        canvas.toBlob(async (blob) => {
+          let blobBuffer = await blob.arrayBuffer();
+          resolve({
+            img: img,
+            data: new Uint8Array(blobBuffer)
+          });
+        })
+      }
+      // If an Anonymous image does not load, attempt to load it 
+      // cross origin using cors-anywhere
+			img.onerror = () => {
+        if(img.src.indexOf("cors-anywhere") === -1){
+          img.src = `https://cors-anywhere.com/${url.replace(/http(s)?:\/\//,'')}`;
+        } else {
+          reject("Error fetching image");
+        }
+      }
+
+			img.src = url;
+		});
+
+	}
+
+  // This function loads html content at a url and then scrapes the OG meta tags 
+  // to render onto a Figma canvas
+  async function fetchMetaTags(url){
+    
+    return new Promise(function(resolve, reject) {
+      let fetchUrl = `https://cors-anywhere.com/${url.replace(/http(s)?:\/\//,'')}`;
+
+      fetch(fetchUrl).then(function (response) {
+        // The API call was successful!
+        return response.text();
+
+      }).then(async (html) => {
+
+        let metaTags = {};
+
+        // This is the HTML from our response as a text string
+        let head = document.createElement('div');
+        let headMatch = html.match(/<head>([\s\S]*?)<\/head>/);
+        let headHTML = headMatch !== null? headMatch[1] : html;
+        headHTML.replace(/<script\b[^>]*>([\s\S]*?)<\/script>/gm,'');
+        head.innerHTML = headHTML;
+
+        //Get the title 
+        let title = head.querySelector('meta[property="og:title"],meta[name="twitter:title"]');
+        if(!title){
+          reject("No meta data found");
+          return;
+        }
+        metaTags.title = title.getAttribute("content");
+        
+        // Get the description
+        let description = head.querySelector('meta[name="description"]');
+        metaTags.description = description.getAttribute("content");
+
+        // get image 
+        let image = head.querySelector('meta[property="og:image"],meta[name="twitter:image"]');
+
+        // Get image data to pass back to Figma
+        let imageData = await getEncodedImageFromURL(image.getAttribute("content"));
+        metaTags.image = {
+          data: imageData.data,
+          url: imageData.img.src,
+          width: imageData.img.naturalWidth, 
+          height: imageData.img.naturalHeight
+        }
+
+        // Save the link that we scraped meta data from 
+        metaTags.hyperlink = url;
+
+        resolve(metaTags);
+
+      }).catch(function (err) {
+        // There was an error
+        console.warn('Something went wrong.', err);
+        
+        reject('Something went wrong.');
+      });
+    });
+  }  
+
+// Handle messages from figma plugin
+window.onmessage = async (event) => {
+
+  if(event.data.pluginMessage){
+
+    let msg = event.data.pluginMessage;
+
+    if(msg.function === "fetchMetaTags"){
+
+      let url = msg.data; 
+      let nodeId = msg.nodeId;
+
+      fetchMetaTags(url)
+        .then(metaTags => {
+          parent.postMessage({ pluginMessage: { 
+            function: 'createMetaCard', 
+            data: metaTags,
+            nodeId: nodeId
+          } }, '*')
+        })
+        .catch(err => {
+          parent.postMessage({ pluginMessage: { 
+            function: 'fetchError', 
+            data: err
+          } }, '*')
+        });
+    }
+
+  }
+
+}
+
+</script>

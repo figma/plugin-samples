@@ -1,5 +1,6 @@
 {
   "name": "Sierpinski Sample",
   "api": "1.0.0",
-  "main": "code.js"
+  "main": "code.js",
+  "editorType": ["figma", "figjam"]
 }
