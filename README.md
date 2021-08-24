@@ -191,7 +191,7 @@ This demonstrates:
 
 ## Examples with bundling
 
-### Webpack
+### Webpack + React
 
 <img src="_screenshots/webpack.png" width="400" />
 
