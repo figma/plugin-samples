@@ -1,6 +1,6 @@
-# 🍱 Figma & FigJam Plugin Samples
+# 🍱 Figma + FigJam Plugin Samples
 
-Sample plugins using the [Figma & FigJam Plugin API][docs].
+Sample plugins using the [Figma + FigJam Plugin API][docs].
 
 To make a feature request, file a bug report, or ask a question about
 developing plugins, check out the available [resources][help].
@@ -51,7 +51,7 @@ This plugin will find all stamps close to a sticky and generate a tally of all t
 [Check out the source code.](vote-tally/)
 
 
-### Create Shapes & Connectors
+### Create Shapes + Connectors
 
 <img src="_screenshots/create-shapes-connectors.png" width="400" />
 
@@ -191,7 +191,7 @@ This demonstrates:
 
 ## Examples with bundling
 
-### Webpack & React
+### Webpack + React
 
 <img src="_screenshots/webpack.png" width="400" />
 
