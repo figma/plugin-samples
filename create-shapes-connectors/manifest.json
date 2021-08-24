@@ -1,0 +1,9 @@
+{
+  "name": "Create Shapes & Connectors",
+  "id": "1009709756337344668",
+  "api": "1.0.0",
+  "main": "code.js",
+  "editorType": [
+    "figjam"
+  ]
+}

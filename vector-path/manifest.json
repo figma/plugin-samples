@@ -2,5 +2,5 @@
   "name": "Vector Path Sample",
   "api": "1.0.0",
   "main": "code.js",
-  "editorType": ["figma"]
+  "editorType": ["figma", "figjam"]
 }
