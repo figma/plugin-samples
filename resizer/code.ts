@@ -1,7 +1,6 @@
 // The 'input' event listens for text change in the Quick Actions box after a plugin is 'Tabbed' into.
-figma.parameters.on('input', (parameters: ParameterValues, currentKey: string, result: SuggestionResults) => {
-  const query = parameters[currentKey]
-  switch (currentKey) {
+figma.parameters.on('input', ({query, key, result}: ParameterInputEvent) => {
+  switch (key) {
     case 'width':
       const widthSizes = ['640', '800', '960', '1024', '1280']
       result.setSuggestions(widthSizes.filter(s => s.includes(query)))

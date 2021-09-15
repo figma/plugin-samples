@@ -8,7 +8,6 @@
     {
       "name": "Absolute",
       "command": "absolute",
-      "parameterOnly": true,
       "parameters": [
         {
           "name": "Width",
@@ -25,7 +24,6 @@
     {
       "name": "Relative",
       "command": "relative",
-      "parameterOnly": true,
       "parameters": [
         {
           "name": "Scale",
