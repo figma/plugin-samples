@@ -1,0 +1,14 @@
+{
+  "name": "Go-to",
+  "version": "1.0.0",
+  "description": "Your Figma plugin",
+  "main": "code.js",
+  "scripts": {
+    "build": "tsc -p tsconfig.json"
+  },
+  "author": "",
+  "license": "",
+  "devDependencies": {
+    "@figma/plugin-typings": "^1.34.1"
+  }
+}
