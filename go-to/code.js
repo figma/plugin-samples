@@ -25,8 +25,12 @@ figma.parameters.on('input', ({ key, query, result }) => {
     switch (key) {
         case 'name':
             const filter = node => node.name.toLowerCase().startsWith(query.toLowerCase());
-            const pages = figma.root.findChildren(node => query.length === 0 ? true : filter(node)).map(node => ({ name: `${node.name} (page)`, data: { name: node.name, id: node.id } }));
-            const nodes = query.length > 1 ? figma.currentPage
+            // Always suggest all of the pages in the file 
+            const pages = figma.root
+                .findChildren(node => query.length === 0 ? true : filter(node))
+                .map(node => ({ name: `${node.name} (page)`, data: { name: node.name, id: node.id } }));
+            // Only show layers when the user types a query 
+            const nodes = query.length > 0 ? figma.currentPage
                 .findAll(node => filter(node)) : [];
             const formattedNodes = nodes.map((node) => {
                 const name = `${node.name} [${node.id}]`;
@@ -47,9 +51,7 @@ figma.on('run', ({ parameters }) => {
 });
 // Start the plugin with parameters
 function startPluginWithParameters(parameters) {
-    var _a;
     const { name, id } = parameters['name'];
-    const type = (_a = parameters['type']) !== null && _a !== void 0 ? _a : ''; // type is optional 
     const node = figma.root.findOne(node => node.id === id);
     if (node) {
         // Node found, so we need to go to that node
@@ -69,8 +71,8 @@ function startPluginWithParameters(parameters) {
         }
     }
     else {
-        // Could not find node, which may happen if the desired type of the node does not match the name 
-        figma.notify(`Could not find node with name=${name}, type=${type ? type : undefined}`);
+        // Could not find node
+        figma.notify(`Could not find node with name=${name}`);
     }
     figma.closePlugin();
 }
