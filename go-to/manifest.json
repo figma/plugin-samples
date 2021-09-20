@@ -1,0 +1,17 @@
+{
+  "name": "Go to",
+  "id": "1020470258681431214",
+  "api": "1.0.0",
+  "main": "code.js",
+  "editorType": [
+    "figma",
+    "figjam"
+  ],
+  "parameters": [
+    {
+      "name": "Page or Layer Name",
+      "key": "name",
+      "description": "Name of the location you want to go to"
+    }
+  ]
+}
