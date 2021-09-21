@@ -51,20 +51,19 @@ figma.parameters.on('input', ({ key, query, result }) => {
 // When the user presses Enter after inputting all parameters, the 'run' event is fired.
 figma.on('run', ({ parameters }) => {
   if (parameters) {
-      startPluginWithParameters(parameters);
+      startPluginWithParameters(parameters!);
   }
 });
 
 // Start the plugin with parameters
 function startPluginWithParameters(parameters) {
   const { name, id } = parameters['name'];
-  const node = figma.root.findOne(node => node.id === id);
+  const node = figma.getNodeById(id);
   if (node) {
       // Node found, so we need to go to that node
       if (node.type === "PAGE") {
           figma.currentPage = node;
-      }
-      else {
+      } else {
           // Figure out if the node is on the right page, 
           // otherwise, we need to switch to that page before zooming into the view
           let currentParent = node.parent;
@@ -73,7 +72,7 @@ function startPluginWithParameters(parameters) {
           }
           figma.currentPage = currentParent;
           figma.viewport.scrollAndZoomIntoView([node]);
-          figma.currentPage.selection = [node];
+          figma.currentPage.selection = [node as SceneNode];
       }
   } else {
       // Could not find node
