@@ -50,9 +50,7 @@ figma.parameters.on('input', ({ key, query, result }) => {
 
 // When the user presses Enter after inputting all parameters, the 'run' event is fired.
 figma.on('run', ({ parameters }) => {
-  if (parameters) {
-      startPluginWithParameters(parameters!);
-  }
+  startPluginWithParameters(parameters!);
 });
 
 // Start the plugin with parameters
