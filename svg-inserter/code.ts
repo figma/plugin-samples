@@ -14,7 +14,7 @@ function processSVG({icon, color, size}: {icon: string, color: string, size: str
 }
 
 // The 'input' event listens for text change in the Quick Actions box after a plugin is 'Tabbed' into.
-figma.parameters.on('input', ({key, query, result}: ParameterInputEvent) => {
+figma.parameters.on('input', ({key, query, parameters, result}: ParameterInputEvent) => {
   switch (key) {
     case 'icon':
       result.setSuggestions(icons
@@ -27,7 +27,17 @@ figma.parameters.on('input', ({key, query, result}: ParameterInputEvent) => {
       break
     case 'color':
       const colors = ['black', 'blue', 'red', 'green']
-      result.setSuggestions(colors.filter(s => s.includes(query)))
+      const icon = parameters['icon']
+      const suggestions = colors
+        .filter(s => s.includes(query))
+        .map(s => ({ name: s, icon: processSVG({icon, size: '40', color: s}) }))
+
+      // Add a custom freeform suggestion with a color preview.
+      if (query) {
+        suggestions.unshift({ name: query, icon: processSVG({icon, size: '40', color: query}) })
+      }
+
+      result.setSuggestions(suggestions)
       break
     default:
       return

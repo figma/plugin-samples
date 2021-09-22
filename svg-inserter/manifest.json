@@ -20,7 +20,6 @@
       "name": "Color",
       "key": "color",
       "description": "enter the color of the icon you want to insert",
-      "allowFreeform": true,
       "optional": true
     }
   ]
