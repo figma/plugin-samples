@@ -1,0 +1,17 @@
+<script>
+  window.onmessage = async (event) => {
+    if (event.data.pluginMessage.type === "category") {
+      var request = new XMLHttpRequest();
+      // This link has random lorem ipsum text
+      request.open(
+        "GET",
+        "https://opentdb.com/api_category.php"
+      );
+      request.responseType = "json";
+      request.onload = () => {
+        window.parent.postMessage({ pluginMessage: { response: request.response, type: 'category' } }, "*");
+      };
+      request.send();
+    }
+  };
+</script>
