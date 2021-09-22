@@ -87,7 +87,6 @@ characters arranged in a circle.
 
 [Check out the source code.](circletext/)
 
- 
 ### Invert Image Color
 
 <img src="_screenshots/invert-image.png" width="400" />
@@ -101,33 +100,13 @@ This demonstrates:
 
 [Check out the source code.](invert-image/)
 
- ### Meta Cards
+### Meta Cards
 
 <img src="_screenshots/metacards.gif" width="400" />
 
 This plugin will find links within a text node and create on canvas meta cards of an image, title, description and link based on the <meta> tags in the head of a webpage at the relative links.
 
 [Check out the source code.](metacards/)
-
-### Resizer (Parameter Only)
-
-<img src="_screenshots/resizer.png" width="400" />
-
-Resizes a selected shape. There are two submenus, allowing for absolute resizing and relative resizing.
-
-For more information on how to accept parameters as input to your plugin, take a look at [this guide](https://www.figma.com/plugin-docs/plugin-parameters).
-
-[Check out the source code.](resizer/)
-
-### SVG Inserter (Parameter Only)
-
-<img src="_screenshots/svg-inserter.png" width="400" />
-
-Inserts an SVG icon into the canvas. 
-
-For more information on how to accept parameters as input to your plugin, take a look at [this guide](https://www.figma.com/plugin-docs/plugin-parameters).
-
-[Check out the source code.](svg-inserter/)
 
 ### Sierpinski
 
@@ -145,7 +124,6 @@ Generates a triangle using vector paths.
 
 [Check out the source code.](vector-path/)
 
-
 ## Examples with a plugin UI
 
 ### Bar Chart
@@ -156,7 +134,6 @@ Generates a bar chart given user input in a modal.
 
 [Check out the source code.](barchart/)
 
-
 ### Document Statistics
 
 <img src="_screenshots/stats.png" width="400" />
@@ -164,7 +141,6 @@ Generates a bar chart given user input in a modal.
 Computes a count of the nodes of each `NodeType` in the current document.
 
 [Check out the source code.](stats/)
-
 
 ### Pie Chart
 
@@ -188,6 +164,38 @@ This demonstrates:
 - how to use the viewport API.
 
 [Check out the source code.](text-search/)
+
+## Examples with parameters
+
+### Go To
+
+<img src="_screenshots/goto.png" width="400" />
+
+A plugin to quickly go to any layer or page in the Figma file.
+
+For more information on how to accept parameters as input to your plugin, take a look at [this guide](https://www.figma.com/plugin-docs/plugin-parameters).
+
+[Check out the source code.](go-to/)
+
+### Resizer
+
+<img src="_screenshots/resizer.png" width="400" />
+
+Resizes a selected shape. There are two submenus, allowing for absolute resizing and relative resizing.
+
+For more information on how to accept parameters as input to your plugin, take a look at [this guide](https://www.figma.com/plugin-docs/plugin-parameters).
+
+[Check out the source code.](resizer/)
+
+### SVG Inserter
+
+<img src="_screenshots/svg-inserter.png" width="400" />
+
+Inserts an SVG icon into the canvas. 
+
+For more information on how to accept parameters as input to your plugin, take a look at [this guide](https://www.figma.com/plugin-docs/plugin-parameters).
+
+[Check out the source code.](svg-inserter/)
 
 ## Examples with bundling
 
