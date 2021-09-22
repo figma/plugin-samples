@@ -28,8 +28,7 @@
         {
           "name": "Scale",
           "key": "scale",
-          "description": "enter a relative scale factor",
-          "allowFreeform": true
+          "description": "enter a relative scale factor"
         }
       ]
     }
