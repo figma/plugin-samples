@@ -1,0 +1,37 @@
+{
+  "name": "trivia",
+  "id": "1022628489809897477",
+  "api": "1.0.0",
+  "main": "code.js",
+  "ui": "ui.html",
+  "editorType": ["figma", "figjam"],
+  "parameters": [
+    {
+      "name": "Number",
+      "key": "number",
+      "description": "Number of questions (max 50)",
+      "allowFreeform": true,
+      "optional": true
+    },
+    {
+      "name": "Category",
+      "key": "category",
+      "description": "What knowledge do you want to put to the test?",
+      "optional": true
+    },
+    {
+      "name": "Difficulty",
+      "key": "difficulty",
+      "description": "How difficult do you want these questions to be?",
+      "allowFreeform": true,
+      "optional": true
+    },
+    {
+      "name": "Type",
+      "key": "type",
+      "description": "Multiple choice or true/false",
+      "allowFreeform": true,
+      "optional": true
+    }
+  ]
+}
