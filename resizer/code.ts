@@ -43,8 +43,9 @@ function startPluginWithParameters(parameters: ParameterValues) {
 
     for (let i = 0; i < selection.length; i++) {
       const node = selection[i]
-      if ('resize' in node)
-      node.resize(width, height)
+      if ('resize' in node) {
+        node.resize(width, height)
+      }
     }
   }
   figma.closePlugin()
