@@ -32,14 +32,19 @@ function startPluginWithParameters(parameters: ParameterValues) {
     const scale = parseFloat(parameters['scale'])
 
     for (let i = 0; i < selection.length; i++) {
-      selection[i].rescale(scale)
+      const node = selection[i]
+      if ('rescale' in node) {
+        node.rescale(scale)
+      }
     }
   } else if (parameters['width'] && parameters['height']) {
     const width = parseInt(parameters['width'])
     const height = parseInt(parameters['height'])
 
     for (let i = 0; i < selection.length; i++) {
-      selection[i].resize(width, height)
+      const node = selection[i]
+      if ('resize' in node)
+      node.resize(width, height)
     }
   }
   figma.closePlugin()
