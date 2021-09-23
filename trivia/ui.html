@@ -1,0 +1,23 @@
+<script>
+  window.onmessage = async (event) => {
+    if (event.data.pluginMessage.type === "category") {
+      const res = await fetch("https://opentdb.com/api_category.php");
+      const json = await res.json()
+      window.parent.postMessage(
+        { pluginMessage: { response: json, type: "category" } },
+        "*"
+      );
+    } else if (event.data.pluginMessage.type === "questions") {
+      const questionsRequest = new XMLHttpRequest();
+      const url = event.data.pluginMessage.url;
+      console.log("making request to", url);
+      const res = await fetch('https://cors-anywhere.herokuapp.com/http://www.randomtext.me/download/text/lorem/ul-8/5-15')
+      const json = await res.json()
+      console.log(json);
+      window.parent.postMessage(
+        { pluginMessage: { response: json, type: "questions" } },
+        "*"
+      );
+    }
+  };
+</script>
