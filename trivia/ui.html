@@ -1,17 +1,23 @@
 <script>
   window.onmessage = async (event) => {
     if (event.data.pluginMessage.type === "category") {
-      var request = new XMLHttpRequest();
-      // This link has random lorem ipsum text
-      request.open(
-        "GET",
-        "https://opentdb.com/api_category.php"
+      const res = await fetch("https://opentdb.com/api_category.php");
+      const json = await res.json()
+      window.parent.postMessage(
+        { pluginMessage: { response: json, type: "category" } },
+        "*"
       );
-      request.responseType = "json";
-      request.onload = () => {
-        window.parent.postMessage({ pluginMessage: { response: request.response, type: 'category' } }, "*");
-      };
-      request.send();
+    } else if (event.data.pluginMessage.type === "questions") {
+      const questionsRequest = new XMLHttpRequest();
+      const url = event.data.pluginMessage.url;
+      console.log("making request to", url);
+      const res = await fetch(url)
+      const json = await res.json()
+      console.log(json);
+      window.parent.postMessage(
+        { pluginMessage: { response: json, type: "questions" } },
+        "*"
+      );
     }
   };
 </script>
