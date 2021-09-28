@@ -1,0 +1,22 @@
+{
+  "name": "plugin-samples",
+  "version": "1.0.0",
+  "description": "Sample plugins using the [Figma Plugin API][docs].",
+  "scripts": {
+    "check": "for i in */tsconfig.json; do echo $i; (cd $(dirname $i) && tsc); done",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/figma/plugin-samples.git"
+  },
+  "author": "Figma",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/figma/plugin-samples/issues"
+  },
+  "homepage": "https://github.com/figma/plugin-samples#readme",
+  "devDependencies": {
+    "@figma/plugin-typings": "^1.34.1"
+  }
+}
