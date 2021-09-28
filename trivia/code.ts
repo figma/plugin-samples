@@ -1,16 +1,33 @@
+interface Category {
+  name: string;
+  data: string;
+}
+interface TriviaParameters {
+  number?: number;
+  category?: number;
+  difficulty?: string;
+  type?: string;
+}
+
+interface TriviaResponse {
+  responseCode: number;
+  results: TriviaResult[];
+}
+interface TriviaResult {
+  category: string;
+  type: string;
+  difficulty: string;
+  question: string;
+  correctAnswer: string;
+  incorrectAnswers: string[];
+}
+
 const types = [
   { name: "multiple choice", data: "multiple" },
   { name: "true/false", data: "boolean" },
 ];
 const difficulties = ["easy", "medium", "hard"];
-
 const numbers = ["5", "10", "15", "20", "25", "30"];
-
-interface Category {
-  name: string;
-  data: string;
-}
-
 let categories: Category[] = [];
 
 startUI();
@@ -23,7 +40,10 @@ figma.parameters.on("input", ({ key, query, result }: ParameterInputEvent) => {
       result.setSuggestions(numbers.filter((s) => s.includes(query)));
       break;
     case "category":
-      result.setSuggestions(categories.filter((s) => s.name.includes(query)));
+      result.setLoadingMessage('Loading categories from API...')
+      new Promise(resolve => setTimeout(resolve, 1000)).then(() => {
+        result.setSuggestions(categories.filter((s) => s.name.includes(query)));
+      });
       break;
     case "difficulty":
       result.setSuggestions(difficulties.filter((s) => s.includes(query)));
@@ -62,26 +82,6 @@ function loadCategories() {
   figma.ui.postMessage({ type: "category" });
 }
 
-interface TriviaParameters {
-  number?: number;
-  category?: number;
-  difficulty?: string;
-  type?: string;
-}
-
-interface TriviaResponse {
-  responseCode: number;
-  results: TriviaResults[];
-}
-interface TriviaResults {
-  category: string;
-  type: string;
-  difficulty: string;
-  question: string;
-  correctAnswers: string;
-  incorrectAnswers: string[];
-}
-
 function validateParameters(
   parameters: ParameterValues
 ): TriviaParameters | null {
@@ -112,7 +112,7 @@ function createAPIUrl(parameters: TriviaParameters): string {
   return url;
 }
 
-function startUI() {
+async function startUI() {
   figma.showUI(__html__, { visible: false });
   figma.ui.onmessage = async (msg) => {
     console.log(msg.type);
@@ -135,7 +135,78 @@ function startUI() {
           incorrectAnswers: r.incorrect_answers
         }))
       }
+      console.log(triviaResponse)
+      await figma.loadFontAsync({ family: "Roboto", style: "Regular" })
+      displayQuestions(triviaResponse)
       figma.closePlugin();
     }
   };
+}
+
+function displayQuestions(triviaResponse: TriviaResponse) {
+  const frame = figma.createFrame()
+  frame.fills = []
+  for (const result of triviaResponse.results) {
+    const resultFrame = displaySingleQuestion(result)
+    frame.appendChild(resultFrame)
+    frame.layoutGrow = 1
+  }
+  frame.layoutMode = "VERTICAL"
+  frame.primaryAxisSizingMode = 'AUTO'
+  frame.counterAxisSizingMode = 'AUTO'
+  frame.itemSpacing = 50
+}
+
+function displaySingleQuestion(triviaResult: TriviaResult) {
+  const frame = figma.createFrame()
+  frame.fills = [{type: 'SOLID', color: {r: 1, g: 1, b: 1}}]
+  frame.verticalPadding = 25
+  frame.horizontalPadding = 25
+  frame.primaryAxisSizingMode = 'AUTO'
+  frame.counterAxisSizingMode = 'AUTO'
+  frame.itemSpacing = 10
+  frame.cornerRadius = 20
+
+  const questionText = figma.createText()
+  questionText.characters = triviaResult.question
+  questionText.fontSize = 20
+  frame.appendChild(questionText)
+
+  const optionsFrame = figma.createFrame()
+  
+  const options = reorderOptions(triviaResult.correctAnswer, triviaResult.incorrectAnswers)
+  for (const option of options) {
+    const optionText = figma.createText()
+    optionText.characters = option
+    optionText.fontSize = 24
+    optionsFrame.itemSpacing = 10
+    optionsFrame.layoutMode = "VERTICAL"
+    optionsFrame.counterAxisSizingMode = "AUTO"
+    optionsFrame.appendChild(optionText)
+  }
+  frame.appendChild(optionsFrame)
+  
+  const correctAnswerFrame = figma.createFrame()
+  const correctAnswer = figma.createText()
+  correctAnswer.characters = triviaResult.correctAnswer
+  correctAnswer.fontSize = 24
+  correctAnswerFrame.appendChild(correctAnswer)
+  correctAnswerFrame.fills = [{type: 'SOLID', color: {r: .46, g: .86, b: .46} }]
+  correctAnswerFrame.resize(correctAnswer.width, correctAnswer.height)
+
+  const answerCover = figma.createFrame()
+  answerCover.resize(correctAnswer.width, correctAnswer.height)
+  answerCover.fills = [{type: 'SOLID', color: {r: 0, g: 0, b: 0}}]
+  correctAnswerFrame.appendChild(answerCover)
+  frame.appendChild(correctAnswerFrame)
+  frame.layoutMode = "VERTICAL"
+  return frame 
+}
+
+function reorderOptions(correctAnswer: string, incorrectAnswers: string[]) {
+  const options = [...incorrectAnswers, correctAnswer]
+
+  // Reorder the questions 
+  options.sort(() => Math.random() > 0.5 ? 1 : -1)
+  return options
 }
