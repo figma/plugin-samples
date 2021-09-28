@@ -1,3 +1,17 @@
+// Check that the input is a valid number
+function setSuggestionsForNumberInput(query: string, result: SuggestionResults, completions?: string[]) {
+  if (query === '') {
+    result.setSuggestions(completions ?? [])
+  } else if (!Number.isFinite(Number(query))) {
+    result.setError("Please enter a numeric value")
+  } else if (Number(query) <= 0) {
+    result.setError("Must be larger than 0")
+  } else {
+    const filteredCompletions = completions ? completions.filter(s => s.includes(query) && s !== query) : []
+    result.setSuggestions([query, ...filteredCompletions])
+  }
+}
+
 // The 'input' event listens for text change in the Quick Actions box after a plugin is 'Tabbed' into.
 figma.parameters.on('input', ({query, key, result}: ParameterInputEvent) => {
   if (figma.currentPage.selection.length === 0) {
@@ -8,23 +22,14 @@ figma.parameters.on('input', ({query, key, result}: ParameterInputEvent) => {
   switch (key) {
     case 'width':
       const widthSizes = ['640', '800', '960', '1024', '1280']
-      result.setSuggestions(widthSizes.filter(s => s.includes(query)))
+      setSuggestionsForNumberInput(query, result, widthSizes)
       break
     case 'height':
       const heightSizes = ['480', '600', '720', '768', '960']
-      result.setSuggestions(heightSizes.filter(s => s.includes(query)))
+      setSuggestionsForNumberInput(query, result, heightSizes)
       break
     case 'scale':
-      // Check that the input is a valid number
-      if (query === '') {
-        result.setSuggestions([])
-      } else if (!Number.isFinite(Number(query))) {
-        result.setError("Please enter a numberic value")
-      } else if (Number(query) <= 0) {
-        result.setError("Must be larger than 0")
-      } else {
-        result.setSuggestions([query])
-      }
+      setSuggestionsForNumberInput(query, result)
       break
     default:
       return
