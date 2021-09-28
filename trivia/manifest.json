@@ -23,14 +23,12 @@
       "name": "Difficulty",
       "key": "difficulty",
       "description": "How difficult do you want these questions to be?",
-      "allowFreeform": true,
       "optional": true
     },
     {
       "name": "Type",
       "key": "type",
       "description": "Multiple choice or true/false",
-      "allowFreeform": true,
       "optional": true
     }
   ]

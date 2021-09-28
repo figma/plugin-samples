@@ -1,21 +1,20 @@
 <script>
   window.onmessage = async (event) => {
-    if (event.data.pluginMessage.type === "category") {
-      const res = await fetch("https://opentdb.com/api_category.php");
-      const json = await res.json()
-      window.parent.postMessage(
-        { pluginMessage: { response: json, type: "category" } },
-        "*"
-      );
+    const msg = event.data.pluginMessage
+    const url = event.data.pluginMessage.url
+    const res = await fetch(url)
+    const json = await res.json()
+    if (msg.type === "category") {
+      postMessage(json, "category")
     } else if (msg.type === "questions") {
-      const url = event.data.pluginMessage.url;
-      console.log("making request to", url);
-      const res = await fetch('https://cors-anywhere.herokuapp.com/http://www.randomtext.me/download/text/lorem/ul-8/5-15')
-      const json = await res.json()
-      window.parent.postMessage(
-        { pluginMessage: { response: json, type: "questions" } },
-        "*"
-      );
+      postMessage(json, "questions")
     }
   };
+
+  function postMessage(response, type) {
+    window.parent.postMessage(
+        { pluginMessage: { response, type } },
+        "*"
+      );
+  }
 </script>
