@@ -115,7 +115,6 @@ function createAPIUrl(parameters: TriviaParameters): string {
 async function startUI() {
   figma.showUI(__html__, { visible: false });
   figma.ui.onmessage = async (msg) => {
-    console.log(msg.type);
     if (msg.type === "category") {
       console.log(msg.response.trivia_categories);
       categories = msg.response.trivia_categories.map(
@@ -135,7 +134,6 @@ async function startUI() {
           incorrectAnswers: r.incorrect_answers
         }))
       }
-      console.log(triviaResponse)
       await figma.loadFontAsync({ family: "Roboto", style: "Regular" })
       displayQuestions(triviaResponse)
       figma.closePlugin();
