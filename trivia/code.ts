@@ -41,9 +41,7 @@ figma.parameters.on("input", ({ key, query, result }: ParameterInputEvent) => {
       break;
     case "category":
       result.setLoadingMessage('Loading categories from API...')
-      new Promise(resolve => setTimeout(resolve, 1000)).then(() => {
-        result.setSuggestions(categories.filter((s) => s.name.includes(query)));
-      });
+      result.setSuggestions(categories.filter((s) => s.name.includes(query)));
       break;
     case "difficulty":
       result.setSuggestions(difficulties.filter((s) => s.includes(query)));
