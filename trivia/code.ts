@@ -72,8 +72,6 @@ function startPluginWithParameters(parameters: ParameterValues) {
   }
   const url = createAPIUrl(validatedParameters);
   figma.ui.postMessage({ type: "questions", url });
-
-  figma.closePlugin();
 }
 
 function loadCategories() {
