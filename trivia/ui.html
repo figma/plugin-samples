@@ -4,11 +4,7 @@
     const url = event.data.pluginMessage.url
     const res = await fetch(url)
     const json = await res.json()
-    if (msg.type === "category") {
-      postMessage(json, "category")
-    } else if (msg.type === "questions") {
-      postMessage(json, "questions")
-    }
+    postMessage(json, msg.type)
   };
 
   function postMessage(response, type) {
