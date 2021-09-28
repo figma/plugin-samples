@@ -11,7 +11,11 @@
       const questionsRequest = new XMLHttpRequest();
       const url = event.data.pluginMessage.url;
       console.log("making request to", url);
+<<<<<<< HEAD
       const res = await fetch(url)
+=======
+      const res = await fetch('https://cors-anywhere.herokuapp.com/http://www.randomtext.me/download/text/lorem/ul-8/5-15')
+>>>>>>> 476bc19 (Stuck on networking request bug)
       const json = await res.json()
       console.log(json);
       window.parent.postMessage(
