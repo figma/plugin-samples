@@ -77,7 +77,7 @@ function startPluginWithParameters(parameters: ParameterValues) {
 }
 
 function loadCategories() {
-  figma.ui.postMessage({ type: "category" });
+  figma.ui.postMessage({ type: "category", url: "https://opentdb.com/api_category.php" });
 }
 
 function validateParameters(
