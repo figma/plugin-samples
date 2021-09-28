@@ -41,6 +41,7 @@ figma.parameters.on("input", ({ key, query, result }: ParameterInputEvent) => {
       break;
     case "category":
       result.setLoadingMessage('Loading categories from API...')
+      result.setSuggestions(categories.filter((s) => s.name.includes(query)))
       break;
     case "difficulty":
       result.setSuggestions(difficulties.filter((s) => s.includes(query)));
@@ -81,12 +82,9 @@ function validateParameters(
   parameters: ParameterValues
 ): TriviaParameters | null {
   const numberString = parameters["number"];
-  let number;
-  if (numberString) {
-    number = Number(numberString);
-    if (number === NaN) {
-      return null;
-    }
+  const number = validateNumber(numberString)
+  if (number === null) {
+    return null
   }
 
   const category = parameters["category"];
@@ -94,6 +92,17 @@ function validateParameters(
   const type = parameters["type"];
 
   return { number, category, difficulty, type };
+}
+
+function validateNumber(numberString: string) {
+  let number: number;
+  if (numberString) {
+    number = Number(numberString);
+    if (Number.isNaN(number)) {
+      return null;
+    }
+  }
+  return number
 }
 
 function createAPIUrl(parameters: TriviaParameters): string {
