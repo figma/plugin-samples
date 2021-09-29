@@ -55,14 +55,15 @@ figma.parameters.on("input", ({ key, query, result }: ParameterInputEvent) => {
 });
 
 // When the user presses Enter after inputting all parameters, the 'run' event is fired.
-figma.on("run", ({ parameters }: RunEvent) => {
+figma.on("run", async ({ parameters }: RunEvent) => {
   if (parameters) {
-    startPluginWithParameters(parameters);
+    await startPluginWithParameters(parameters);
   }
 });
 
 // Start the plugin with parameters
-function startPluginWithParameters(parameters: ParameterValues) {
+async function startPluginWithParameters(parameters: ParameterValues) {
+  await loadFonts()
   const validatedParameters = validateParameters(parameters);
   if (!validatedParameters) {
     figma.notify(
@@ -120,12 +121,10 @@ async function startUI() {
   figma.showUI(__html__, { visible: false });
   figma.ui.onmessage = async (msg) => {
     if (msg.type === "category") {
-      console.log(msg.response.trivia_categories);
       categories = msg.response.trivia_categories.map(
         (c: { name: string; id: number }) => ({ name: c.name, data: c.id })
       );
     } else if (msg.type === "questions") {
-      console.log(msg.response);
       const response = msg.response
       const triviaResponse: TriviaResponse = {
         responseCode: response.response_code,
@@ -138,7 +137,6 @@ async function startUI() {
           incorrectAnswers: r.incorrect_answers
         }))
       }
-      await figma.loadFontAsync({ family: "Roboto", style: "Regular" })
       displayQuestions(triviaResponse)
       figma.closePlugin();
     }
@@ -169,30 +167,25 @@ function displaySingleQuestion(triviaResult: TriviaResult) {
   frame.itemSpacing = 10
   frame.cornerRadius = 20
 
-  const questionText = figma.createText()
-  questionText.characters = triviaResult.question
-  questionText.fontSize = 20
+  const questionText = createText(triviaResult.question, 20)
   frame.appendChild(questionText)
 
   const optionsFrame = figma.createFrame()
-  
+  optionsFrame.itemSpacing = 10
+  optionsFrame.layoutMode = "VERTICAL"
+  optionsFrame.counterAxisSizingMode = "AUTO"
+
   const options = reorderOptions(triviaResult.correctAnswer, triviaResult.incorrectAnswers)
   for (const option of options) {
-    const optionText = figma.createText()
-    optionText.characters = option
-    optionText.fontSize = 24
-    optionsFrame.itemSpacing = 10
-    optionsFrame.layoutMode = "VERTICAL"
-    optionsFrame.counterAxisSizingMode = "AUTO"
+    const optionText = createText(option, 24)
     optionsFrame.appendChild(optionText)
   }
   frame.appendChild(optionsFrame)
   
   const correctAnswerFrame = figma.createFrame()
-  const correctAnswer = figma.createText()
-  correctAnswer.characters = triviaResult.correctAnswer
-  correctAnswer.fontSize = 24
+  const correctAnswer = createText(triviaResult.correctAnswer, 24)
   correctAnswerFrame.appendChild(correctAnswer)
+
   correctAnswerFrame.fills = [{type: 'SOLID', color: {r: .46, g: .86, b: .46} }]
   correctAnswerFrame.resize(correctAnswer.width, correctAnswer.height)
 
@@ -211,4 +204,16 @@ function reorderOptions(correctAnswer: string, incorrectAnswers: string[]) {
   // Reorder the questions 
   options.sort(() => Math.random() > 0.5 ? 1 : -1)
   return options
+}
+
+function createText(characters: string, size: number) {
+  const text = figma.createText()
+  text.characters = characters
+  text.fontSize = size
+  return text 
+}
+
+async function loadFonts() {
+  await figma.loadFontAsync({ family: "Inter", style: "Medium" })
+  await figma.loadFontAsync({ family: "Roboto", style: "Regular" })
 }
