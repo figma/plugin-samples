@@ -56,6 +56,7 @@ figma.parameters.on("input", ({ key, query, result }: ParameterInputEvent) => {
 
 // When the user presses Enter after inputting all parameters, the 'run' event is fired.
 figma.on("run", async ({ parameters }: RunEvent) => {
+  await loadFonts()
   if (parameters) {
     await startPluginWithParameters(parameters);
   }
@@ -63,7 +64,6 @@ figma.on("run", async ({ parameters }: RunEvent) => {
 
 // Start the plugin with parameters
 async function startPluginWithParameters(parameters: ParameterValues) {
-  await loadFonts()
   const validatedParameters = validateParameters(parameters);
   if (!validatedParameters) {
     figma.notify(
@@ -210,10 +210,10 @@ function createText(characters: string, size: number) {
   const text = figma.createText()
   text.characters = characters
   text.fontSize = size
+  text.fontName = {family: 'Roboto', style: 'Regular'}
   return text 
 }
 
 async function loadFonts() {
-  await figma.loadFontAsync({ family: "Inter", style: "Medium" })
   await figma.loadFontAsync({ family: "Roboto", style: "Regular" })
 }
