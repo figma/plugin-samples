@@ -44,7 +44,7 @@ figma.parameters.on('input', ({ key, query, result }: ParameterInputEvent) => {
   }
 });
 
-figma.on('run', async ({ parameters }: RunEvent) => {
+figma.on('run', ({ parameters }: RunEvent) => {
   const countryName = parameters.country.name;
   const capital = parameters.country.capital;
   figma.closePlugin(`The capital of ${countryName} is ${capital}`);
