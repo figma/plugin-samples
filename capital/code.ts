@@ -1,6 +1,18 @@
 // This plugin fetches a list of countries from an external API and shows the capital of the selected country
 
-let countries, resultObj;
+interface Country {
+  name: string;
+  data: {
+    index: number;
+    name: string;
+    capital: string;
+  };
+}
+
+let resolveCountries = (countries: Country[]) => {};
+const countriesPromise = new Promise<Country[]>((resolve) => {
+  resolveCountries = resolve;
+});
 
 // Create an invisible iframe UI to use network API's
 figma.showUI(
@@ -14,35 +26,36 @@ figma.showUI(
   { visible: false }
 );
 
+// Resolve the countries promise when a message is received from the iframe
 figma.ui.onmessage = (json) => {
-  countries = json.map((country, index) => {
-    return {
-      name: country.name,
-      data: {
-        index: index,
+  resolveCountries(
+    json.map((country, index) => {
+      return {
         name: country.name,
-        capital: country.capital,
-      },
-    };
-  });
-  // Set the suggestions after the a message has been received from the iframe
-  resultObj.setSuggestions(countries);
+        data: {
+          index: index,
+          name: country.name,
+          capital: country.capital,
+        },
+      };
+    })
+  );
 };
 
-figma.parameters.on('input', ({ key, query, result }: ParameterInputEvent) => {
-  resultObj = result;
-  // When fetching data from an external source, it is recommended to show a relevant loading message
-  result.setLoadingMessage('Loading countries...');
-
-  // Perform filtering on the suggestions if necessary
-  if (query !== '' && countries) {
+figma.parameters.on(
+  'input',
+  async ({ key, query, result }: ParameterInputEvent) => {
+    // When fetching data from an external source, it is recommended to show a relevant loading message
+    result.setLoadingMessage('Loading countries...');
+    const countries = await countriesPromise;
     result.setSuggestions(
+      // Filter suggestions based on the query entered
       countries.filter((country) =>
         country.name.toLowerCase().includes(query.toLowerCase())
       )
     );
   }
-});
+);
 
 figma.on('run', ({ parameters }: RunEvent) => {
   const countryName = parameters.country.name;
