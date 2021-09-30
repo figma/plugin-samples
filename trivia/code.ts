@@ -208,9 +208,9 @@ function reorderOptions(correctAnswer: string, incorrectAnswers: string[]) {
 
 function createText(characters: string, size: number) {
   const text = figma.createText()
+  text.fontName = {family: 'Roboto', style: 'Regular'}
   text.characters = characters
   text.fontSize = size
-  text.fontName = {family: 'Roboto', style: 'Regular'}
   return text 
 }
 
