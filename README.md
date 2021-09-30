@@ -31,8 +31,8 @@ For example, the code for the Bar Chart sample plugin is in
 [barchart/code.ts](barchart/code.ts), and the HTML for its UI is in
 [barchart/ui.html](barchart/ui.html).
 
-
 ### Styling your plugin UI
+
 [For plugins that have a UI](#examples-with-a-plugin-ui), we recommend matching the style and behavior of Figma. Many other plugins follow this convention and it helps create consistency in the plugin experience for users as they use different plugins. Here's a few approaches that can help when styling your UI:
 
 - [Figma Plugin DS](https://github.com/thomas-lowry/figma-plugin-ds) A lightweight UI library for styling Figma plugins.
@@ -50,7 +50,6 @@ This plugin will find all stamps close to a sticky and generate a tally of all t
 
 [Check out the source code.](vote-tally/)
 
-
 ### Create Shapes + Connectors
 
 <img src="_screenshots/create-shapes-connectors.png" width="400" />
@@ -65,7 +64,7 @@ The following sample plugins work in both Figma and FigJam.
 
 ## Conditional Plugins
 
-You can create plugins that have conditional logic depending on whether they are run in Figma, or FigJam. 
+You can create plugins that have conditional logic depending on whether they are run in Figma, or FigJam.
 
 <img src="_screenshots/create-rects-shapes.png" width="400" />
 
@@ -74,7 +73,6 @@ When this plugin runs in Figma, it opens a window to prompt the user to enter a 
 When this plugin runs in FigJam, it opens a window to prompt the user to enter a number, and it will then create that many `ROUNDED_RECTANGLE` shapes with text nodes, and also adds a connector node in between each shape.
 
 [Check out the source code.](create-rects-shapes/)
-
 
 ## Examples without a plugin UI
 
@@ -150,7 +148,6 @@ Generates a pie chart given user input in a modal.
 
 [Check out the source code.](piechart/)
 
-
 ### Text Search
 
 <img src="_screenshots/text-search.png" width="400" />
@@ -191,11 +188,21 @@ For more information on how to accept parameters as input to your plugin, take a
 
 <img src="_screenshots/svg-inserter.png" width="400" />
 
-Inserts an SVG icon into the canvas. 
+Inserts an SVG icon into the canvas.
 
 For more information on how to accept parameters as input to your plugin, take a look at [this guide](https://www.figma.com/plugin-docs/plugin-parameters).
 
 [Check out the source code.](svg-inserter/)
+
+### Trivia
+
+<img src="_screenshots/trivia.png" width="400" />
+
+Generates a series of trivia questions taken from an external trivia API.
+
+For more information on how to accept parameters as input to your plugin, take a look at [this guide](https://www.figma.com/plugin-docs/plugin-parameters).
+
+[Check out the source code.](trivia/)
 
 ## Examples with bundling
 
@@ -215,8 +222,8 @@ Create rectangles! This demonstrates:
 
 [Check out the source code.](webpack-react/)
 
-
 ## Other Figma Plugin Samples + Starters
+
 - [Create Figma Plugin](https://yuanqing.github.io/create-figma-plugin/) - A comprehensive toolkit for developing Figma plugins.
 - [Figma Plugin Boilerplate](https://github.com/thomas-lowry/figma-plugin-boilerplate) - A starter project for creating Figma Plugins with HTML, CSS (+ SCSS) and vanilla Javascript without any frameworks.
 - [Figsvelte](https://github.com/thomas-lowry/figsvelte) - A boilerplate for creating Figma plugins using Svelte.
