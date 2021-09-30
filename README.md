@@ -204,6 +204,16 @@ For more information on how to accept parameters as input to your plugin, take a
 
 [Check out the source code.](trivia/)
 
+### Capital
+
+<img src="_screenshots/capital.png" width="400" />
+
+Finds the capital city of a country.
+
+For more information on how to accept parameters as input to your plugin, take a look at [this guide](https://www.figma.com/plugin-docs/plugin-parameters).
+
+[Check out the source code.](capital/)
+
 ## Examples with bundling
 
 ### Webpack + React
