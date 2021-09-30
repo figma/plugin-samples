@@ -208,7 +208,9 @@ For more information on how to accept parameters as input to your plugin, take a
 
 <img src="_screenshots/capital.png" width="400" />
 
-Finds the capital city of a country.
+Finds the capital city of a country. This demonstrates:
+
+- How to make network requests to populate parameter suggestions
 
 For more information on how to accept parameters as input to your plugin, take a look at [this guide](https://www.figma.com/plugin-docs/plugin-parameters).
 
