@@ -1,0 +1,14 @@
+{
+  "name": "Capital",
+  "id": "1025109963759603905",
+  "api": "1.0.0",
+  "main": "code.js",
+  "editorType": ["figma", "figjam"],
+  "parameters": [
+    {
+      "name": "Country",
+      "key": "country",
+      "description": "Select a country to find its capital city."
+    }
+  ]
+}
