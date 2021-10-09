@@ -2,7 +2,6 @@
   "compilerOptions": {
     "target": "es6",
     "jsx": "react",
-    "noEmit": true,  // Emit handled by webpack.
     "typeRoots": [
       "./node_modules/@types",
       "./node_modules/@figma"
