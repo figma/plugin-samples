@@ -1,0 +1,7 @@
+{
+  "name": "PNG Crop",
+  "api": "1.0.0",
+  "main": "code.js",
+  "editorType": ["figma", "figjam"],
+  "enableProposedApi": true
+}
