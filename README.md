@@ -162,6 +162,26 @@ This demonstrates:
 
 [Check out the source code.](text-search/)
 
+### Icon Drag-and-Drop
+
+<img src="_screenshots/icon-drag-and-drop.png" width="400" />
+
+Allows drag-and-drop of a simple icon library from a modal to the canvas.
+
+This demonstrates registering callbacks for drop events and communicating drop data from the plugin iframe.
+
+[Check out the source code.](icon-drag-and-drop/)
+
+### PNG Crop
+
+<img src="_screenshots/png-crop.png" width="400" />
+
+Crops PNGs as they are dropped onto the canvas.
+
+This demonstrates registering callbacks for drop events and reading bytes from dropped files.
+
+[Check out the source code.](png-crop/)
+
 ## Examples with parameters
 
 ### Go To
