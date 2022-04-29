@@ -66,7 +66,7 @@ main {
 
 .token-row span label {
   font-size: 0.8rem;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.25rem;
 }
 .token-row span,
 .token-row select {
@@ -92,7 +92,7 @@ figure {
   color: var(--local-text);
   display: flex;
   justify-content: center;
-  margin: 2rem 0;
+  margin: 2rem 0 1rem;
   padding: 0.5rem 1rem;
   width: 100%;
 }
