@@ -1,0 +1,76 @@
+main {
+  padding: 1rem;
+}
+.token-row {
+  display: flex;
+}
+
+.token-row.invalid select {
+  color: var(--figma-color-text-danger);
+}
+
+.token-row + .token-row {
+  margin-top: 1rem;
+}
+
+.token-row span label {
+  font-size: 0.8rem;
+}
+.token-row span,
+.token-row select {
+  font-size: 1rem;
+}
+.token-row span {
+  display: flex;
+  flex: 2;
+  flex-direction: column;
+}
+.token-row span:first-child {
+  flex: 1;
+}
+.token-row span + span {
+  margin-left: 0.5rem;
+}
+
+figure {
+  align-items: center;
+  background: var(--bg);
+  border: 2px solid var(--border);
+  box-sizing: border-box;
+  color: var(--text);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 2rem 0;
+  padding: 1rem;
+  width: 100%;
+}
+figure svg {
+  fill: none;
+  stroke: var(--icon);
+  stroke-width: 2px;
+}
+figure p {
+  margin-bottom: 0;
+  margin-top: 0.5rem;
+}
+
+ul {
+  list-style: none;
+  font-family: monospace;
+  margin: 1rem 0;
+  padding: 0;
+}
+li {
+  display: flex;
+  flex-direction: column;
+  font-size: 1rem;
+  justify-content: space-between;
+}
+li span:last-child {
+  font-style: italic;
+  text-align: right;
+}
+li + li {
+  margin-top: 0.5rem;
+}
