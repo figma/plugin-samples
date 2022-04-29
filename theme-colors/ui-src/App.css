@@ -1,21 +1,96 @@
 :root {
   --color-bg: var(--figma-color-bg, rgba(255, 255, 255, 1));
+  --color-bg-hover: var(--figma-color-bg-hover, #f5f5f5);
+  --color-bg-active: var(--figma-color-bg-pressed, #f5f5f5);
   --color-border: var(--figma-color-border, #e6e6e6);
   --color-border-focus: var(--figma-color-border-selected, #0d99ff);
-  --color-text-danger: var(--figma-color-text-danger, #dc3412);
+  --color-icon: var(--figma-color-icon, rgba(0, 0, 0, 0.9));
   --color-text: var(--figma-color-text, rgba(0, 0, 0, 0.9));
+  --color-bg-brand: var(--figma-color-bg-brand, #0d99ff);
+  --color-bg-brand-hover: var(--figma-color-bg-brand-hover, #007be5);
+  --color-bg-brand-active: var(--figma-color-bg-brand-pressed, #007be5);
+  --color-border-brand: var(--figma-color-border-brand, #bde3ff);
+  --color-border-brand-focus: var(
+    --figma-color-border-selected-strong,
+    #007be5
+  );
+  --color-text-brand: var(--figma-color-text-onbrand, rgba(255, 255, 255, 1));
 }
 
 body,
+input,
+button,
 select {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-size: 1rem;
+  text-align: center;
+}
+
+body,
+select,
+input {
   background: var(--color-bg);
   color: var(--color-text);
 }
+input,
+button,
 select {
   border-color: var(--color-border);
+  border-radius: 0.25rem;
 }
 
 select:focus-visible {
+  border-color: var(--color-border-focus);
+  outline-color: var(--color-border-focus);
+}
+
+button {
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  color: var(--color-text);
+  cursor: pointer;
+  font-size: 0.8rem;
+  padding: 0.25rem 0.5rem;
+}
+button:first-child {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+button:last-of-type {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+button:hover {
+  background-color: var(--color-bg-hover);
+}
+button:active {
+  background-color: var(--color-bg-active);
+}
+button:focus-visible {
+  border-color: var(--color-border-focus);
+  outline-color: var(--color-border-focus);
+}
+button.active {
+  --color-bg: var(--color-bg-brand);
+  --color-text: var(--color-text-brand);
+  --color-bg-hover: var(--color-bg-brand-hover);
+  --color-bg-active: var(--color-bg-brand-pressed);
+  --color-border: var(--color-border-brand);
+  --color-border-focus: var(--color-border-brand-focus);
+}
+
+input {
+  background: 1px solid var(--color-bg);
+  border: 1px solid var(--color-border);
+  color: 1px solid var(--color-text);
+  display: block;
+  margin-top: 0.5rem;
+  padding: 0.5rem;
+  width: 100%;
+}
+
+input:focus-visible {
   border-color: var(--color-border-focus);
   outline-color: var(--color-border-focus);
 }
@@ -24,9 +99,24 @@ select:focus-visible {
   color: var(--color-text-danger);
 }
 
+nav {
+  background: var(--color-bg);
+  border-bottom: 1px solid var(--color-border);
+  box-sizing: border-box;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  left: 0;
+  padding: 1rem;
+  position: sticky;
+  top: 0;
+  width: 100%;
+}
+
 main {
   padding: 1rem;
 }
+
 .token-row {
   display: flex;
 }
@@ -81,10 +171,14 @@ figure p {
 ul {
   list-style: none;
   font-family: monospace;
-  margin: 1rem 0;
+  margin: 0.5rem 0 0;
   padding: 0;
 }
+ul.all-tokens {
+  margin: 0;
+}
 li {
+  align-items: center;
   display: flex;
   /* flex-direction: column; */
   font-size: 0.8rem;
@@ -93,6 +187,17 @@ li {
 li span:last-child {
   font-style: italic;
   text-align: right;
+}
+li span {
+  align-items: center;
+  display: flex;
+}
+li span.swatch {
+  border: 1px solid var(--color-border);
+
+  height: 1rem;
+  margin-left: 0.5rem;
+  width: 1rem;
 }
 li + li {
   margin-top: 0.5rem;
