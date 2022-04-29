@@ -64,7 +64,7 @@ ul {
 li {
   display: flex;
   flex-direction: column;
-  font-size: 1rem;
+  font-size: 0.8rem;
   justify-content: space-between;
 }
 li span:last-child {
