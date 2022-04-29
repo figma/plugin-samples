@@ -58,10 +58,10 @@ function App() {
       <figure
         style={
           {
-            "--bg": `var(${tokenBg})`,
-            "--text": `var(${tokenText})`,
-            "--icon": `var(${tokenIcon})`,
-            "--border": `var(${tokenBorder})`,
+            "--local-bg": `var(${tokenBg})`,
+            "--local-text": `var(${tokenText})`,
+            "--local-icon": `var(${tokenIcon})`,
+            "--local-border": `var(${tokenBorder})`,
           } as CSSProperties
         }
       >
