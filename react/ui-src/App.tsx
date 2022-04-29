@@ -30,7 +30,7 @@ function App() {
         <h2>Rectangle Creator</h2>
       </header>
       <section>
-        <input id="input" type="number" value="0" min="0" ref={inputRef} />
+        <input id="input" type="number" min="0" ref={inputRef} />
         <label htmlFor="input">Rectangle Count</label>
       </section>
       <footer>

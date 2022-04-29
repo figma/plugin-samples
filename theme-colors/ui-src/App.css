@@ -1,12 +1,34 @@
+:root {
+  --color-bg: var(--figma-color-bg, rgba(255, 255, 255, 1));
+  --color-border: var(--figma-color-border, #e6e6e6);
+  --color-border-focus: var(--figma-color-border-selected, #0d99ff);
+  --color-text-danger: var(--figma-color-text-danger, #dc3412);
+  --color-text: var(--figma-color-text, rgba(0, 0, 0, 0.9));
+}
+
+body,
+select {
+  background: var(--color-bg);
+  color: var(--color-text);
+}
+select {
+  border-color: var(--color-border);
+}
+
+select:focus-visible {
+  border-color: var(--color-border-focus);
+  outline-color: var(--color-border-focus);
+}
+
+.token-row.invalid select {
+  color: var(--color-text-danger);
+}
+
 main {
   padding: 1rem;
 }
 .token-row {
   display: flex;
-}
-
-.token-row.invalid select {
-  color: var(--figma-color-text-danger);
 }
 
 .token-row + .token-row {
@@ -15,6 +37,7 @@ main {
 
 .token-row span label {
   font-size: 0.8rem;
+  margin-bottom: 0.5rem;
 }
 .token-row span,
 .token-row select {
@@ -29,15 +52,15 @@ main {
   flex: 1;
 }
 .token-row span + span {
-  margin-left: 0.5rem;
+  margin-left: 0.75rem;
 }
 
 figure {
   align-items: center;
-  background: var(--bg);
-  border: 2px solid var(--border);
+  background: var(--local-bg);
+  border: 2px solid var(--local-border);
   box-sizing: border-box;
-  color: var(--text);
+  color: var(--local-text);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -47,7 +70,7 @@ figure {
 }
 figure svg {
   fill: none;
-  stroke: var(--icon);
+  stroke: var(--local-icon);
   stroke-width: 2px;
 }
 figure p {
