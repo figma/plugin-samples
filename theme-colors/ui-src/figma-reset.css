@@ -1,0 +1,269 @@
+:root {
+  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  --font-mono: Consolas, monaco, "Ubuntu Mono", "Liberation Mono", "Courier New",
+    Courier, monospace;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html,
+input,
+select,
+button {
+  font-family: var(--font-sans);
+}
+
+body {
+  background: var(--figma-color-bg);
+  color: var(--figma-color-text);
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+::selection {
+  background: var(--figma-color-bg-selected);
+  color: var(--figma-color-text-onselected);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  line-height: 1;
+  padding-top: 0.875rem;
+}
+
+h1,
+h2,
+h3 {
+  padding-bottom: 2px;
+  margin-bottom: 8px;
+  border-bottom: 1px solid var(--figma-color-border);
+}
+
+h4,
+h5,
+h6 {
+  margin-bottom: 0.3rem;
+}
+
+h1 {
+  font-size: 2.25rem;
+}
+
+h2 {
+  font-size: 1.85rem;
+}
+
+h3 {
+  font-size: 1.55rem;
+}
+
+h4 {
+  font-size: 1.25rem;
+}
+
+h5 {
+  font-size: 1rem;
+}
+
+h6 {
+  font-size: 0.875rem;
+}
+
+a {
+  color: var(--figma-color-text);
+}
+
+a:hover {
+  color: var(--figma-color-text-hover);
+}
+
+blockquote {
+  padding: 1.5rem;
+  background: var(--figma-color-bg-secondary);
+  border-left: 5px solid var(--figma-color-border);
+}
+
+header h1,
+header h2,
+header h3 {
+  padding-bottom: 0;
+  border-bottom: 0;
+}
+
+header > *:first-child {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+header > *:last-child {
+  margin-bottom: 0;
+}
+
+*:focus-visible {
+  border-color: var(--figma-color-border-selected);
+  outline-color: var(--figma-color-border-selected);
+}
+
+a button,
+button,
+input[type="submit"],
+input[type="reset"],
+input[type="button"] {
+  background: var(--figma-color-bg);
+  border-radius: 4px;
+  border: 1px solid var(--figma-color-border);
+  box-sizing: border-box;
+  color: var(--figma-color-text);
+  cursor: pointer;
+  display: inline-block;
+  font-size: 1rem;
+  padding: 6px 12px;
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+}
+a:hover button,
+button:hover,
+input[type="submit"]:hover,
+input[type="reset"]:hover,
+input[type="button"]:hover {
+  background-color: var(--figma-color-bg-hover);
+}
+a:active button,
+button:active,
+input[type="submit"]:active,
+input[type="reset"]:active,
+input[type="button"]:active {
+  background-color: var(--figma-color-bg-pressed);
+}
+
+a button[disabled],
+button[disabled],
+input[type="submit"][disabled],
+input[type="reset"][disabled],
+input[type="button"][disabled] {
+  background-color: var(--figma-color-bg-disabled);
+  border-color: var(--figma-color-border-disabled);
+  color: var(--figma-color-text-ondisabled);
+  cursor: default;
+  cursor: not-allowed;
+}
+
+code,
+pre,
+kbd,
+samp {
+  font-family: var(--font-mono);
+}
+
+code,
+samp,
+kbd,
+pre {
+  background: var(--figma-color-bg-secondary);
+  border: 1px solid var(--figma-color-border);
+  border-radius: 4px;
+  padding: 3px 6px;
+  font-size: 0.9rem;
+}
+
+kbd {
+  border-bottom: 3px solid var(--figma-color-border);
+}
+
+pre {
+  padding: 1rem 1.4rem;
+  max-width: 100%;
+  overflow: auto;
+}
+
+pre code {
+  background: inherit;
+  font-size: inherit;
+  color: inherit;
+  border: 0;
+  padding: 0;
+  margin: 0;
+}
+
+code pre {
+  display: inline;
+  background: inherit;
+  font-size: inherit;
+  color: inherit;
+  border: 0;
+  padding: 0;
+  margin: 0;
+}
+
+hr {
+  border: 0;
+  border-bottom: 1px solid var(--figma-color-border);
+  margin: 1rem auto;
+}
+
+fieldset {
+  margin-top: 1rem;
+  padding: 2rem;
+  border: 1px solid var(--figma-color-border);
+  border-radius: 4px;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td,
+th {
+  border: 1px solid var(--figma-color-border);
+  text-align: left;
+  padding: 0.5rem;
+}
+
+th {
+  background: var(--figma-color-bg-secondary);
+}
+
+tr:nth-child(even) {
+  background: var(--figma-color-bg-secondary);
+}
+
+table caption {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+textarea {
+  max-width: 100%;
+}
+
+ul,
+ol {
+  margin: 0;
+}
+
+textarea,
+select,
+input {
+  padding: 6px 12px;
+  background: var(--figma-color-bg);
+  color: var(--figma-color-text);
+  border: 1px solid var(--figma-color-border);
+  border-radius: 4px;
+  box-shadow: none;
+  box-sizing: border-box;
+}
+
+img {
+  max-width: 100%;
+}

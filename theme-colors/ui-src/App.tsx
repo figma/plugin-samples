@@ -1,5 +1,6 @@
 import React, { ChangeEvent, CSSProperties, useEffect, useState } from "react";
-import "./App.css";
+import "./AppWithReset.css";
+import "./figma-reset.css";
 import { buildToken, Token, TOKENS } from "./Token";
 
 export type Rules = { [k: string]: string };
@@ -79,6 +80,7 @@ function App() {
         {state === "inspect" ? (
           <input
             type="search"
+            placeholder="search tokens..."
             value={search}
             onInput={(e: ChangeEvent<HTMLInputElement>) =>
               setSearch(e.target.value.trim())
