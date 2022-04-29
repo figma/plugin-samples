@@ -60,7 +60,7 @@ button.brand {
   --color-bg: var(--color-bg-brand);
   --color-text: var(--color-text-brand);
   --color-bg-hover: var(--color-bg-brand-hover);
-  --color-bg-active: var(--color-bg-brand-pressed);
+  --color-bg-active: var(--color-bg-brand-active);
   --color-border: var(--color-border-brand);
   --color-border-focus: var(--color-border-brand-focus);
 }
