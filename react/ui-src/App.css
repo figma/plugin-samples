@@ -1,0 +1,35 @@
+body {
+  font: 12px sans-serif;
+  text-align: center;
+  margin: 20px;
+}
+button {
+  --color-bg: var(--figma-color-bg-brand);
+  --color-text: var(--figma-color-text-onbrand);
+  --color-bg-hover: var(--figma-color-bg-brand-hover);
+  --color-border: var(--figma-color-border-brand);
+  border-radius: 5px;
+  background: var(--color-bg);
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+  padding: 8px 15px;
+  margin: 0 5px;
+}
+button:hover {
+  background-color: var(--color-bg-hover);
+}
+button.inverse {
+  --color-bg: var(--figma-color-bg);
+  --color-text: var(--figma-color-text-inverse);
+  --color-bg-hover: var(--figma-color-bg-hover);
+  --color-border: var(--figma-color-border-inverse);
+}
+input {
+  padding: 8px;
+}
+
+.logo-png,
+.logo-svg {
+  height: auto;
+  width: 20px;
+}
