@@ -1,6 +1,6 @@
 import React, { FC, useEffect, useState } from "react";
 import { Rules } from "./App";
-const tokens = {
+export const TOKENS = {
   type: ["bg", "text", "icon", "border"],
   color: [
     "default",
@@ -25,7 +25,7 @@ const tokens = {
   state: ["default", "hover", "pressed"],
 };
 
-const buildToken = (args: string[]) =>
+export const buildToken = (args: string[]) =>
   `--figma-color-${args.filter((a) => a !== "default").join("-")}`;
 
 export const Token: FC<{
@@ -33,9 +33,9 @@ export const Token: FC<{
   rules: Rules;
   type: "bg" | "text" | "border" | "icon";
 }> = ({ onChange, rules, type }) => {
-  const [color, setColor] = useState(tokens.color[0]);
-  const [prominence, setProminence] = useState(tokens.prominence[0]);
-  const [state, setState] = useState(tokens.state[0]);
+  const [color, setColor] = useState(TOKENS.color[0]);
+  const [prominence, setProminence] = useState(TOKENS.prominence[0]);
+  const [state, setState] = useState(TOKENS.state[0]);
   const [valid, setValid] = useState(true);
 
   const token = buildToken([type, color, prominence, state]);
@@ -46,15 +46,15 @@ export const Token: FC<{
   }, [token]);
 
   const disabled = (args: string[]) => !Boolean(rules[buildToken(args)]);
-  const colors: [string, boolean][] = tokens.color.map((t) => [
+  const colors: [string, boolean][] = TOKENS.color.map((t) => [
     t,
     disabled([type, t, prominence, state]),
   ]);
-  const prominences: [string, boolean][] = tokens.prominence.map((t) => [
+  const prominences: [string, boolean][] = TOKENS.prominence.map((t) => [
     t,
     disabled([type, color, t, state]),
   ]);
-  const states: [string, boolean][] = tokens.state.map((t) => [
+  const states: [string, boolean][] = TOKENS.state.map((t) => [
     t,
     disabled([type, color, prominence, t]),
   ]);
