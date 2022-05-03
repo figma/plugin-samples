@@ -1,6 +1,5 @@
 import React, { ChangeEvent, CSSProperties, useEffect, useState } from "react";
-import "./AppWithReset.css";
-import "./figma-reset.css";
+import "./App.css";
 import { buildToken, Token, TOKENS } from "./Token";
 
 export type Rules = { [k: string]: string };
