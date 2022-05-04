@@ -242,7 +242,7 @@ For more information on how to accept parameters as input to your plugin, take a
 
 ## Examples with bundling
 
-### Webpack + React
+### React
 
 <img src="_screenshots/webpack.png" width="400" />
 
@@ -256,7 +256,7 @@ Create rectangles! This demonstrates:
     $ npm run build
 ```
 
-[Check out the source code.](webpack-react/)
+[React](react/) and [Webpack](webpack-react/) examples are great places to start if you are interested in bundling.
 
 ## Other Figma Plugin Samples + Starters
 
