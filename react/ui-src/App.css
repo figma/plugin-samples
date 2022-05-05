@@ -53,7 +53,7 @@ button:active {
   background-color: var(--color-bg-active);
 }
 button:focus-visible {
-  border-color: var(--color-border-focus);
+  border: none;
   outline-color: var(--color-border-focus);
 }
 button.brand {
@@ -61,7 +61,7 @@ button.brand {
   --color-text: var(--color-text-brand);
   --color-bg-hover: var(--color-bg-brand-hover);
   --color-bg-active: var(--color-bg-brand-active);
-  --color-border: var(--color-border-brand);
+  --color-border: transparent;
   --color-border-focus: var(--color-border-brand-focus);
 }
 

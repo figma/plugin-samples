@@ -2,6 +2,11 @@ body {
   text-align: center;
 }
 
+/**
+  * An example of how to style a "primary" button with Figma tokens 
+  * on top of the base style in figma-reset.css.
+  */
+
 button.active {
   background: var(--figma-color-bg-brand);
   border: none;
