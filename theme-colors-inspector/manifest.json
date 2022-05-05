@@ -1,9 +1,0 @@
-{
-  "name": "Theme Colors Inspector",
-  "id": "plugin-id-V8UuuwGryi",
-  "api": "1.0.0",
-  "editorType": ["figma", "figjam"],
-  "permissions": [],
-  "main": "dist/code.js",
-  "ui": "dist/index.html"
-}
