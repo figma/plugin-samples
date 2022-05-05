@@ -1,29 +1,108 @@
-body {
-  font: 12px sans-serif;
-  text-align: center;
-  margin: 20px;
+:root {
+  --color-bg: var(--figma-color-bg, rgba(255, 255, 255, 1));
+  --color-bg-hover: var(--figma-color-bg-hover, #f5f5f5);
+  --color-bg-active: var(--figma-color-bg-pressed, #f5f5f5);
+  --color-border: var(--figma-color-border, #e6e6e6);
+  --color-border-focus: var(--figma-color-border-selected, #0d99ff);
+  --color-icon: var(--figma-color-icon, rgba(0, 0, 0, 0.9));
+  --color-text: var(--figma-color-text, rgba(0, 0, 0, 0.9));
+  --color-bg-brand: var(--figma-color-bg-brand, #0d99ff);
+  --color-bg-brand-hover: var(--figma-color-bg-brand-hover, #007be5);
+  --color-bg-brand-active: var(--figma-color-bg-brand-pressed, #007be5);
+  --color-border-brand: var(--figma-color-border-brand, #bde3ff);
+  --color-border-brand-focus: var(
+    --figma-color-border-selected-strong,
+    #007be5
+  );
+  --color-text-brand: var(--figma-color-text-onbrand, rgba(255, 255, 255, 1));
 }
+
+html,
+body,
+main {
+  height: 100%;
+}
+
+body,
+input,
 button {
-  border-radius: 5px;
-  background: white;
-  color: black;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-size: 1rem;
+  text-align: center;
+}
+
+body {
+  background: var(--color-bg);
+  color: var(--color-text);
+  margin: 0;
+}
+
+button {
+  border-radius: 0.25rem;
+  background: var(--color-bg);
+  color: var(--color-text);
+  cursor: pointer;
+  border: 1px solid var(--color-border);
+  padding: 0.5rem 1rem;
+}
+button:hover {
+  background-color: var(--color-bg-hover);
+}
+button:active {
+  background-color: var(--color-bg-active);
+}
+button:focus-visible {
   border: none;
-  padding: 8px 15px;
-  margin: 0 5px;
-  box-shadow: inset 0 0 0 1px black;
-  outline: none;
+  outline-color: var(--color-border-focus);
 }
-#create {
-  box-shadow: none;
-  background: #18A0FB;
-  color: white;
+button.brand {
+  --color-bg: var(--color-bg-brand);
+  --color-text: var(--color-text-brand);
+  --color-bg-hover: var(--color-bg-brand-hover);
+  --color-bg-active: var(--color-bg-brand-active);
+  --color-border: transparent;
+  --color-border-focus: var(--color-border-brand-focus);
 }
+
 input {
-  border: none;
-  outline: none;
-  padding: 8px;
+  background: 1px solid var(--color-bg);
+  border: 1px solid var(--color-border);
+  color: 1px solid var(--color-text);
+  padding: 0.5rem;
 }
-input:hover { box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.1); }
-button:focus { box-shadow: inset 0 0 0 2px #18A0FB; }
-#create:focus { box-shadow: inset 0 0 0 2px rgba(0, 0, 0, 0.3); }
-input:focus { box-shadow: inset 0 0 0 2px #18A0FB; }
+
+input:focus-visible {
+  border-color: var(--color-border-focus);
+  outline-color: var(--color-border-focus);
+}
+
+svg {
+  stroke: var(--color-icon, rgba(0, 0, 0, 0.9));
+}
+
+main {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+section {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+section > * + * {
+  margin-top: 0.5rem;
+}
+footer > * + * {
+  margin-left: 0.5rem;
+}
+
+img {
+  height: auto;
+  width: 2rem;
+}
