@@ -15,9 +15,8 @@ function App() {
     "--figma-color-border"
   );
 
-  useEffect(() => {
-    const { sheet } =
-      (document.getElementById("figma-style") as HTMLStyleElement) || {};
+  function processStyleSheet(styleSheet: HTMLStyleElement) {
+    const { sheet } = styleSheet;
     if (sheet && sheet.cssRules) {
       const rules = [...sheet.cssRules].filter(
         (a) => a.STYLE_RULE === 1
@@ -32,6 +31,17 @@ function App() {
         setRules(rules);
       });
     }
+  }
+
+  useEffect(() => {
+    const styleSheet = document.getElementById(
+      "figma-style"
+    ) as HTMLStyleElement;
+
+    processStyleSheet(styleSheet);
+
+    const observer = new MutationObserver(() => processStyleSheet(styleSheet));
+    observer.observe(styleSheet, { childList: true });
   }, []);
 
   if (!rules) {
