@@ -1,35 +1,42 @@
-import * as React from 'react'
-import * as ReactDOM from 'react-dom'
-import './ui.css'
+import * as React from "react";
+import * as ReactDOM from "react-dom";
+import "./ui.css";
 
-declare function require(path: string): any
+declare function require(path: string): any;
 
-class App extends React.Component {
-  textbox: HTMLInputElement
+function App() {
+  const inputRef = React.useRef<HTMLInputElement>(null);
 
-  countRef = (element: HTMLInputElement) => {
-    if (element) element.value = '5'
-    this.textbox = element
-  }
+  const onCreate = () => {
+    const count = Number(inputRef.current?.value || 0);
+    parent.postMessage(
+      { pluginMessage: { type: "create-rectangles", count } },
+      "*"
+    );
+  };
 
-  onCreate = () => {
-    const count = parseInt(this.textbox.value, 10)
-    parent.postMessage({ pluginMessage: { type: 'create-rectangles', count } }, '*')
-  }
+  const onCancel = () => {
+    parent.postMessage({ pluginMessage: { type: "cancel" } }, "*");
+  };
 
-  onCancel = () => {
-    parent.postMessage({ pluginMessage: { type: 'cancel' } }, '*')
-  }
-
-  render() {
-    return <div>
-      <img src={require('./logo.svg')} />
-      <h2>Rectangle Creator</h2>
-      <p>Count: <input ref={this.countRef} /></p>
-      <button id="create" onClick={this.onCreate}>Create</button>
-      <button onClick={this.onCancel}>Cancel</button>
-    </div>
-  }
+  return (
+    <main>
+      <header>
+        <img src={require("./logo.svg")} />
+        <h2>Rectangle Creator</h2>
+      </header>
+      <section>
+        <input id="input" type="number" min="0" ref={inputRef} />
+        <label htmlFor="input">Rectangle Count</label>
+      </section>
+      <footer>
+        <button className="brand" onClick={onCreate}>
+          Create
+        </button>
+        <button onClick={onCancel}>Cancel</button>
+      </footer>
+    </main>
+  );
 }
 
-ReactDOM.render(<App />, document.getElementById('react-page'))
+ReactDOM.render(<App />, document.getElementById("react-page"));
