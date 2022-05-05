@@ -1,6 +1,6 @@
 {
-  "name": "react",
-  "id": "plugin-id-pcycdDQTwR",
+  "name": "React Sample",
+  "id": "",
   "api": "1.0.0",
   "editorType": ["figma", "figjam"],
   "permissions": [],
