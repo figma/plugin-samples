@@ -1,20 +1,17 @@
 :root {
-  --color-bg: var(--figma-color-bg, rgba(255, 255, 255, 1));
-  --color-bg-hover: var(--figma-color-bg-hover, #f5f5f5);
-  --color-bg-active: var(--figma-color-bg-pressed, #f5f5f5);
-  --color-border: var(--figma-color-border, #e6e6e6);
-  --color-border-focus: var(--figma-color-border-selected, #0d99ff);
-  --color-icon: var(--figma-color-icon, rgba(0, 0, 0, 0.9));
-  --color-text: var(--figma-color-text, rgba(0, 0, 0, 0.9));
-  --color-bg-brand: var(--figma-color-bg-brand, #0d99ff);
-  --color-bg-brand-hover: var(--figma-color-bg-brand-hover, #007be5);
-  --color-bg-brand-active: var(--figma-color-bg-brand-pressed, #007be5);
-  --color-border-brand: var(--figma-color-border-brand, #bde3ff);
-  --color-border-brand-focus: var(
-    --figma-color-border-selected-strong,
-    #007be5
-  );
-  --color-text-brand: var(--figma-color-text-onbrand, rgba(255, 255, 255, 1));
+  --color-bg: var(--figma-color-bg);
+  --color-bg-hover: var(--figma-color-bg-hover);
+  --color-bg-active: var(--figma-color-bg-pressed);
+  --color-border: var(--figma-color-border);
+  --color-border-focus: var(--figma-color-border-selected);
+  --color-icon: var(--figma-color-icon);
+  --color-text: var(--figma-color-text);
+  --color-bg-brand: var(--figma-color-bg-brand);
+  --color-bg-brand-hover: var(--figma-color-bg-brand-hover);
+  --color-bg-brand-active: var(--figma-color-bg-brand-pressed);
+  --color-border-brand: var(--figma-color-border-brand);
+  --color-border-brand-focus: var(--figma-color-border-selected-strong);
+  --color-text-brand: var(--figma-color-text-onbrand);
 }
 
 html,
