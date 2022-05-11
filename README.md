@@ -256,7 +256,7 @@ Create rectangles! This demonstrates:
     $ npm run build
 ```
 
-[React](react/) and [Webpack](webpack-react/) examples are great places to start if you are interested in bundling.
+[esbuild](esbuild-react/) and [Webpack](webpack-react/) examples are great places to start if you are interested in bundling.
 
 ## Other Figma Plugin Samples + Starters
 
