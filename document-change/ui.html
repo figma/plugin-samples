@@ -15,7 +15,7 @@
       }
       ul {
         box-sizing: border-box;
-        font-size: 14px;
+        font-size: 12px;
         list-style: none;
         margin: 0;
         padding: 1rem;
@@ -28,26 +28,8 @@
       let messages = [];
       window.onmessage = (e) => onDocumentChange(e.data.pluginMessage);
 
-      function documentChangeAsString(change) {
-        const { origin, type } = change;
-        const list = [origin, type];
-        if (type === "PROPERTY_CHANGE") {
-          list.push(change.node.type);
-          list.push(change.properties.join(", "));
-        } else if (type === "STYLE_CHANGE") {
-          list.push(change.style.name);
-          list.push(change.properties.join(", "));
-        } else {
-          list.push(change.node.type);
-        }
-        return list.join(" ");
-      }
-
-      function onDocumentChange(event) {
-        const tmp = [
-          ...event.documentChanges.map(documentChangeAsString),
-          ...messages,
-        ];
+      function onDocumentChange(newMessages) {
+        const tmp = [...newMessages, ...messages];
         tmp.splice(Math.min(50, tmp.length), tmp.length);
         messages = tmp;
         document.querySelector("ul").innerHTML = messages
