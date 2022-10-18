@@ -170,9 +170,17 @@ Allows drag-and-drop of a simple icon library from a modal to the canvas.
 
 This demonstrates registering callbacks for drop events and communicating drop data from the plugin iframe.
 
-Note: this example uses a [proposed API](https://www.figma.com/plugin-docs/proposed-api/).
-
 [Check out the source code.](icon-drag-and-drop/)
+
+### Icon Drag-and-Drop Hosted
+
+<img src="_screenshots/icon-drag-and-drop-hosted.png" width="400" />
+
+Allows drag-and-drop of a simple icon library from a modal running an externally-hosted UI to the canvas.
+
+This demonstrates registering callbacks for drop events and embedding drop data using the `dataTransfer` object in the drop event.
+
+[Check out the source code.](icon-drag-and-drop-hosted/)
 
 ### PNG Crop
 
@@ -181,8 +189,6 @@ Note: this example uses a [proposed API](https://www.figma.com/plugin-docs/propo
 Crops PNGs as they are dropped onto the canvas.
 
 This demonstrates registering callbacks for drop events and reading bytes from dropped files.
-
-Note: this example uses a [proposed API](https://www.figma.com/plugin-docs/proposed-api/).
 
 [Check out the source code.](png-crop/)
 
