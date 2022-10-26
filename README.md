@@ -234,6 +234,12 @@ For more information on how to accept parameters as input to your plugin, take a
 
 [Check out the source code.](trivia/)
 
+### Post Message
+
+A very basic example of how to communicate between a UI and the Figma canvas using postMessage.
+
+[Check out the source code.](post-message/)
+
 ### Capital
 
 <img src="_screenshots/capital.png" width="400" />
