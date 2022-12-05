@@ -224,6 +224,12 @@ For more information on how to accept parameters as input to your plugin, take a
 
 [Check out the source code.](svg-inserter/)
 
+### Text Review
+
+<img src="_screenshots/text-review.png" width="400" />
+
+Example of how to use the text review API to suggest and flag changes while editing text nodes.
+
 ### Trivia
 
 <img src="_screenshots/trivia.png" width="400" />
