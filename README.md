@@ -230,6 +230,8 @@ For more information on how to accept parameters as input to your plugin, take a
 
 Example of how to use the text review API to suggest and flag changes while editing text nodes.
 
+[Check out the source code.](text-review/)
+
 ### Trivia
 
 <img src="_screenshots/trivia.png" width="400" />
