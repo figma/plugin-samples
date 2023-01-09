@@ -1,0 +1,9 @@
+{
+  "name": "Payments Demo",
+  "id": "111111123",
+  "api": "1.0.0",
+  "main": "code.js",
+  "editorType": ["figma", "figjam"],
+  "permissions": ["payments"],
+  "enableProposedApi": true
+}
