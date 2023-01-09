@@ -1,11 +1,10 @@
-const ONE_DAY_IN_SECONDS = 60 * 60 * 24;
-const secondsSinceFirstRun = figma.payments.getUserFirstRanSecondsAgo();
-const daysSinceFirstRun = secondsSinceFirstRun / ONE_DAY_IN_SECONDS;
-
 async function run() {
   if (figma.payments.status.type === "PAID") {
     figma.notify("USER HAS PAID");
   } else {
+    const ONE_DAY_IN_SECONDS = 60 * 60 * 24;
+    const secondsSinceFirstRun = figma.payments.getUserFirstRanSecondsAgo();
+    const daysSinceFirstRun = secondsSinceFirstRun / ONE_DAY_IN_SECONDS;
     if (daysSinceFirstRun > 3) {
       await figma.payments.initiateCheckoutAsync();
       if (figma.payments.status.type === "UNPAID") {
