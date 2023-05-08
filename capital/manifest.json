@@ -10,5 +10,8 @@
       "key": "country",
       "description": "Select a country to find its capital city."
     }
-  ]
+  ],
+  "networkAccess": {
+    "allowedDomains": ["https://api.sampleapis.com/countries/countries"]
+  }
 }

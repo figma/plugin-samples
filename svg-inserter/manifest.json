@@ -22,5 +22,8 @@
       "description": "enter the color of the icon you want to insert",
       "optional": true
     }
-  ]
+  ],
+  "networkAccess": {
+    "allowedDomains": ["none"]
+  }
 }

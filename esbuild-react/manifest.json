@@ -1,9 +1,12 @@
 {
   "name": "React Sample",
-  "id": "",
+  "id": "react-sample",
   "api": "1.0.0",
   "editorType": ["figma", "figjam"],
   "permissions": [],
   "main": "dist/code.js",
-  "ui": "dist/index.html"
+  "ui": "dist/index.html",
+  "networkAccess": {
+    "allowedDomains": ["none"]
+  }
 }

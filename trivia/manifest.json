@@ -31,5 +31,8 @@
       "description": "Multiple choice or true/false",
       "optional": true
     }
-  ]
+  ],
+  "networkAccess": {
+    "allowedDomains": ["https://opentdb.com/"]
+  }
 }
