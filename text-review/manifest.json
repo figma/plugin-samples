@@ -5,5 +5,8 @@
   "main": "code.js",
   "editorType": ["figma"],
   "capabilities": ["textreview"],
-  "enableProposedApi": true
+  "enableProposedApi": true,
+  "networkAccess": {
+    "allowedDomains": ["none"]
+  }
 }

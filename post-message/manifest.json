@@ -1,7 +1,11 @@
 {
+  "id": "post-message",
   "name": "Post Message",
   "api": "1.0.0",
   "main": "code.js",
   "editorType": ["figma", "figjam"],
-  "ui": "ui.html"
+  "ui": "ui.html",
+  "networkAccess": {
+    "allowedDomains": ["none"]
+  }
 }

@@ -3,8 +3,8 @@
   "id": "1009724408344532126",
   "api": "1.0.0",
   "main": "code.js",
-  "editorType": [
-    "figma",
-    "figjam"
-  ]
+  "editorType": ["figma", "figjam"],
+  "networkAccess": {
+    "allowedDomains": ["none"]
+  }
 }

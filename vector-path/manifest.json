@@ -1,6 +1,10 @@
 {
+  "id": "vector-path-sample",
   "name": "Vector Path Sample",
   "api": "1.0.0",
   "main": "code.js",
-  "editorType": ["figma", "figjam"]
+  "editorType": ["figma", "figjam"],
+  "networkAccess": {
+    "allowedDomains": ["none"]
+  }
 }
