@@ -137,19 +137,17 @@ async function tallyStickyVotes(sticky, removeStamps = false){
 if(stickies.length > 0){
 
   // Tally up each sticky's votes 
-  stickies.forEach(sticky => {
-    tallyStickyVotes(sticky, true);
-  })
-
-  // Notify the user 
-  figma.notify(`Tallied ${stickies.length} ${stickies.length > 1? 'stickies' : 'sticky' }.`);
-
+  Promise.all(stickies.map(sticky => tallyStickyVotes(sticky))).then(() => {
+    // Notify the user 
+    figma.notify(`Tallied ${stickies.length} ${stickies.length > 1? 'stickies' : 'sticky' }.`);
+    figma.closePlugin();
+  }).catch(error => {
+    figma.closePlugin();
+  });
 } else {
-  
   figma.notify(`No stickies found. Add some!`);
-
+  // Make sure to close the plugin when you're done. Otherwise the plugin will
+  // keep running, which shows the cancel button at the bottom of the screen.
+  figma.closePlugin();
 }
 
-// Make sure to close the plugin when you're done. Otherwise the plugin will
-// keep running, which shows the cancel button at the bottom of the screen.
-figma.closePlugin();

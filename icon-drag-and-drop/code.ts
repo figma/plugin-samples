@@ -5,7 +5,7 @@ figma.on('drop', (event) => {
   const { files, node, dropMetadata } = event;
 
   if (files.length > 0 && files[0].type === 'image/svg+xml') {
-    files[0].getTextAsync().then(text => {
+    files[0].getTextAsync().then((text) => {
       if (dropMetadata.parentingStrategy === 'page') {
         const newNode = figma.createNodeFromSvg(text);
         newNode.x = event.absoluteX;
@@ -15,7 +15,8 @@ figma.on('drop', (event) => {
       } else if (dropMetadata.parentingStrategy === 'immediate') {
         const newNode = figma.createNodeFromSvg(text);
 
-        if (node.appendChild) {
+        // We can only append page nodes to documents
+        if ('appendChild' in node && node.type !== 'DOCUMENT') {
           node.appendChild(newNode);
         }
 

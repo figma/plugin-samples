@@ -6,6 +6,7 @@
   "ui": "decoder.html",
   "editorType": ["figma", "figjam"],
   "networkAccess": {
-    "allowedDomains": ["none"]
+    "allowedDomains": ["*"],
+    "reasoning": "blob urls are not yet supported for networkAccess"
   }
 }

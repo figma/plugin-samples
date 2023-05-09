@@ -18,7 +18,6 @@ for (let i = 0; i < numberOfShapes; i++) {
 
 for (let i = 0; i < (numberOfShapes - 1); i++) {
   const connector = figma.createConnector();
-  const strokeWeight = {...connector.strokeWeight};
   connector.strokeWeight = 8
   
   connector.connectorStart = {
