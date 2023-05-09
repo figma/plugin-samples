@@ -31,7 +31,7 @@ function rotate(theta) {
 // MAIN PLUGIN CODE
 
 async function main(): Promise<string | undefined> {
-  // Roboto Regular is the font that objects will be created with by default in
+  // Inter Regular is the font that objects will be created with by default in
   // Figma. We need to wait for fonts to load before creating text using them.
   await figma.loadFontAsync({ family: "Inter", style: "Regular" })
 
