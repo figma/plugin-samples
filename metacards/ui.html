@@ -28,7 +28,7 @@
       // cross origin using cors-anywhere
 			img.onerror = () => {
         if(img.src.indexOf("cors-anywhere") === -1){
-          img.src = `https://cors-anywhere.com/${url.replace(/http(s)?:\/\//,'')}`;
+          img.src = `https://cors-anywhere.herokuapp.com/${url.replace(/http(s)?:\/\//,'')}`;
         } else {
           reject("Error fetching image");
         }
@@ -44,7 +44,7 @@
   async function fetchMetaTags(url){
     
     return new Promise(function(resolve, reject) {
-      let fetchUrl = `https://cors-anywhere.com/${url.replace(/http(s)?:\/\//,'')}`;
+      let fetchUrl = `https://cors-anywhere.herokuapp.com/${url.replace(/http(s)?:\/\//,'')}`;
 
       fetch(fetchUrl).then(function (response) {
         // The API call was successful!

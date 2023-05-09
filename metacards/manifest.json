@@ -6,6 +6,6 @@
   "editorType": ["figma", "figjam"],
   "ui": "ui.html",
   "networkAccess": {
-    "allowedDomains": ["https://cors-anywhere.com"]
+    "allowedDomains": ["https://cors-anywhere.herokuapp.com"]
   }
 }

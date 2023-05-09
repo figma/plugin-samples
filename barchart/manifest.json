@@ -7,7 +7,9 @@
   "editorType": ["figma", "figjam"],
   "networkAccess": {
     "allowedDomains": [
-      "https://static.figma.com/api/figma-extension-api-0.0.1.css"
+      "https://static.figma.com/api/figma-extension-api-0.0.1.css",
+      "https://fonts.googleapis.com",
+      "https://fonts.gstatic.com"
     ]
   }
 }
