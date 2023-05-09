@@ -1,8 +1,8 @@
-const InlineChunkHtmlPlugin = require('react-dev-utils/InlineChunkHtmlPlugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin')
+const HtmlInlineScriptPlugin = require('html-inline-script-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-const path = require('path')
-const webpack = require('webpack')
+const path = require('path');
+const webpack = require('webpack');
 
 module.exports = (env, argv) => ({
   mode: argv.mode === 'production' ? 'production' : 'development',
@@ -18,45 +18,54 @@ module.exports = (env, argv) => ({
   module: {
     rules: [
       // Converts TypeScript code to JavaScript
-      { 
-        test: /\.tsx?$/, 
-        use: 'ts-loader', 
-        exclude: /node_modules/
+      {
+        test: /\.tsx?$/,
+        use: 'ts-loader',
+        exclude: /node_modules/,
       },
 
       // Enables including CSS by doing "import './file.css'" in your TypeScript code
-      { 
-        test: /\.css$/, 
-        use: ["style-loader", "css-loader"],
+      {
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader'],
       },
       // Allows you to use "<%= require('./file.svg') %>" in your HTML code to get a data URI
       // { test: /\.(png|jpg|gif|webp|svg|zip)$/, loader: [{ loader: 'url-loader' }] }
-      { 
+      {
         test: /\.svg/,
-        type: 'asset/inline'
-      }
-    ]
+        type: 'asset/inline',
+      },
+    ],
   },
 
   // Webpack tries these extensions for you if you omit the extension like "import './file'"
   resolve: { extensions: ['.tsx', '.ts', '.jsx', '.js'] },
 
   output: {
-    filename: '[name].js',
+    filename: (pathData) => {
+      return pathData.chunk.name === 'code'
+        ? 'code.js'
+        : '[name].[contenthash].js';
+    },
     path: path.resolve(__dirname, 'dist'), // Compile into a folder called "dist"
+    // Clean the output directory before emit.
+    clean: true,
   },
 
   // Tells Webpack to generate "ui.html" and to inline "ui.ts" into it
   plugins: [
     new webpack.DefinePlugin({
-      'global': {} // Fix missing symbol error when running in developer VM
+      global: {}, // Fix missing symbol error when running in developer VM
     }),
     new HtmlWebpackPlugin({
-      inject: "body",
+      inject: 'body',
       template: './src/ui.html',
       filename: 'ui.html',
-      chunks: ['ui']
+      chunks: ['ui'],
     }),
-    new InlineChunkHtmlPlugin(HtmlWebpackPlugin, [/ui/]),
+    new HtmlInlineScriptPlugin({
+      htmlMatchPattern: [/ui.html/],
+      scriptMatchPattern: [/.js$/],
+    }),
   ],
-})
+});
