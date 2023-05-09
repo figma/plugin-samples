@@ -1,5 +1,5 @@
 import * as React from "react";
-import * as ReactDOM from "react-dom";
+import * as ReactDOM from "react-dom/client";
 import "./ui.css";
 
 declare function require(path: string): any;
@@ -39,4 +39,4 @@ function App() {
   );
 }
 
-ReactDOM.render(<App />, document.getElementById("react-page"));
+ReactDOM.createRoot(document.getElementById("react-page")).render(<App />);
