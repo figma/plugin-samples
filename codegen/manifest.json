@@ -1,0 +1,40 @@
+{
+  "name": "Codegen Sample",
+  "id": "180000000000000",
+  "api": "1.0.0",
+  "editorType": ["dev"],
+  "capabilities": ["codegen"],
+  "permissions": [],
+  "codegenLanguages": [
+    { "label": "Everything", "value": "all" },
+    { "label": "HTML", "value": "html" },
+    { "label": "CSS", "value": "css" },
+    { "label": "JS", "value": "js" },
+    { "label": "JSON", "value": "json" },
+    { "label": "Weather 🌦", "value": "weather" }
+  ],
+  "codegenPreferences": [
+    {
+      "itemType": "alternative-unit",
+      "scaledUnit": "Sample Unit (su)",
+      "defaultScaleFactor": 0.7,
+      "default": false
+    },
+    {
+      "itemType": "select",
+      "propertyName": "example",
+      "label": "Yes or no",
+      "options": [
+        { "label": "Yes", "value": "yes", "isDefault": true },
+        { "label": "No", "value": "no" }
+      ]
+    },
+    {
+      "itemType": "action",
+      "propertyName": "example",
+      "label": "Example action"
+    }
+  ],
+  "main": "dist/code.js",
+  "ui": "dist/index.html"
+}
