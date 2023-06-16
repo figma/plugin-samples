@@ -1,0 +1,10 @@
+{
+  "name": "Dev Mode Sample",
+  "id": "180000000000000",
+  "api": "1.0.0",
+  "editorType": ["dev", "figma"],
+  "capabilities": ["codegen", "inspect"],
+  "main": "code.js",
+  "permissions": [],
+  "codegenLanguages": [{ "label": "Text", "value": "text" }]
+}

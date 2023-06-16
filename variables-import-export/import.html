@@ -1,0 +1,135 @@
+<style>
+  :root {
+    --spacing: 0.8rem;
+  }
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    background-color: var(--figma-color-bg);
+    color: var(--figma-color-text);
+    margin: 0;
+    padding: var(--spacing);
+  }
+  html,
+  body {
+    height: 100%;
+  }
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing);
+    height: 100%;
+  }
+  button {
+    appearance: none;
+    border-radius: 4px;
+    padding: var(--spacing);
+  }
+  input,
+  textarea {
+    font-family: Andale Mono, monospace;
+    font-size: 0.9rem;
+    padding: var(--spacing);
+  }
+  textarea {
+    flex: 1;
+    white-space: pre;
+  }
+  form > * {
+    display: block;
+    width: 100%;
+  }
+  button {
+    background-color: var(--figma-color-bg-brand);
+    border: none;
+    color: var(--figma-color-text-onbrand);
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+      Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
+      sans-serif;
+    font-weight: bold;
+  }
+  input,
+  textarea {
+    background-color: var(--figma-color-bg-secondary);
+    color: var(--figma-color-text-secondary);
+    border: 2px solid var(--figma-color-border);
+  }
+  input:focus,
+  textarea:focus {
+    border-color: var(--figma-color-border-selected);
+    outline: none;
+  }
+</style>
+<form>
+  <input
+    placeholder="Collection Name"
+    required
+    type="text"
+    value="Wild Examples"
+  />
+  <textarea required placeholder="Tokens JSON">
+{
+  "color": {
+    "grouptyped": {
+      "$type": "color",
+      "brown": { "$value": "#a2845e" },
+      "danger-deep": { "$value": "{color.valuetyped.danger}" }
+    },
+    "valuetyped": {
+      "red": {
+        "$value": "{color.deep.deep.deep.deep.deep}"
+      },
+      "danger": { "$value": "{color.valuetyped.red}" }
+    },
+    "deep": {"deep": {"deep": {"deep": {"deep": {"$type": "color", "$value": "#FF0000" }}}}}
+  },
+  "spacing": {
+    "$type": "number",
+    "some numbers": {
+      "spacer0": {"$value": 0},
+      "spacerXs": {"$value": 4},
+      "spacerS": {"$value": 8},
+      "spacerM": {"$value": 16},
+      "spacerX": {"$value": 24},
+      "spacerXl": {"$value": 32},
+      "spacerXxl": {"$value": 40},
+      "spacex": {
+        "funniness": {"$value": 0},
+        "cleverness": {"$value": 1}
+      }
+    }
+  }
+}
+</textarea
+  >
+  <button type="submit">Import Variables</button>
+</form>
+
+<script>
+  document.querySelector("form").addEventListener("submit", (e) => {
+    const fileName = document.querySelector("input").value.trim();
+    const body = document.querySelector("textarea").value.trim();
+    e.preventDefault();
+    if (isValidJSON(body) && fileName) {
+      parent.postMessage(
+        { pluginMessage: { fileName, body, type: "IMPORT" } },
+        "*"
+      );
+    } else {
+      alert("Invalid filename or JSON");
+    }
+  });
+  document.getElementById("export").addEventListener("click", () => {
+    parent.postMessage({ pluginMessage: { type: "EXPORT" } }, "*");
+  });
+
+  function isValidJSON(body) {
+    try {
+      JSON.parse(body);
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
+</script>

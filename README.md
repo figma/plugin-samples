@@ -192,6 +192,34 @@ This demonstrates registering callbacks for drop events and reading bytes from d
 
 [Check out the source code.](png-crop/)
 
+## Examples of plugins for Dev Mode
+
+### Codegen
+
+An example of a plugin for codegen
+
+[Check out the source code.](codegen/)
+
+### Dev Mode
+
+An example of a plugin configured to work in Figma design, Dev Mode inspect, _and_ run codegen.
+
+[Check out the source code.](dev-mode/)
+
+## Examples with variables
+
+### Styles to Variables
+
+An example of a plugin that converts Figma styles to variables
+
+[Check out the source code.](styles-to-variables/)
+
+### Variables Import / Export
+
+An example of a plugin that imports and exports variables
+
+[Check out the source code.](variables-import-export/)
+
 ## Examples with parameters
 
 ### Go To

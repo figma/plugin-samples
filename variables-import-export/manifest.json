@@ -1,0 +1,13 @@
+{
+  "name": "Variables Import Export",
+  "id": "1225498390710809905",
+  "api": "1.0.0",
+  "editorType": ["figma"],
+  "permissions": [],
+  "main": "code.js",
+  "menu": [
+    { "command": "import", "name": "Import Variables" },
+    { "command": "export", "name": "Export Variables" }
+  ],
+  "ui": { "import": "import.html", "export": "export.html" }
+}
