@@ -15,7 +15,7 @@ function createToken(collection, modeId, type, name, value) {
 function createVariable(collection, modeId, key, valueKey, tokens) {
   const token = tokens[valueKey];
   return createToken(collection, modeId, token.resolvedType, key, {
-    type: "VARIABLE_ID",
+    type: "VARIABLE_ALIAS",
     id: `${token.id}`,
   });
 }
@@ -148,7 +148,7 @@ function processCollection({ name, modes, variableIds }) {
           obj = obj[groupName];
         });
         obj.$type = resolvedType === "COLOR" ? "color" : "number";
-        if (value.type === "VARIABLE_ID") {
+        if (value.type === "VARIABLE_ALIAS") {
           obj.$value = `{${figma.variables
             .getVariableById(value.id)
             .name.replace(/\//g, ".")}}`;
