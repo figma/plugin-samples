@@ -120,9 +120,6 @@
       alert("Invalid filename or JSON");
     }
   });
-  document.getElementById("export").addEventListener("click", () => {
-    parent.postMessage({ pluginMessage: { type: "EXPORT" } }, "*");
-  });
 
   function isValidJSON(body) {
     try {
