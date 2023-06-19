@@ -13,14 +13,14 @@ function createTokens(tokenData) {
   const collection = figma.variables.createVariableCollection(`Style Tokens`);
   let aliasCollection;
   const modeId = collection.modes[0].modeId;
-  // collection.renameMode(modeId, "Style");
+  collection.renameMode(modeId, "Style");
   console.log(tokenData);
   tokenData.forEach(({ color, hex, opacity, tokens }) => {
     if (tokens.length > 1) {
       aliasCollection =
         aliasCollection ||
         figma.variables.createVariableCollection(`Style Tokens: Aliased`);
-      // aliasCollection.renameMode(aliasCollection.modes[0].modeId, "Style")
+      aliasCollection.renameMode(aliasCollection.modes[0].modeId, "Style");
       const opacityName =
         opacity === 1 ? "" : ` (${Math.round(opacity * 100)}%)`;
       const parentToken = figma.variables.createVariable(
