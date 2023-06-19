@@ -2,7 +2,7 @@ console.clear();
 
 function createCollection(name) {
   const collection = figma.variables.createVariableCollection(name);
-  const modeId = collection.modes[0].modeID;
+  const modeId = collection.modes[0].modeId;
   return { collection, modeId };
 }
 
@@ -140,7 +140,7 @@ function processCollection({ name, modes, variableIds }) {
     variableIds.forEach((variableId) => {
       const { name, resolvedType, valuesByMode } =
         figma.variables.getVariableById(variableId);
-      const value = valuesByMode[mode.modeID];
+      const value = valuesByMode[mode.modeId];
       if (value !== undefined && ["COLOR", "FLOAT"].includes(resolvedType)) {
         let obj = file.body;
         name.split("/").forEach((groupName) => {

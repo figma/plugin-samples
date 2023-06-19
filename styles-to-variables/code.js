@@ -12,7 +12,7 @@ function createTokens(tokenData) {
   }
   const collection = figma.variables.createVariableCollection(`Style Tokens`);
   let aliasCollection;
-  const modeId = collection.modes[0].modeID;
+  const modeId = collection.modes[0].modeId;
   // collection.renameMode(modeId, "Style");
   console.log(tokenData);
   tokenData.forEach(({ color, hex, opacity, tokens }) => {
@@ -20,7 +20,7 @@ function createTokens(tokenData) {
       aliasCollection =
         aliasCollection ||
         figma.variables.createVariableCollection(`Style Tokens: Aliased`);
-      // aliasCollection.renameMode(aliasCollection.modes[0].modeID, "Style")
+      // aliasCollection.renameMode(aliasCollection.modes[0].modeId, "Style")
       const opacityName =
         opacity === 1 ? "" : ` (${Math.round(opacity * 100)}%)`;
       const parentToken = figma.variables.createVariable(
@@ -28,7 +28,7 @@ function createTokens(tokenData) {
         aliasCollection.id,
         "COLOR"
       );
-      parentToken.setValueForMode(aliasCollection.modes[0].modeID, {
+      parentToken.setValueForMode(aliasCollection.modes[0].modeId, {
         r: color.r,
         g: color.g,
         b: color.b,
