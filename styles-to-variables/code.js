@@ -63,9 +63,7 @@ function createTokens(tokenData) {
 
 function styleToTokenDataMap(into, current) {
   const paints = current.paints.filter(({ visible }) => visible);
-  if (paints.length > 1) {
-    // do something different i guess
-  } else {
+  if (paints.length === 1) {
     const {
       blendMode,
       color: { r, g, b },
