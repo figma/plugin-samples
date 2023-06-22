@@ -41,7 +41,7 @@ function createTokens(tokenData) {
           "COLOR"
         );
         token.setValueForMode(modeId, {
-          type: "VARIABLE_ID",
+          type: "VARIABLE_ALIAS",
           id: parentToken.id,
         });
       });
