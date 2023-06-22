@@ -62,7 +62,9 @@ function createTokens(tokenData) {
 }
 
 function styleToTokenDataMap(into, current) {
-  const paints = current.paints.filter(({ visible }) => visible);
+  const paints = current.paints.filter(
+    ({ visible, type }) => visible && type === "SOLID"
+  );
   if (paints.length === 1) {
     const {
       blendMode,
@@ -71,7 +73,7 @@ function styleToTokenDataMap(into, current) {
       type,
     } = paints[0];
     const hex = rgbToHex({ r, g, b });
-    if (type === "SOLID" && blendMode === "NORMAL") {
+    if (blendMode === "NORMAL") {
       const uniqueId = [hex, opacity].join("-");
       into[uniqueId] = into[uniqueId] || {
         color: { r, g, b },
