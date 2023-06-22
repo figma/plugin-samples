@@ -221,7 +221,7 @@ function parseColor(color) {
       r: parseInt(r) / 255,
       g: parseInt(g) / 255,
       b: parseInt(b) / 255,
-      opacity: a,
+      a: parseFloat(a),
     };
   } else if (hslRegex.test(color)) {
     const [, h, s, l] = color.match(hslRegex);
@@ -230,7 +230,7 @@ function parseColor(color) {
     const [, h, s, l, a] = color.match(hslaRegex);
     return Object.assign(
       hslToRgbFloat(parseInt(h), parseInt(s) / 100, parseInt(l) / 100),
-      { opacity: a }
+      { a: parseFloat(a) }
     );
   } else if (hexRegex.test(color)) {
     const hexValue = color.substring(1);
