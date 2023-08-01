@@ -104,6 +104,14 @@ function traverseToken({
         key,
         object.$value
       );
+    } else if (type === "string") {
+      tokens[key] = createToken(
+        collection,
+        modeId,
+        "STRING",
+        key,
+        object.$value
+      );
     } else {
       console.log("unsupported type", type, object);
     }
@@ -141,13 +149,17 @@ function processCollection({ name, modes, variableIds }) {
       const { name, resolvedType, valuesByMode } =
         figma.variables.getVariableById(variableId);
       const value = valuesByMode[mode.modeId];
-      if (value !== undefined && ["COLOR", "FLOAT"].includes(resolvedType)) {
+      if (
+        value !== undefined &&
+        ["COLOR", "FLOAT", "STRING"].includes(resolvedType)
+      ) {
         let obj = file.body;
         name.split("/").forEach((groupName) => {
           obj[groupName] = obj[groupName] || {};
           obj = obj[groupName];
         });
-        obj.$type = resolvedType === "COLOR" ? "color" : "number";
+        obj.$type =
+          resolvedType === "FLOAT" ? "number" : resolvedType.toLowerCase();
         if (value.type === "VARIABLE_ALIAS") {
           obj.$value = `{${figma.variables
             .getVariableById(value.id)
