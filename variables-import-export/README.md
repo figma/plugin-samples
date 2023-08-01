@@ -24,7 +24,7 @@ Tokens should be defined in JSON following the W3C Design Tokens spec. An exampl
 
 ## Known Limitations
 
-- Import doesn't support multiple modes - as there is no concept of modes in the W3C Design Spec
+- Import doesn't support multiple modes - as there is no concept of modes in the W3C Design Spec at this time
   - You can only import 1 collection and mode at a time
   - For importing/overwriting variables to a specific mode, see [Alternative Sophisticated UI](#alternative-sophisticated-ui)
 - Variables Import / Export only supports types that currently exist in the W3C Design Token Spec and in Figma. In other words, only `color`, `number`, and alias design tokens are currently supported
