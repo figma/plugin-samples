@@ -31,4 +31,4 @@ Tokens should be defined in JSON following the W3C Design Tokens spec. An exampl
 
 ## Alternative Sophisticated UI
 
-Our Developer Advocates, Jake Albaugh and Akbar Mirza, have created a sample with a slightly more sophisticated UI. You can find that at https://github.com/jake-figma/variables-import-export
+Our Developer Advocates, [Jake Albaugh](https://github.com/jake-figma) and [Akbar Mirza](https://github.com/akbarbmirza/), have created a sample with a slightly more sophisticated UI. You can find that at https://github.com/jake-figma/variables-import-export
