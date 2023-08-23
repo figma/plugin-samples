@@ -11,7 +11,7 @@ function documentChangeAsString(change: DocumentChange) {
   if (type === "PROPERTY_CHANGE") {
     list.push(change.node.type, change.properties.join(", "));
   } else if (type === "STYLE_PROPERTY_CHANGE") {
-    list.push(change.style.name, change.properties.join(", "));
+    list.push(change.style?.name, change.properties.join(", "));
   } else if (type === "STYLE_CREATE" || type === "STYLE_DELETE") {
     // noop
   } else {
