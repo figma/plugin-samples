@@ -5,12 +5,12 @@ figma.on("documentchange", (event) => {
   figma.ui.postMessage(messages, { origin: "*" });
 });
 
-function documentChangeAsString(change) {
+function documentChangeAsString(change: DocumentChange) {
   const { origin, type } = change;
   const list = [origin, type];
   if (type === "PROPERTY_CHANGE") {
     list.push(change.node.type, change.properties.join(", "));
-  } else if (type === "STYLE_CHANGE") {
+  } else if (type === "STYLE_PROPERTY_CHANGE") {
     list.push(change.style.name, change.properties.join(", "));
   } else {
     list.push(change.node.type);
