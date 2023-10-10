@@ -1,9 +1,13 @@
 # 🍱 Figma + FigJam Plugin Samples
 
-Sample plugins using the [Figma + FigJam Plugin API][docs].
+Sample plugins using the [Figma + FigJam Plugin API docs][docs].
 
 To make a feature request, file a bug report, or ask a question about
 developing plugins, check out the available [resources][help].
+
+## DISCLAIMER:
+
+The resources you see here are example plugin samples meant for Figma plugin development and FIGMA PROVIDES THEM "AS IS", WITHOUT WARRANTY OF ANY KIND. We don't promise they're perfect or will always work as you expect. We're not responsible for any problems you might experience from using them. It's up to you to check these samples out thoroughly and make sure they're safe and suitable for your needs before you use them. If something goes wrong, Figma won't be held responsible. If you keep using these samples, it means you're okay with these terms. **FIGMA EXPLICITY DISCLAIMS ANY IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, QUIET ENJOYMENT, AND NON-INFRINGEMENT AND ANY WARRANTIES ARISING OUT OF COURSE OF DEALING OR USAGE OF TRADE.**
 
 ## Getting Started
 
@@ -313,7 +317,7 @@ Create rectangles! This demonstrates:
 - [Figsvelte](https://github.com/thomas-lowry/figsvelte) - A boilerplate for creating Figma plugins using Svelte.
 - [Figplug](https://rsms.me/figplug/) - A small program for building Figma plugins. It offers all the things you need for most projects: TypeScript, React/JSX, asset bundling, plugin manifest generation, etc.
 
-[docs]: https://www.figma.com/plugin-docs/figma-figjam-plugins/
+[docs]: https://www.figma.com/plugin-docs/
 [help]: https://www.figma.com/plugin-docs/get-help
 [ts]: https://www.typescriptlang.org/
 [node]: https://nodejs.org/en/download/
