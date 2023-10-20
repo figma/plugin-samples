@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <main></main>
+    <script>
+      const LANGUAGES = [
+        "TYPESCRIPT",
+        "CPP",
+        "RUBY",
+        "CSS",
+        "JAVASCRIPT",
+        "HTML",
+        "JSON",
+        "GRAPHQL",
+        "PYTHON",
+        "GO",
+        "SQL",
+        "SWIFT",
+        "KOTLIN",
+        "RUST",
+        "BASH",
+        "PLAINTEXT",
+      ];
+      const LANGUAGE_OPTIONS = LANGUAGES.map(
+        (l) => `<option value="${l}">${l}</option>`
+      ).join("");
+      const main = document.querySelector("main");
+
+      parent.postMessage({ pluginMessage: { type: "INITIALIZE" } }, "*");
+      window.onmessage = (e) => {
+        const data = e.data.pluginMessage;
+        if (data.type === "SELECTION") {
+          handleSelectionChange(data);
+        } else {
+          console.log(data);
+        }
+      };
+
+      function handleSelectionChange({ nodeId, nodePluginData, nodeType }) {
+        if (nodeId) {
+          render(nodePluginData ? JSON.parse(nodePluginData) : undefined);
+        } else {
+          console.log("No nodes selected. Shouldn't happen in settings mode.");
+        }
+      }
+
+      function render(pluginData) {
+        let list = [];
+        main.innerHTML = "";
+        if (pluginData) {
+          list = pluginData.map(itemFromData);
+        } else {
+          list.push(itemFromData());
+        }
+
+        function onChange() {
+          const data = list
+            .filter((a) => Boolean(a.textarea.value))
+            .map(({ textarea, select, input }) => ({
+              language: select.value,
+              code: textarea.value,
+              title: input.value,
+            }));
+          parent.postMessage(
+            { pluginMessage: { type: "SAVE", data: JSON.stringify(data) } },
+            "*"
+          );
+        }
+
+        function itemFromData(
+          { language, code, title } = {
+            language: "PLAINTEXT",
+            code: "",
+            title: "New Snippet",
+          }
+        ) {
+          const textarea = document.createElement("textarea");
+          const select = document.createElement("select");
+          const input = document.createElement("input");
+          input.addEventListener("input", () => {
+            onChange();
+          });
+          select.addEventListener("change", () => {
+            onChange();
+          });
+          textarea.addEventListener("input", () => {
+            onChange();
+          });
+          select.innerHTML = LANGUAGE_OPTIONS;
+          input.value = title;
+          select.value = language;
+          textarea.value = code;
+          main.appendChild(input);
+          main.appendChild(textarea);
+          main.appendChild(select);
+          return { textarea, select, input };
+        }
+      }
+    </script>
+  </body>
+</html>
