@@ -25,22 +25,22 @@
     <main></main>
     <script>
       const LANGUAGES = [
-        "TYPESCRIPT",
+        "BASH",
         "CPP",
-        "RUBY",
         "CSS",
-        "JAVASCRIPT",
-        "HTML",
-        "JSON",
-        "GRAPHQL",
-        "PYTHON",
         "GO",
+        "GRAPHQL",
+        "HTML",
+        "JAVASCRIPT",
+        "JSON",
+        "KOTLIN",
+        "PLAINTEXT",
+        "PYTHON",
+        "RUBY",
+        "RUST",
         "SQL",
         "SWIFT",
-        "KOTLIN",
-        "RUST",
-        "BASH",
-        "PLAINTEXT",
+        "TYPESCRIPT",
       ];
       const LANGUAGE_OPTIONS = LANGUAGES.map(
         (l) => `<option value="${l}">${l}</option>`
@@ -68,7 +68,7 @@
       function render(pluginData) {
         let list = [];
         main.innerHTML = "";
-        if (pluginData) {
+        if (pluginData && pluginData.length) {
           list = pluginData.map(itemFromData);
         } else {
           list.push(itemFromData());
@@ -98,15 +98,9 @@
           const textarea = document.createElement("textarea");
           const select = document.createElement("select");
           const input = document.createElement("input");
-          input.addEventListener("input", () => {
-            onChange();
-          });
-          select.addEventListener("change", () => {
-            onChange();
-          });
-          textarea.addEventListener("input", () => {
-            onChange();
-          });
+          input.addEventListener("input", onChange);
+          select.addEventListener("change", onChange);
+          textarea.addEventListener("input", onChange);
           select.innerHTML = LANGUAGE_OPTIONS;
           input.value = title;
           select.value = language;
