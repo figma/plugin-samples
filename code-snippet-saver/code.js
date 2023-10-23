@@ -45,7 +45,9 @@ if (figma.mode === "codegen") {
     const data = [];
     function pluginDataForNode(node) {
       const pluginData = node.getPluginData(PLUGIN_DATA_KEY);
-      if (pluginData) {
+      // skipping duplicates. why?
+      // component instances have same pluginData as mainComponent, unless they have override pluginData.
+      if (pluginData && data.indexOf(pluginData) === -1) {
         data.push(pluginData);
       }
     }
