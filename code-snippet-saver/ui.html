@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <style>
+      body {
+        margin: 0;
+      }
       * {
         box-sizing: border-box;
       }
@@ -14,10 +17,15 @@
         display: block;
         width: 100%;
       }
+      textarea {
+        flex: 1;
+      }
       main {
         display: flex;
         flex-direction: column;
         gap: 0.5rem;
+        height: 100vh;
+        padding: 0.5rem;
       }
     </style>
   </head>

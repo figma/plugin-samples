@@ -21,10 +21,10 @@ if (figma.mode === "codegen") {
   figma.on("selectionchange", () => {
     handleCurrentSelection();
   });
-
   figma.codegen.on("generate", async (event) => {
     handleCurrentSelection();
     const pluginDataArray = findPluginDataArrayForSelection();
+    console.log(pluginDataArray);
     const snippets = [];
     pluginDataArray.forEach((pluginData) =>
       JSON.parse(pluginData).forEach((a) => snippets.push(a))
@@ -40,31 +40,54 @@ if (figma.mode === "codegen") {
 
     return snippets;
   });
+} else if (figma.command === "description-to-plugin-data") {
+  descriptionToPluginData();
+}
 
-  function findPluginDataArrayForSelection() {
-    const data = [];
-    function pluginDataForNode(node) {
-      const pluginData = node.getPluginData(PLUGIN_DATA_KEY);
-      // skipping duplicates. why?
-      // component instances have same pluginData as mainComponent, unless they have override pluginData.
-      if (pluginData && data.indexOf(pluginData) === -1) {
-        data.push(pluginData);
-      }
+function descriptionToPluginData() {
+  let count = 0;
+  figma.currentPage.selection.forEach((node) => {
+    if (node.description) {
+      count++;
+      node.setPluginData(
+        PLUGIN_DATA_KEY,
+        JSON.stringify([
+          {
+            language: "JAVASCRIPT",
+            code: node.description.replace(/\n/g, "\n"),
+            title: node.name,
+          },
+        ])
+      );
     }
-    const currentNode = figma.currentPage.selection[0];
-    pluginDataForNode(currentNode);
-    if (currentNode.type === "INSTANCE") {
-      pluginDataForNode(currentNode.mainComponent);
-      if (currentNode.mainComponent.parent.type === "COMPONENT_SET") {
-        pluginDataForNode(currentNode.mainComponent.parent);
-      }
-    } else if (currentNode.type === "COMPONENT") {
-      if (currentNode.parent.type === "COMPONENT_SET") {
-        pluginDataForNode(currentNode.parent);
-      }
+  });
+  figma.notify(`Updated snippet to description for ${count} nodes`);
+  figma.closePlugin();
+}
+
+function findPluginDataArrayForSelection() {
+  const data = [];
+  function pluginDataForNode(node) {
+    const pluginData = node.getPluginData(PLUGIN_DATA_KEY);
+    // skipping duplicates. why?
+    // component instances have same pluginData as mainComponent, unless they have override pluginData.
+    if (pluginData && data.indexOf(pluginData) === -1) {
+      data.push(pluginData);
     }
-    return data;
   }
+  const currentNode = figma.currentPage.selection[0];
+  pluginDataForNode(currentNode);
+  if (currentNode.type === "INSTANCE") {
+    pluginDataForNode(currentNode.mainComponent);
+    if (currentNode.mainComponent.parent.type === "COMPONENT_SET") {
+      pluginDataForNode(currentNode.mainComponent.parent);
+    }
+  } else if (currentNode.type === "COMPONENT") {
+    if (currentNode.parent.type === "COMPONENT_SET") {
+      pluginDataForNode(currentNode.parent);
+    }
+  }
+  return data;
 }
 
 function handleCurrentSelection() {
