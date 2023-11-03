@@ -11,6 +11,8 @@ if (figma.mode === "codegen") {
     }
   });
 
+  figma.showUI(__html__, { visible: false });
+
   figma.codegen.on("generate", (event) => {
     const { node, language } = event;
     const showAll = !language || language === "all";
@@ -77,8 +79,6 @@ if (figma.mode === "codegen") {
           },
         ];
       }
-
-      figma.showUI(__html__, { visible: false });
 
       blocks.forEach(({ language, code }, id) => {
         const message = { type: "FORMAT", code, language, id };
