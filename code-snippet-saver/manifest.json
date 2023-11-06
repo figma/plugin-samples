@@ -5,7 +5,10 @@
   "editorType": ["dev", "figma"],
   "capabilities": ["codegen"],
   "permissions": [],
-  "codegenLanguages": [{ "label": "Snippets", "value": "snippets" }],
+  "codegenLanguages": [
+    { "label": "Snippets", "value": "snippets" },
+    { "label": "Debug", "value": "debug" }
+  ],
   "codegenPreferences": [
     {
       "itemType": "action",
