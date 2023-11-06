@@ -16,12 +16,6 @@
       "label": "Snippet Editor"
     }
   ],
-  "menu": [
-    {
-      "command": "description-to-plugin-data",
-      "name": "Description to pluginData"
-    }
-  ],
   "main": "code.js",
   "ui": "ui.html",
   "networkAccess": { "allowedDomains": ["none"] }
