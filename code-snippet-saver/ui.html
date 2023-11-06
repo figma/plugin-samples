@@ -11,21 +11,49 @@
       * {
         box-sizing: border-box;
       }
-      input,
-      select,
-      textarea {
+      article > * {
         display: block;
         width: 100%;
+      }
+      div {
+        display: flex;
+        gap: 0.5rem;
+      }
+      div > input {
+        flex: 1;
       }
       textarea {
         flex: 1;
       }
+      input,
+      button,
+      select {
+        height: 2rem;
+        line-height: 2rem;
+      }
+      input,
+      textarea,
+      select {
+        padding: 0.25rem;
+      }
+      button {
+        padding: 0 0.5rem;
+      }
       main {
         display: flex;
         flex-direction: column;
+      }
+      article {
+        display: flex;
+        flex-direction: column;
         gap: 0.5rem;
-        height: 100vh;
         padding: 0.5rem;
+      }
+      article:not(:last-child) {
+        height: calc(100vh - 3rem - 1px);
+      }
+      article + article {
+        border-top: 1px solid #f0f0f0;
       }
     </style>
   </head>
@@ -55,6 +83,8 @@
       ).join("");
       const main = document.querySelector("main");
 
+      let snippetList = [];
+
       parent.postMessage({ pluginMessage: { type: "INITIALIZE" } }, "*");
       window.onmessage = (e) => {
         const data = e.data.pluginMessage;
@@ -67,57 +97,81 @@
 
       function handleSelectionChange({ nodeId, nodePluginData, nodeType }) {
         if (nodeId) {
-          render(nodePluginData ? JSON.parse(nodePluginData) : undefined);
+          snippetList = nodePluginData
+            ? JSON.parse(nodePluginData).map(itemFromData)
+            : [];
+          render();
         } else {
           console.log("No nodes selected. Shouldn't happen in settings mode.");
         }
       }
 
-      function render(pluginData) {
-        let list = [];
+      function render() {
         main.innerHTML = "";
-        if (pluginData && pluginData.length) {
-          list = pluginData.map(itemFromData);
-        } else {
-          list.push(itemFromData());
+        if (!snippetList.length) {
+          snippetList.push(itemFromData(undefined, 0));
         }
 
-        function onChange() {
-          const data = list
-            .filter((a) => Boolean(a.textarea.value))
-            .map(({ textarea, select, input }) => ({
-              language: select.value,
-              code: textarea.value,
-              title: input.value,
-            }));
-          parent.postMessage(
-            { pluginMessage: { type: "SAVE", data: JSON.stringify(data) } },
-            "*"
-          );
-        }
+        snippetList.forEach(({ article }) => main.appendChild(article));
 
-        function itemFromData(
-          { language, code, title } = {
-            language: "PLAINTEXT",
-            code: "",
-            title: "New Snippet",
-          }
-        ) {
-          const textarea = document.createElement("textarea");
-          const select = document.createElement("select");
-          const input = document.createElement("input");
-          input.addEventListener("input", onChange);
-          select.addEventListener("change", onChange);
-          textarea.addEventListener("input", onChange);
-          select.innerHTML = LANGUAGE_OPTIONS;
-          input.value = title;
-          select.value = language;
-          textarea.value = code;
-          main.appendChild(input);
-          main.appendChild(textarea);
-          main.appendChild(select);
-          return { textarea, select, input };
-        }
+        const addButton = document.createElement("button");
+        addButton.addEventListener("click", () => {
+          snippetList.push(itemFromData(undefined, snippetList.length));
+          render();
+        });
+        addButton.innerHTML = "Add Another Snippet";
+        const article = document.createElement("article");
+        article.appendChild(addButton);
+        main.appendChild(article);
+      }
+
+      function onChange() {
+        const data = snippetList
+          .filter((a) => Boolean(a.textarea.value))
+          .map(({ textarea, select, input }) => ({
+            language: select.value,
+            code: textarea.value,
+            title: input.value,
+          }));
+        parent.postMessage(
+          { pluginMessage: { type: "SAVE", data: JSON.stringify(data) } },
+          "*"
+        );
+      }
+
+      function itemFromData(
+        { language, code, title } = {
+          language: "PLAINTEXT",
+          code: "",
+          title: "New Snippet",
+        },
+        index
+      ) {
+        const article = document.createElement("article");
+        const textarea = document.createElement("textarea");
+        const select = document.createElement("select");
+        const input = document.createElement("input");
+        const remove = document.createElement("button");
+        remove.addEventListener("click", () => {
+          snippetList.splice(index, 1);
+          onChange();
+          render();
+        });
+        input.addEventListener("input", onChange);
+        select.addEventListener("change", onChange);
+        textarea.addEventListener("input", onChange);
+        remove.innerHTML = "&times;";
+        select.innerHTML = LANGUAGE_OPTIONS;
+        input.value = title;
+        select.value = language;
+        textarea.value = code;
+        const div = document.createElement("div");
+        div.appendChild(input);
+        div.appendChild(remove);
+        article.appendChild(div);
+        article.appendChild(textarea);
+        article.appendChild(select);
+        return { textarea, select, input, article };
       }
     </script>
   </body>
