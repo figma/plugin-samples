@@ -1,11 +1,12 @@
+const PLUGIN_DATA_NAMESPACE = "snippets";
 const PLUGIN_DATA_KEY = "snippets";
 
 if (figma.mode === "codegen") {
   figma.codegen.on("preferenceschange", (event) => {
     if (event.propertyName === "editor") {
       figma.showUI(__html__, {
-        width: 300,
-        height: 300,
+        width: 400,
+        height: 450,
       });
     }
   });
@@ -13,7 +14,11 @@ if (figma.mode === "codegen") {
     if (event.type === "INITIALIZE") {
       handleCurrentSelection();
     } else if (event.type === "SAVE") {
-      figma.currentPage.selection[0].setPluginData(PLUGIN_DATA_KEY, event.data);
+      figma.currentPage.selection[0].setSharedPluginData(
+        PLUGIN_DATA_NAMESPACE,
+        PLUGIN_DATA_KEY,
+        event.data
+      );
     } else {
       console.log("UNKNOWN EVENT", event);
     }
@@ -68,36 +73,16 @@ if (figma.mode === "codegen") {
 
     return snippets;
   });
-} else if (figma.command === "description-to-plugin-data") {
-  descriptionToPluginData();
-}
-
-function descriptionToPluginData() {
-  let count = 0;
-  figma.currentPage.selection.forEach((node) => {
-    if (node.description) {
-      count++;
-      node.setPluginData(
-        PLUGIN_DATA_KEY,
-        JSON.stringify([
-          {
-            language: "JAVASCRIPT",
-            code: node.description.replace(/\n/g, "\n"),
-            title: node.name,
-          },
-        ])
-      );
-    }
-  });
-  figma.notify(`Updated snippet to description for ${count} nodes`);
-  figma.closePlugin();
 }
 
 async function findAndGenerateSelectionSnippetData() {
   const data = [];
   const currentNode = figma.currentPage.selection[0];
   async function pluginDataForNode(node) {
-    const pluginData = node.getPluginData(PLUGIN_DATA_KEY);
+    const pluginData = node.getSharedPluginData(
+      PLUGIN_DATA_NAMESPACE,
+      PLUGIN_DATA_KEY
+    );
     // skipping duplicates. why?
     // component instances have same pluginData as mainComponent, unless they have override pluginData.
     if (pluginData && data.indexOf(pluginData) === -1) {
@@ -128,7 +113,9 @@ async function findAndGenerateSelectionSnippetData() {
 function handleCurrentSelection() {
   const node = figma.currentPage.selection[0];
   try {
-    const nodePluginData = node ? node.getPluginData(PLUGIN_DATA_KEY) : null;
+    const nodePluginData = node
+      ? node.getSharedPluginData(PLUGIN_DATA_NAMESPACE, PLUGIN_DATA_KEY)
+      : null;
     const nodeId = node ? node.id : null;
     const nodeType = node ? node.type : null;
     figma.ui.postMessage({
