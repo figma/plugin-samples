@@ -2,13 +2,10 @@
   "name": "Code Snippet Saver",
   "id": "239174719128739123",
   "api": "1.0.0",
-  "editorType": ["dev", "figma"],
+  "editorType": ["dev"],
   "capabilities": ["codegen"],
   "permissions": [],
-  "codegenLanguages": [
-    { "label": "Snippets", "value": "snippets" },
-    { "label": "Debug", "value": "debug" }
-  ],
+  "codegenLanguages": [{ "label": "Snippets", "value": "snippets" }],
   "codegenPreferences": [
     {
       "itemType": "action",
