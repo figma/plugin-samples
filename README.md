@@ -198,11 +198,11 @@ This demonstrates registering callbacks for drop events and reading bytes from d
 
 ## Examples of plugins for Dev Mode
 
-### Code Snippet Saver
+### Snippet Saver
 
 An example of a plugin that allows you to author and save code snippets directly on nodes that will render in the inspect panel when the node is selected.
 
-[Check out the source code.](code-snippet-saver/)
+[Check out the source code.](snippet-saver/)
 
 ### Codegen
 
