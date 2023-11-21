@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import { useRef } from "react";
 import logoPng from "./logo.png";
 import logoSvg from "./logo.svg?raw";
 import Logo from "./Logo";
