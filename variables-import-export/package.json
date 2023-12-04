@@ -1,0 +1,15 @@
+{
+  "name": "variables",
+  "version": "1.0.0",
+  "description": "variables",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "watch": "npm run build -- --watch"
+  },
+  "author": "Figma",
+  "license": "MIT License",
+  "devDependencies": {
+    "@figma/plugin-typings": "*",
+    "typescript": "^5.3.2"
+  }
+}
