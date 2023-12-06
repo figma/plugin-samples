@@ -17,7 +17,7 @@
     "concurrently": "^8.0.1",
     "esbuild": "^0.17.14",
     "prettier": "^2.8.7",
-    "vite": "^4.2.1",
+    "vite": "^4.5.1",
     "vite-plugin-singlefile": "^0.13.3"
   }
 }
