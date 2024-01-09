@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 // Circular text sample code
 // Turns a selected text node into a set of letters on a circular arc.
 
@@ -21,7 +22,7 @@ function move(x, y) {
 }
 
 // Creates a "rotate" transform.
-function rotate(theta) {
+function rotate(theta: number) {
   return [
     [Math.cos(theta), Math.sin(theta), 0],
     [-Math.sin(theta), Math.cos(theta), 0]
@@ -47,7 +48,7 @@ async function main(): Promise<string | undefined> {
 
   // Replace spaces with nonbreaking spaces.
   const text = node.characters.replace(/ /g, " ")
-  let gap = 5
+  const gap = 5
 
   // Create a new text node for each character, and
   // measure the total width.
@@ -88,14 +89,14 @@ async function main(): Promise<string | undefined> {
   const centerY = node.y + node.height / 2
 
   // Walk through each letter and position it on a circle of radius r.
-  nodes.forEach(function (letterNode) {
+  nodes.forEach(function (letterNode: TextNode) {
     const stepAngle = letterNode.width / r
 
     // Move forward in our arc half a letter width.
     angle -= stepAngle / 2
 
-    let width = letterNode.width
-    let height = letterNode.height
+    const width = letterNode.width
+    const height = letterNode.height
 
     // Move the letter so that the center of its baseline is on the origin.
     // (estimate the baseline as being 70% down from the top of the box).
@@ -104,16 +105,16 @@ async function main(): Promise<string | undefined> {
     // then moving the letter to the left and up by the appopriate amount.
     letterNode.x = 0
     letterNode.y = 0
-    letterNode.relativeTransform = multiply(move(-width/2, -0.7 * height), letterNode.relativeTransform)
+    letterNode.relativeTransform = multiply(move(-width/2, -0.7 * height), letterNode.relativeTransform) as Transform
 
     // Rotate the letter. Because we want to have the rotation angle be 0 at the top of the circle,
     // we need to subtract pi/2 before applying the rotation to the text.
-    letterNode.relativeTransform = multiply(rotate(angle - pi/2), letterNode.relativeTransform)
+    letterNode.relativeTransform = multiply(rotate(angle - pi/2), letterNode.relativeTransform) as Transform
 
     // Move the letter to its position on the arc.
-    let desiredX = centerX + r * Math.cos(angle)
-    let desiredY = centerY - r * Math.sin(angle)
-    letterNode.relativeTransform = multiply(move(desiredX, desiredY), letterNode.relativeTransform)
+    const desiredX = centerX + r * Math.cos(angle)
+    const desiredY = centerY - r * Math.sin(angle)
+    letterNode.relativeTransform = multiply(move(desiredX, desiredY), letterNode.relativeTransform) as Transform
 
     // Move forward in our arc half a letter width + the gap
     angle -= stepAngle / 2 + gapAngle
@@ -123,6 +124,6 @@ async function main(): Promise<string | undefined> {
   figma.group(nodes, node.parent)
 }
 
-main().then((message: string | undefined) => {
+void main().then((message: string | undefined) => {
   figma.closePlugin(message)
 })
