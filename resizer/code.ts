@@ -20,14 +20,16 @@ figma.parameters.on('input', ({query, key, result}: ParameterInputEvent) => {
   }
 
   switch (key) {
-    case 'width':
+    case 'width': {
       const widthSizes = ['640', '800', '960', '1024', '1280']
       setSuggestionsForNumberInput(query, result, widthSizes)
-      break
-    case 'height':
+      break;
+    }
+    case 'height': {
       const heightSizes = ['480', '600', '720', '768', '960']
       setSuggestionsForNumberInput(query, result, heightSizes)
-      break
+      break;
+    }
     case 'scale':
       setSuggestionsForNumberInput(query, result)
       break
@@ -38,6 +40,9 @@ figma.parameters.on('input', ({query, key, result}: ParameterInputEvent) => {
 
 // When the user presses Enter after inputting all parameters, the 'run' event is fired.
 figma.on('run', ({command, parameters}: RunEvent) => {
+  if (!parameters) {
+    return;
+  }
   if (command == 'relative') {
     resizeRelative(parameters)
   } else {
@@ -47,6 +52,7 @@ figma.on('run', ({command, parameters}: RunEvent) => {
 })
 
 function resizeRelative(parameters: ParameterValues) {
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
   const scale = parseFloat(parameters.scale)
 
   for (const node of figma.currentPage.selection) {
@@ -57,7 +63,9 @@ function resizeRelative(parameters: ParameterValues) {
 }
 
 function resizeAbsolute(parameters: ParameterValues) {
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
   const width = parseInt(parameters.width)
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
   const height = parseInt(parameters.height)
 
   for (const node of figma.currentPage.selection) {
