@@ -6,7 +6,7 @@
   "ui": "decoder.html",
   "editorType": ["figma", "figjam"],
   "networkAccess": {
-    "allowedDomains": ["*"],
-    "reasoning": "blob urls are not yet supported for networkAccess"
-  }
+    "allowedDomains": ["none"]
+  },
+  "documentAccess": "dynamic-page"
 }
