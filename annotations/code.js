@@ -14,11 +14,21 @@ figma.closePlugin();
 
 function addAnnotation(instance) {
   if (instance.annotations.length) {
-    // IMPORTANT: This line deletes existing annotations
-    // instance.annotations = [];
     console.log(instance.annotations);
-    // IMPORTANT: The following appends to existing annotations,
-    // but LOSES rich text formatting (currently unsupported in the plugin API)
+
+    /**
+     * The following deletes existing annotations
+     */
+
+    /*
+    instance.annotations = [];
+    */
+
+    /**
+     * The following appends to existing annotations but loses existing rich text formatting.
+     * Rich text is currently unsupported in the plugin API.
+     */
+
     /*
     const current = instance.annotations[0];
     const currentProperties = current.properties || [];
