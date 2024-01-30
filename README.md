@@ -328,3 +328,6 @@ Create rectangles! This demonstrates:
 [ts]: https://www.typescriptlang.org/
 [node]: https://nodejs.org/en/download/
 [webpack]: #webpack
+
+## Introducing AI to figma
+https://www.figma.com/blog/introducing-ai-to-figjam/
