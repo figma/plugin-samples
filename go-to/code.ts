@@ -1,25 +1,4 @@
-const types = [
-  "BOOLEAN_OPERATION",
-  "COMPONENT",
-  "COMPONENT_SET",
-  "CONNECTOR",
-  "DOCUMENT",
-  "ELLIPSE",
-  "FRAME",
-  "GROUP",
-  "INSTANCE",
-  "LINE",
-  "PAGE",
-  "POLYGON",
-  "RECTANGLE",
-  "SHAPE_WITH_TEXT",
-  "SLICE",
-  "STAMP",
-  "STAR",
-  "STICKY",
-  "TEXT",
-  "VECTOR",
-];
+/* eslint-disable no-case-declarations */
 
 // The 'input' event listens for text change in the Quick Actions box after a plugin is 'Tabbed' into.
 figma.parameters.on('input', ({ key, query, result }) => {
@@ -50,17 +29,17 @@ figma.parameters.on('input', ({ key, query, result }) => {
 
 // When the user presses Enter after inputting all parameters, the 'run' event is fired.
 figma.on('run', ({ parameters }) => {
-  startPluginWithParameters(parameters!);
+  startPluginWithParameters(parameters);
 });
 
 // Start the plugin with parameters
-function startPluginWithParameters(parameters) {
+async function startPluginWithParameters(parameters) {
   const { name, id } = parameters['name'];
-  const node = figma.getNodeById(id);
+  const node = await figma.getNodeByIdAsync(id);
   if (node) {
       // Node found, so we need to go to that node
       if (node.type === "PAGE") {
-          figma.currentPage = node;
+          await figma.setCurrentPageAsync(node);
       } else {
           // Figure out if the node is on the right page, 
           // otherwise, we need to switch to that page before zooming into the view
@@ -68,7 +47,7 @@ function startPluginWithParameters(parameters) {
           while (currentParent.type !== "PAGE") {
               currentParent = currentParent.parent;
           }
-          figma.currentPage = currentParent;
+          await figma.setCurrentPageAsync(currentParent);
           figma.viewport.scrollAndZoomIntoView([node]);
           figma.currentPage.selection = [node as SceneNode];
       }
@@ -78,4 +57,3 @@ function startPluginWithParameters(parameters) {
   }
   figma.closePlugin();
 }
-;
