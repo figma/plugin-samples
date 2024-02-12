@@ -4,7 +4,7 @@ module.exports = {
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended-type-checked",
     "plugin:@typescript-eslint/stylistic-type-checked",
-    "plugin:@figma/figma-plugins/dynamic-page",
+    "plugin:@figma/figma-plugins/recommended",
   ],
   parser: "@typescript-eslint/parser",
   parserOptions: {
