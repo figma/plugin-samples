@@ -1,9 +1,14 @@
 figma.showUI(__html__, { height: 600, width: 600 });
 
-figma.on("documentchange", (event) => {
-  const messages = event.documentChanges.map(documentChangeAsString);
-  figma.ui.postMessage(messages, { origin: "*" });
-});
+void initialize();
+
+async function initialize() {
+  await figma.loadAllPagesAsync();
+  figma.on("documentchange", (event) => {
+    const messages = event.documentChanges.map(documentChangeAsString);
+    figma.ui.postMessage(messages, { origin: "*" });
+  });
+}
 
 function documentChangeAsString(change: DocumentChange) {
   const { origin, type } = change;
