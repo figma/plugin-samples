@@ -4,5 +4,9 @@
   "api": "1.0.0",
   "editorType": ["figma"],
   "permissions": [],
-  "main": "code.js"
+  "main": "code.js",
+  "networkAccess": {
+    "allowedDomains": ["none"]
+  },
+  "documentAccess": "dynamic-page"
 }

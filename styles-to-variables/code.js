@@ -1,9 +1,14 @@
 console.clear();
 
-const styles = figma.getLocalPaintStyles();
-const tokenDataMap = styles.reduce(styleToTokenDataMap, {});
-const tokenData = Object.values(tokenDataMap);
-createTokens(tokenData);
+initialize();
+
+async function initialize() {
+  const styles = await figma.getLocalPaintStylesAsync();
+  const tokenDataMap = styles.reduce(styleToTokenDataMap, {});
+  const tokenData = Object.values(tokenDataMap);
+  createTokens(tokenData);
+  figma.closePlugin();
+}
 
 function createTokens(tokenData) {
   if (tokenData.length <= 0) {
@@ -25,7 +30,7 @@ function createTokens(tokenData) {
         opacity === 1 ? "" : ` (${Math.round(opacity * 100)}%)`;
       const parentToken = figma.variables.createVariable(
         `${hex.toUpperCase()}${opacityName}`,
-        aliasCollection.id,
+        aliasCollection,
         "COLOR"
       );
       parentToken.setValueForMode(aliasCollection.modes[0].modeId, {
@@ -35,11 +40,7 @@ function createTokens(tokenData) {
         a: opacity,
       });
       tokens.forEach((name) => {
-        const token = figma.variables.createVariable(
-          name,
-          collection.id,
-          "COLOR"
-        );
+        const token = figma.variables.createVariable(name, collection, "COLOR");
         token.setValueForMode(modeId, {
           type: "VARIABLE_ALIAS",
           id: parentToken.id,
@@ -48,7 +49,7 @@ function createTokens(tokenData) {
     } else {
       const token = figma.variables.createVariable(
         tokens[0],
-        collection.id,
+        collection,
         "COLOR"
       );
       token.setValueForMode(modeId, {
@@ -88,8 +89,6 @@ function styleToTokenDataMap(into, current) {
   }
   return into;
 }
-
-figma.closePlugin();
 
 function rgbToHex({ r, g, b }) {
   const toHex = (value) => {
