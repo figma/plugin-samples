@@ -7,27 +7,48 @@
 
 // Declare an array of stickies
 let stickies: SceneNode[] = [];
+let stamps: SceneNode[] = [];
 
-// Find all stamps on the page
-let stamps: SceneNode[] = figma.currentPage.findAll(node => node.type === "STAMP");
+void initialize();
 
-// If there is a selection, use that
-if(figma.currentPage.selection.length > 0){
+async function initialize() {
+  // Find all stamps on the page
+  await figma.loadAllPagesAsync();
+  stamps = figma.currentPage.findAll(node => node.type === "STAMP");
 
-  stickies = figma.currentPage.selection.filter(node => node.type === "STICKY");
+  // If there is a selection, use that
+  if(figma.currentPage.selection.length > 0){
 
-// If there is no selection, use all stickies
-} else {
-  
-  stickies = figma.currentPage.findChildren(node => node.type === "STICKY");
+    stickies = figma.currentPage.selection.filter(node => node.type === "STICKY");
 
+  // If there is no selection, use all stickies
+  } else {
+    stickies = figma.currentPage.findChildren(node => node.type === "STICKY");
+  }
+
+  if(stickies.length > 0){
+
+    // Tally up each sticky's votes 
+    Promise.all(stickies.map(sticky => tallyStickyVotes(sticky))).then(() => {
+      // Notify the user 
+      figma.notify(`Tallied ${stickies.length} ${stickies.length > 1? 'votes' : 'vote' }.`);
+      figma.closePlugin();
+    }).catch(() => {
+      figma.closePlugin();
+    });
+  } else {
+    figma.notify(`No votes found. Add some!`);
+    // Make sure to close the plugin when you're done. Otherwise the plugin will
+    // keep running, which shows the cancel button at the bottom of the screen.
+    figma.closePlugin();
+  }
 }
 
 function isWithinProximity(node1, node2, tolerance = 40){
 
-  let node1Center = {x: node1.x + node1.width/2, y: node1.y + node1.height/2};
-  let node2Center = {x: node2.x + node2.width/2, y: node2.y + node2.height/2};
-  let proximity = node1.width/2 + tolerance;
+  const node1Center = {x: node1.x + node1.width/2, y: node1.y + node1.height/2};
+  const node2Center = {x: node2.x + node2.width/2, y: node2.y + node2.height/2};
+  const proximity = node1.width/2 + tolerance;
 
   return Math.abs(node1Center.x - node2Center.x) <= proximity && Math.abs(node1Center.y - node2Center.y) <= proximity;
 
@@ -36,7 +57,7 @@ function isWithinProximity(node1, node2, tolerance = 40){
 // Find all votes (stamps) attributed to a sticky (by proximity)
 function getStampsNearNode(sticky){
   
-  let stampGroups = {};
+  const stampGroups = {};
 
   stamps.forEach(stamp => {
     if( isWithinProximity(sticky,stamp,60) ){
@@ -53,13 +74,13 @@ function getStampsNearNode(sticky){
 // Tally all the votes and arrange them in a consumable way
 async function tallyStickyVotes(sticky, removeStamps = false){
 
-  let stampVotes = getStampsNearNode(sticky);
+  const stampVotes = getStampsNearNode(sticky);
 
   // Before setting the characters of the tally's text, we need to load the default font
   await figma.loadFontAsync({family: "Inter", style: "Medium"});
 
   // Create an Auto Layout frame to hold the tally 
-  let tallyFrame = figma.createFrame();
+  const tallyFrame = figma.createFrame();
   tallyFrame.cornerRadius = 8;
   tallyFrame.resize(128,128);
   tallyFrame.layoutMode = "VERTICAL";
@@ -73,7 +94,7 @@ async function tallyStickyVotes(sticky, removeStamps = false){
   tallyFrame.strokeWeight = 2;
   tallyFrame.primaryAxisAlignItems = tallyFrame.counterAxisAlignItems = "CENTER";
   
-  let tallyTitle = figma.createText();
+  const tallyTitle = figma.createText();
   tallyFrame.appendChild(tallyTitle);
   tallyTitle.characters = "Votes";
   tallyTitle.textAutoResize = "HEIGHT";
@@ -81,7 +102,7 @@ async function tallyStickyVotes(sticky, removeStamps = false){
   tallyTitle.textAlignHorizontal = "CENTER";
 
   // Sort all votes to show the highest votes first
-  let sortedVotes = Object.keys(stampVotes)
+  const sortedVotes = Object.keys(stampVotes)
     .sort((a,b) => {
       return stampVotes[b].length - stampVotes[a].length;
     });
@@ -89,7 +110,7 @@ async function tallyStickyVotes(sticky, removeStamps = false){
   // Render each stamp with the number of times it was used
   sortedVotes.forEach(stampName => {
 
-    let tallyLine = figma.createFrame();
+    const tallyLine = figma.createFrame();
     tallyFrame.appendChild(tallyLine);
     tallyLine.layoutMode = "HORIZONTAL";
     tallyLine.itemSpacing = 8;
@@ -101,8 +122,8 @@ async function tallyStickyVotes(sticky, removeStamps = false){
     tallyLine.clipsContent = false;
     
     // If the vote was a profile, show each profile stamp...otherwise, just show a single stamp
-    let stampsToShow = stampName === "Profile"? stampVotes[stampName] : [stampVotes[stampName][0]];
-    let stampFrame = figma.createFrame();
+    const stampsToShow = stampName === "Profile"? stampVotes[stampName] : [stampVotes[stampName][0]];
+    const stampFrame = figma.createFrame();
     tallyLine.appendChild(stampFrame);
     stampFrame.layoutMode = "HORIZONTAL";
     stampFrame.itemSpacing = 0;
@@ -113,13 +134,13 @@ async function tallyStickyVotes(sticky, removeStamps = false){
     stampFrame.clipsContent = false;
     stampFrame.resize(stampsToShow.length * 32 * 0.66 ,32);
     stampsToShow.forEach(currentStamp => {
-      let stamp = currentStamp.clone();
+      const stamp = currentStamp.clone();
       stamp.rotation = 0;
       stamp.resize(32,32);
       stampFrame.appendChild(stamp);
     });
 
-    let tally = figma.createText();
+    const tally = figma.createText();
     tallyLine.appendChild(tally);
     tally.characters = `${stampVotes[stampName].length}`;
     tally.textAutoResize = "HEIGHT";
@@ -133,21 +154,3 @@ async function tallyStickyVotes(sticky, removeStamps = false){
   });
 
 }
-
-if(stickies.length > 0){
-
-  // Tally up each sticky's votes 
-  Promise.all(stickies.map(sticky => tallyStickyVotes(sticky))).then(() => {
-    // Notify the user 
-    figma.notify(`Tallied ${stickies.length} ${stickies.length > 1? 'stickies' : 'sticky' }.`);
-    figma.closePlugin();
-  }).catch(error => {
-    figma.closePlugin();
-  });
-} else {
-  figma.notify(`No stickies found. Add some!`);
-  // Make sure to close the plugin when you're done. Otherwise the plugin will
-  // keep running, which shows the cancel button at the bottom of the screen.
-  figma.closePlugin();
-}
-
