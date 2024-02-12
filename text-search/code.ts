@@ -2,7 +2,7 @@ figma.showUI(__html__);
 
 let timer = undefined;
 
-figma.ui.onmessage = message => {
+figma.ui.onmessage = async message => {
   if (message.query !== undefined) {
     if (timer) {
       clearTimeout(timer);
@@ -11,7 +11,7 @@ figma.ui.onmessage = message => {
       searchFor(message.query);
     }
   } else if (message.show) {
-    let node = figma.getNodeById(message.show);
+    const node = await figma.getNodeByIdAsync(message.show);
     if (node.type === 'DOCUMENT' || node.type === 'PAGE') {
       // DOCUMENTs and PAGEs can't be put into the selection.
       return;
@@ -27,9 +27,9 @@ figma.ui.onmessage = message => {
 // starting at the given node
 function* walkTree(node) {
   yield node;
-  let children = node.children;
+  const children = node.children;
   if (children) {
-    for (let child of children) {
+    for (const child of children) {
       yield* walkTree(child)
     }
   }
@@ -37,17 +37,17 @@ function* walkTree(node) {
 
 function searchFor(query) {
   query = query.toLowerCase()
-  let walker = walkTree(figma.currentPage)
+  const walker = walkTree(figma.currentPage)
 
   function processOnce() {
-    let results = [];
+    const results = [];
     let count = 0;
     let done = true;
     let res
     while (!(res = walker.next()).done) {
-      let node = res.value
+      const node = res.value
       if (node.type === 'TEXT') {
-        let characters = node.characters.toLowerCase()
+        const characters = node.characters.toLowerCase()
         if (characters.includes(query)) {
           results.push(node.id);
         }
