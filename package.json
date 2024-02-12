@@ -17,8 +17,8 @@
   },
   "homepage": "https://github.com/figma/plugin-samples#readme",
   "devDependencies": {
-    "@figma/eslint-plugin-figma-plugins": "git://github.com/figma/eslint-plugin-figma-plugins",
-    "@figma/plugin-typings": "^1.83.0",
+    "@figma/eslint-plugin-figma-plugins": "github:figma/eslint-plugin-figma-plugins",
+    "@figma/plugin-typings": "https://github.com/figma/plugin-typings.git#dynamic-page-plugin-types",
     "@typescript-eslint/eslint-plugin": "^6.18.1",
     "@typescript-eslint/parser": "^6.18.1",
     "eslint": "^8.56.0",
