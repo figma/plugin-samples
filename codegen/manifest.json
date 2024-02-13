@@ -36,5 +36,6 @@
     }
   ],
   "main": "dist/code.js",
-  "ui": "dist/index.html"
+  "ui": "dist/index.html",
+  "documentAccess": "dynamic-page"
 }
