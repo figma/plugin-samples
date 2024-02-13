@@ -6,5 +6,6 @@
   "editorType": ["figma", "figjam"],
   "networkAccess": {
     "allowedDomains": ["none"]
-  }
+  },
+  "documentAccess": "dynamic-page"
 }

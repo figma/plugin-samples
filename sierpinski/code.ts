@@ -12,7 +12,7 @@ function visit(x, y, radius, depth, dir) {
   node.x = x - radius
   node.y = y - radius
   node.resizeWithoutConstraints(2 * radius, 2 * radius)
-  let fills: SolidPaint[] = [{
+  const fills: SolidPaint[] = [{
     type: 'SOLID',
     color: { r: 0.5 + x / 600, g: 0.5 + y / 600, b: 1 - depth / depthLimit }
   }]
