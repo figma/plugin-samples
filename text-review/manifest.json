@@ -8,5 +8,6 @@
   "enableProposedApi": true,
   "networkAccess": {
     "allowedDomains": ["none"]
-  }
+  },
+  "documentAccess": "dynamic-page"
 }
