@@ -27,7 +27,7 @@ figma.parameters.on('input', ({key, query, parameters, result}: ParameterInputEv
       break
     case 'color':
       const colors = ['black', 'blue', 'red', 'green']
-      const icon = parameters['icon']
+      const icon = parameters.icon
       const suggestions = colors
         .filter(s => s.includes(query))
         .map(s => ({ name: s, icon: processSVG({icon, size: '40', color: s}) }))
@@ -53,15 +53,15 @@ figma.on('run', ({parameters}: RunEvent) => {
 
 // Start the plugin with parameters
 function startPluginWithParameters(parameters: ParameterValues) {
-  const icon = parameters['icon']
-  const size = parameters['size']
+  const icon = parameters.icon
+  const size = parameters.size
 
   // Color is an optional parameter, so it is possibly undefined.
-  const color = parameters['color'] ?? 'black'
+  const color = parameters.color ?? 'black'
 
   const processedSvg = icon.replace(/\$size\$/g, size).replace(/\$color\$/g, color)
 
   figma.createNodeFromSvg(processSVG({icon, size, color}))
 
   figma.closePlugin()
-};
+}
