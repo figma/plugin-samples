@@ -8,5 +8,6 @@
   "ui": "dist/index.html",
   "networkAccess": {
     "allowedDomains": ["none"]
-  }
+  },
+  "documentAccess": "dynamic-page"
 }
