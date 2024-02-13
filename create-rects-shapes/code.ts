@@ -44,7 +44,7 @@ if (figma.editorType === 'figma') {
     shape.fills = [{type: 'SOLID', color: {r: 1, g: 0.5, b: 0}}];
     figma.currentPage.appendChild(shape);
     nodes.push(shape);
-  };
+  }
   
   for (let i = 0; i < (numberOfShapes - 1); i++) {
     const connector = figma.createConnector();
@@ -59,7 +59,7 @@ if (figma.editorType === 'figma') {
       endpointNodeId: nodes[i+1].id,
       magnet: 'AUTO',
     };
-  };
+  }
   
   figma.currentPage.selection = nodes;
   figma.viewport.scrollAndZoomIntoView(nodes);
