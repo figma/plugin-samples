@@ -8,5 +8,6 @@
   "networkAccess": {
     "allowedDomains": ["*"],
     "reasoning": "localhost is used for development purposes only."
-  }
+  },
+  "documentAccess": "dynamic-page"
 }
