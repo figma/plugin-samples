@@ -34,5 +34,6 @@
   ],
   "networkAccess": {
     "allowedDomains": ["https://opentdb.com/"]
-  }
+  },
+  "documentAccess": "dynamic-page"
 }
