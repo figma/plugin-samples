@@ -13,5 +13,6 @@
   ],
   "networkAccess": {
     "allowedDomains": ["https://api.sampleapis.com/countries/countries"]
-  }
+  },
+  "documentAccess": "dynamic-page"
 }
