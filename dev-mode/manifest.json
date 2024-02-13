@@ -6,5 +6,6 @@
   "capabilities": ["codegen", "inspect"],
   "main": "code.js",
   "permissions": [],
-  "codegenLanguages": [{ "label": "Text", "value": "text" }]
+  "codegenLanguages": [{ "label": "Text", "value": "text" }],
+  "documentAccess": "dynamic-page"
 }
