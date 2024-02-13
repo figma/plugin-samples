@@ -82,15 +82,15 @@ function loadCategories() {
 function validateParameters(
   parameters: ParameterValues
 ): TriviaParameters | null {
-  const numberString = parameters["number"];
+  const numberString = parameters.number;
   const number = validateNumber(numberString)
   if (number === null) {
     return null
   }
 
-  const category = parameters["category"];
-  const difficulty = parameters["difficulty"];
-  const type = parameters["type"];
+  const category = parameters.category;
+  const difficulty = parameters.difficulty;
+  const type = parameters.type;
 
   return { number, category, difficulty, type };
 }
