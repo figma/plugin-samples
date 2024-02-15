@@ -7,7 +7,7 @@ function createCollection(name) {
 }
 
 function createToken(collection, modeId, type, name, value) {
-  const token = figma.variables.createVariable(name, collection.id, type);
+  const token = figma.variables.createVariable(name, collection, type);
   token.setValueForMode(modeId, value);
   return token;
 }
@@ -124,22 +124,22 @@ function traverseToken({
   }
 }
 
-function exportToJSON() {
-  const collections = figma.variables.getLocalVariableCollections();
+async function exportToJSON() {
+  const collections = await figma.variables.getLocalVariableCollectionsAsync();
   const files = [];
-  collections.forEach((collection) =>
-    files.push(...processCollection(collection))
-  );
+  for (const collection of collections) {
+    files.push(...(await processCollection(collection)));
+  }
   figma.ui.postMessage({ type: "EXPORT_RESULT", files });
 }
 
-function processCollection({ name, modes, variableIds }) {
+async function processCollection({ name, modes, variableIds }) {
   const files = [];
-  modes.forEach((mode) => {
+  for (const mode of modes) {
     const file = { fileName: `${name}.${mode.name}.tokens.json`, body: {} };
-    variableIds.forEach((variableId) => {
+    for (const variableId of variableIds) {
       const { name, resolvedType, valuesByMode } =
-        figma.variables.getVariableById(variableId);
+        await figma.variables.getVariableByIdAsync(variableId);
       const value = valuesByMode[mode.modeId];
       if (value !== undefined && ["COLOR", "FLOAT"].includes(resolvedType)) {
         let obj = file.body;
@@ -149,26 +149,27 @@ function processCollection({ name, modes, variableIds }) {
         });
         obj.$type = resolvedType === "COLOR" ? "color" : "number";
         if (value.type === "VARIABLE_ALIAS") {
-          obj.$value = `{${figma.variables
-            .getVariableById(value.id)
-            .name.replace(/\//g, ".")}}`;
+          const currentVar = await figma.variables.getVariableByIdAsync(
+            value.id
+          );
+          obj.$value = `{${currentVar.name.replace(/\//g, ".")}}`;
         } else {
           obj.$value = resolvedType === "COLOR" ? rgbToHex(value) : value;
         }
       }
-    });
+    }
     files.push(file);
-  });
+  }
   return files;
 }
 
-figma.ui.onmessage = (e) => {
+figma.ui.onmessage = async (e) => {
   console.log("code received message", e);
   if (e.type === "IMPORT") {
     const { fileName, body } = e;
     importJSONFile({ fileName, body });
   } else if (e.type === "EXPORT") {
-    exportToJSON();
+    await exportToJSON();
   }
 };
 if (figma.command === "import") {

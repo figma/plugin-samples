@@ -9,5 +9,6 @@
     { "command": "import", "name": "Import Variables" },
     { "command": "export", "name": "Export Variables" }
   ],
-  "ui": { "import": "import.html", "export": "export.html" }
+  "ui": { "import": "import.html", "export": "export.html" },
+  "documentAccess": "dynamic-page"
 }
