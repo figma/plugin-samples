@@ -6,6 +6,8 @@
   "editorType": ["figma", "figjam"],
   "ui": "ui.html",
   "networkAccess": {
-    "allowedDomains": ["https://cors-anywhere.herokuapp.com"]
-  }
+    "allowedDomains": ["*"],
+    "reasoning": "Metacards loads data from the user-provided URLs so needs to be able access any URL that the user may provide."
+  },
+  "documentAccess": "dynamic-page"
 }
