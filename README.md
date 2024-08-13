@@ -326,6 +326,8 @@ Create rectangles! This demonstrates:
 - [Figma Kit](https://github.com/tigranpetrossian/figma-kit) - A set of React components for building Figma plugins.
 - [Figma Plugin Starter](https://github.com/formaat-design/figma-plugin-starter) - A Figma plugin boilerplate with React, Vite and Reshaped
 
+If you're hoping to emulate the look and feel of Figma UI in your plugins, check out our [UI2 design system](https://www.figma.com/design/Gj9iMcTbFbHrFq1ZWbDBuyc9/UI2%3A-Figma's-Design-System?node-id=0-11724&t=vFlr9WowxY2AjuJo-0), or try [Tom's Figma Plugin DS](https://github.com/thomas-lowry/figma-plugin-ds), a community-provided set of CSS and JavaScript files.
+
 [docs]: https://www.figma.com/plugin-docs/
 [help]: https://www.figma.com/plugin-docs/get-help
 [ts]: https://www.typescriptlang.org/
