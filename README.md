@@ -1,3 +1,5 @@
+[![Open in DevZero](https://assets.devzero.io/open-in-devzero.svg)](https://www.devzero.io/dashboard/recipes/new?repo-url=https://github.com/figma/plugin-samples)
+
 # 🍱 Figma + FigJam Plugin Samples
 
 Sample plugins using the [Figma + FigJam Plugin API docs][docs].
