@@ -1,0 +1,18 @@
+{
+  "name": "Annotations Sample Plugin",
+  "id": "1442969948273040502",
+  "api": "1.0.0",
+  "main": "code.js",
+  "capabilities": ["inspect"],
+  "enableProposedApi": true,
+  "documentAccess": "dynamic-page",
+  "editorType": ["dev"],
+  "ui": "ui.html",
+  "networkAccess": {
+    "allowedDomains": ["none"]
+  },
+  "menu": [
+    { "name": "Annotate images in selection", "command": "selection" },
+    { "name": "Annotate all images on page", "command": "all-images" }
+  ]
+}
