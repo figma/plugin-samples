@@ -1,6 +1,6 @@
 # Annotations Sample
 
-![Plugin Demo](./assets/demo.gif)
+![Plugin Demo](../_screenshots/annotations.gif)
 
 This is a code sample that demonstrates how the Annotations API can be used to bulk create annotations on a specific type of node.
 

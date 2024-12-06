@@ -80,6 +80,12 @@ When this plugin runs in FigJam, it opens a window to prompt the user to enter a
 
 ## Examples without a plugin UI
 
+### Annotations
+
+<img src="_screenshots/annotations.gif" width="400" />
+
+Creates placeholder ALT text annotations for images using the name of the image.
+
 ### Circle Text
 
 <img src="_screenshots/circletext.png" width="400" />
