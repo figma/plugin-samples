@@ -1,50 +1,31 @@
-// a helper function to find nodes with image fills
-// accepts either figma.currentPage or an array of nodes
-function getImageNodes(selection) {
-  let imageNodes = [];
+// Whether or not a node has a visible image fill on it.
+// Ignores "figma.mixed" fill values.
+function nodeHasImageFill(node) {
+  return (
+    "fills" in node &&
+    Array.isArray(node.fills) &&
+    Boolean(node.fills.find((paint) => paint.visible && paint.type === "IMAGE"))
+  );
+}
 
-  // if selection is currentPage
-  if (selection == figma.currentPage) {
-    figma.currentPage.findAll((node) => {
-      if ("fills" in node) {
-        node.fills.find((paint) => {
-          if (paint.type === "IMAGE") {
-            imageNodes.push(node);
-          }
-        });
-      }
-    });
-    return imageNodes;
-  }
-
-  // otherwise, selection is an Array
-  selection.forEach((element) => {
-    // if our current element has an image fill, annotate it
-    if ("fills" in element) {
-      // ignore if fills is figma.mixed
-      if (Array.isArray(element.fills)) {
-        element.fills.find((paint) => {
-          if (paint.type === "IMAGE") {
-            imageNodes.push(element);
-            return;
-          }
-        });
-      }
+// Returns all Figma nodes and descendants with image fills for an array of nodes
+function getImageNodes(nodes) {
+  const imageNodes = [];
+  nodes.forEach((node) => {
+    if (nodeHasImageFills(node)) {
+      imageNodes.push(node);
     }
 
-    // if our current element is a node that can be traversed further
-    if ("findAll" in element) {
-      element.findAll((node) => {
-        if ("fills" in node) {
-          node.fills.find((paint) => {
-            if (paint.type === "IMAGE") {
-              imageNodes.push(node);
-            }
-          });
+    // Checking node descendants
+    if ("findAll" in node) {
+      node.findAll((descendant) => {
+        if (nodeHasImageFill(descendant)) {
+          imageNodes.push(descendant);
         }
       });
     }
   });
+
   return imageNodes;
 }
 
@@ -96,18 +77,8 @@ function createAltTextAnnotations(selection, label) {
   showAnnotationNotification(count, skipped);
 }
 
-// runs plugin from menu commands
-figma.on("run", ({ command }) => {
-  switch (command) {
-    case "all-images":
-      createAltTextAnnotations(figma.currentPage);
-      figma.closePlugin();
-      break;
-    case "selection":
-      createAltTextAnnotations(figma.currentPage.selection);
-      figma.closePlugin();
-    default:
-      // do nothing
-      break;
-  }
-});
+if (figma.currentPage.selection.length) {
+  createAltTextAnnotations(figma.currentPage.selection);
+} else {
+  createAltTextAnnotations([figma.currentPage]);
+}
