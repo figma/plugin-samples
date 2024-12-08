@@ -10,9 +10,5 @@
   "ui": "ui.html",
   "networkAccess": {
     "allowedDomains": ["none"]
-  },
-  "menu": [
-    { "name": "Annotate images in selection", "command": "selection" },
-    { "name": "Annotate all images on page", "command": "all-images" }
-  ]
+  }
 }
