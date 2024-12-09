@@ -77,8 +77,18 @@ function createAltTextAnnotations(selection, label) {
   showAnnotationNotification(count, skipped);
 }
 
-if (figma.currentPage.selection.length) {
-  createAltTextAnnotations(figma.currentPage.selection);
-} else {
-  createAltTextAnnotations([figma.currentPage]);
-}
+// runs plugin from menu commands
+figma.on("run", ({ command }) => {
+  switch (command) {
+    case "all-images":
+      createAltTextAnnotations([figma.currentPage]);
+      figma.closePlugin();
+      break;
+    case "selection":
+      createAltTextAnnotations(figma.currentPage.selection);
+      figma.closePlugin();
+    default:
+      // do nothing
+      break;
+  }
+});
