@@ -29,7 +29,6 @@ function addAnnotation(instance) {
      * Rich text is currently unsupported in the plugin API.
      */
 
-    /*
     const current = instance.annotations[0];
     const currentProperties = current.properties || [];
     const existingMainComponent = currentProperties.find(
@@ -38,12 +37,11 @@ function addAnnotation(instance) {
     if (!existingMainComponent) {
       instance.annotations = [
         {
-          label: current.label,
+          labelMarkdown: current.labelMarkdown,
           properties: [{ type: "mainComponent" }].concat(currentProperties),
         },
       ];
     }
-    */
   } else {
     instance.annotations = [{ properties: [{ type: "mainComponent" }] }];
   }
