@@ -331,6 +331,7 @@ Create rectangles! This demonstrates:
 - [Plugma](https://github.com/gavinmcfarland/plugma) - A CLI for simplifying creating plugins. It uses a local dev server for faster development and better debugging. Built with Vite, so it supports most frameworks, with more being added.
 - [Figma Kit](https://github.com/tigranpetrossian/figma-kit) - A set of React components for building Figma plugins.
 - [Figma Plugin Starter](https://github.com/formaat-design/figma-plugin-starter) - A Figma plugin boilerplate with React, Vite and Reshaped
+- [Figma Plugin React](https://github.com/planetabhi/figma-plugin-react) - Figma plugin starter with React, Vite, and SCSS.
 
 If you're hoping to emulate the look and feel of Figma UI in your plugins, check out our [UI2 design system](https://www.figma.com/design/Gj9iMcTbFbHrFq1ZWbDBuyc9/UI2%3A-Figma's-Design-System?node-id=0-11724&t=vFlr9WowxY2AjuJo-0), or try [Tom's Figma Plugin DS](https://github.com/thomas-lowry/figma-plugin-ds), a community-provided set of CSS and JavaScript files.
 
