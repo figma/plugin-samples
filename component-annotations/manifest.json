@@ -1,0 +1,10 @@
+{
+  "name": "Component Annotation Automator",
+  "id": "239174719123556610",
+  "api": "1.0.0",
+  "editorType": ["dev"],
+  "capabilities": ["inspect"],
+  "permissions": [],
+  "main": "code.js",
+  "networkAccess": { "allowedDomains": ["none"] }
+}
