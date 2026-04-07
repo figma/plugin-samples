@@ -14,6 +14,22 @@ function createTokens(tokenData) {
   if (tokenData.length <= 0) {
     figma.notify("No convertible styles found. :(");
     return;
+  } else {
+    const tokens = tokenData.map(item => item.tokens);
+    const tokenCount = {};
+
+    tokenData.forEach(item => {
+        const {tokens} = item;
+        if (tokens.length === 1) {
+            const token = tokens[0];
+            if (tokenCount[token] === undefined) {
+                tokenCount[token] = 1;
+            } else {
+                tokenCount[token]++;
+                tokens[0] = `${token}${tokenCount[token]}`;
+            }
+        }
+    });
   }
   const collection = figma.variables.createVariableCollection(`Style Tokens`);
   let aliasCollection;
