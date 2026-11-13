@@ -172,6 +172,12 @@ This demonstrates:
 
 [Check out the source code.](text-search/)
 
+### OAuth
+
+An example of implementing OAuth in a Figma plugin using a server-controlled UI origin, one-time read/write keys, state validation, PKCE, and local token storage.
+
+[Check out the setup instructions and source code.](oauth/README.md)
+
 ### Icon Drag-and-Drop
 
 <img src="_screenshots/icon-drag-and-drop.png" width="400" />
