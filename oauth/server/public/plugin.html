@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="referrer" content="no-referrer">
+    <title>OAuth Sample</title>
+    <style>
+      body { font: 13px Inter, sans-serif; color: #222; margin: 20px; }
+      h1 { font-size: 16px; margin: 0 0 8px; }
+      p { line-height: 1.5; }
+      button { border: 0; border-radius: 6px; padding: 9px 14px; background: #0d99ff; color: white; cursor: pointer; }
+      button:disabled { opacity: .55; cursor: default; }
+      #status { min-height: 36px; color: #555; }
+    </style>
+  </head>
+  <body>
+    <h1>OAuth Sample</h1>
+    <p id="status">Connecting to Figma...</p>
+    <button id="connect" type="button" disabled>Connect account</button>
+
+    <script>
+      "use strict";
+
+      const FIGMA_ORIGIN = "https://www.figma.com";
+      const FIGMA_PLUGIN_ID = "__PLUGIN_ID__";
+      const SESSION_TIMEOUT_MS = 5 * 60 * 1000;
+      const POLL_INTERVAL_MS = 1000;
+      const connectButton = document.getElementById("connect");
+      const statusElement = document.getElementById("status");
+      let pendingSession = null;
+
+      function sendToPlugin(pluginMessage) {
+        parent.postMessage(
+          { pluginMessage: pluginMessage, pluginId: FIGMA_PLUGIN_ID },
+          FIGMA_ORIGIN
+        );
+      }
+
+      function prepareSession() {
+        connectButton.disabled = true;
+        statusElement.textContent = "Preparing a secure sign-in session...";
+
+        fetch("/api/sessions", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: "{}",
+          cache: "no-store"
+        })
+          .then(function (response) {
+            if (!response.ok) {
+              throw new Error("Could not create a sign-in session.");
+            }
+            return response.json();
+          })
+          .then(function (session) {
+            pendingSession = session;
+            connectButton.disabled = false;
+            statusElement.textContent = "Connect an account to continue.";
+          })
+          .catch(function () {
+            statusElement.textContent = "Could not prepare sign-in. Check the server and try again.";
+          });
+      }
+
+      function delay(milliseconds) {
+        return new Promise(function (resolve) {
+          window.setTimeout(resolve, milliseconds);
+        });
+      }
+
+      async function pollForResult(readKey) {
+        const deadline = Date.now() + SESSION_TIMEOUT_MS;
+
+        while (Date.now() < deadline) {
+          const response = await fetch(
+            "/api/results/" + encodeURIComponent(readKey),
+            { cache: "no-store" }
+          );
+
+          if (response.status === 202) {
+            await delay(POLL_INTERVAL_MS);
+            continue;
+          }
+
+          if (!response.ok) {
+            throw new Error("The sign-in session expired. Try again.");
+          }
+
+          return response.json();
+        }
+
+        throw new Error("Sign-in timed out. Try again.");
+      }
+
+      connectButton.addEventListener("click", async function () {
+        if (!pendingSession) {
+          return;
+        }
+
+        const session = pendingSession;
+        pendingSession = null;
+        connectButton.disabled = true;
+
+        // Open the top-level navigation directly from the user gesture.
+        // The flow does not depend on window.opener, which is unavailable
+        // when Figma Desktop opens the system browser.
+        const authorizationUrl = new URL("/oauth/start", window.location.origin);
+        authorizationUrl.searchParams.set("write_key", session.writeKey);
+        window.open(authorizationUrl.toString(), "_blank");
+
+        statusElement.textContent = "Finish sign-in in your browser, then return to Figma.";
+
+        try {
+          const result = await pollForResult(session.readKey);
+          if (result.error) {
+            throw new Error(result.error);
+          }
+
+          sendToPlugin({ type: "store-token", token: result.accessToken });
+          statusElement.textContent = "Authentication received. Saving it in Figma...";
+        } catch (error) {
+          statusElement.textContent = error.message;
+          prepareSession();
+        }
+      });
+
+      window.addEventListener("message", function (event) {
+        if (event.source !== parent || event.origin !== FIGMA_ORIGIN) {
+          return;
+        }
+
+        const message = event.data && event.data.pluginMessage;
+        if (!message) {
+          return;
+        }
+
+        if (message.type === "token") {
+          if (typeof message.token === "string" && message.token.length > 0) {
+            statusElement.textContent = "An account is already connected on this device.";
+            connectButton.disabled = true;
+            pendingSession = null;
+          } else {
+            prepareSession();
+          }
+        } else if (message.type === "token-stored") {
+          statusElement.textContent = "Account connected. The token is stored locally by this plugin.";
+          connectButton.disabled = true;
+          pendingSession = null;
+        }
+      });
+
+      sendToPlugin({ type: "ready" });
+    </script>
+  </body>
+</html>
